@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaWeb,Maven," />
 
 
 
@@ -81,7 +81,7 @@
 
 <meta name="description" content="1. 下载压缩包http:&#x2F;&#x2F;maven.apache.org&#x2F;download.cgi     2. 配置环境变量   变量名 变量值    MAVEN_HOME D:\Environment\apache-maven-3.6.3   M2_HOME D:\Environment\apache-maven-3.6.3\bin   Path中添加 %MAVEN_HOME%\bin   3. 验证安">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven配置">
+<meta property="og:title" content="Maven 配置">
 <meta property="og:url" content="http://horsenliu.github.io/Maven%20%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Horsen的博客">
 <meta property="og:description" content="1. 下载压缩包http:&#x2F;&#x2F;maven.apache.org&#x2F;download.cgi     2. 配置环境变量   变量名 变量值    MAVEN_HOME D:\Environment\apache-maven-3.6.3   M2_HOME D:\Environment\apache-maven-3.6.3\bin   Path中添加 %MAVEN_HOME%\bin   3. 验证安">
@@ -98,8 +98,10 @@
 <meta property="og:image" content="http://horsenliu.github.io/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png">
 <meta property="og:image" content="http://horsenliu.github.io/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png">
 <meta property="article:published_time" content="2020-07-06T13:12:23.000Z">
-<meta property="article:modified_time" content="2020-07-06T13:51:36.685Z">
+<meta property="article:modified_time" content="2020-07-06T15:01:08.714Z">
 <meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Maven">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://horsenliu.github.io/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png">
 
@@ -109,7 +111,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -137,7 +139,7 @@
 
 
 
-  <title>Maven配置 | Horsen的博客</title>
+  <title>Maven 配置 | Horsen的博客</title>
   
 
 
@@ -193,7 +195,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -202,8 +204,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -261,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Maven配置</h1>
+          <h1 class="post-title" itemprop="name headline">Maven 配置</h1>
         
 
         <div class="post-meta">
@@ -283,6 +305,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">Java学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -410,27 +465,19 @@
 
     <footer class="post-footer">
       
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/Maven%E9%85%8D%E7%BD%AE/" rel="next" title="Maven配置">
-                <i class="fa fa-chevron-left"></i> Maven配置
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+          
+            <a href="/tags/Maven/" rel="tag"># Maven</a>
+          
         </div>
+      
+
+      
+      
+      
+
       
 
       
@@ -501,17 +548,33 @@
 
             
               <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%20%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">2</span>
+                <a href="/archives">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -541,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-下载压缩包"><span class="nav-number">1.</span> <span class="nav-text">1. 下载压缩包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置环境变量"><span class="nav-number">2.</span> <span class="nav-text">2. 配置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-验证安装"><span class="nav-number">3.</span> <span class="nav-text">3. 验证安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-修改镜像源"><span class="nav-number">4.</span> <span class="nav-text">4. 修改镜像源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-建立本地仓库"><span class="nav-number">5.</span> <span class="nav-text">5. 建立本地仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-在-IDEA-中使用"><span class="nav-number">6.</span> <span class="nav-text">6. 在 IDEA 中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-创建-MavenWeb-项目"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 创建 MavenWeb 项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-设置-Maven"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 设置 Maven</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-补全项目文件"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 补全项目文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-配置-Tomcat"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 配置 Tomcat</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-pom-xml"><span class="nav-number">7.</span> <span class="nav-text">7. pom.xml</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-下载压缩包"><span class="nav-text">1. 下载压缩包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置环境变量"><span class="nav-text">2. 配置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-验证安装"><span class="nav-text">3. 验证安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-修改镜像源"><span class="nav-text">4. 修改镜像源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-建立本地仓库"><span class="nav-text">5. 建立本地仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-在-IDEA-中使用"><span class="nav-text">6. 在 IDEA 中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-创建-MavenWeb-项目"><span class="nav-text">6.1 创建 MavenWeb 项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-设置-Maven"><span class="nav-text">6.2 设置 Maven</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-3-补全项目文件"><span class="nav-text">6.3 补全项目文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-4-配置-Tomcat"><span class="nav-text">6.4 配置 Tomcat</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-pom-xml"><span class="nav-text">7. pom.xml</span></a></li></ol></div>
             
 
           </div>
@@ -579,7 +642,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
