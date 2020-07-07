@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Github,问题," />
+  <meta name="keywords" content="Java,JavaWeb,Servlet," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="修改 C:\Windows\System32\drivers\etc\hosts 文件 添加如下 ip 地址 12345678910111213141516171819202122232425262728# GitHub Start 140.82.113.3      github.com140.82.114.20     gist.github.com151.101.184.133    ass">
+<meta name="description" content="web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象  如果要获取客户端请求的参数，找HttpServletRequest 如果要给客户端响应一些信息，找 HttpServletResponce  1. 简单分类 负责向浏览器发送数据的方法  123Servlet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决 Github 图片不显示问题">
-<meta property="og:url" content="http://horsenliu.github.io/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="HttpServletResonse 应用">
+<meta property="og:url" content="http://horsenliu.github.io/HttpServletResponse%20%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="Horsen 的博客">
-<meta property="og:description" content="修改 C:\Windows\System32\drivers\etc\hosts 文件 添加如下 ip 地址 12345678910111213141516171819202122232425262728# GitHub Start 140.82.113.3      github.com140.82.114.20     gist.github.com151.101.184.133    ass">
-<meta property="article:published_time" content="2020-07-06T13:36:04.000Z">
-<meta property="article:modified_time" content="2020-07-07T06:24:21.653Z">
+<meta property="og:description" content="web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象  如果要获取客户端请求的参数，找HttpServletRequest 如果要给客户端响应一些信息，找 HttpServletResponce  1. 简单分类 负责向浏览器发送数据的方法  123Servlet">
+<meta property="article:published_time" content="2020-07-05T13:20:51.000Z">
+<meta property="article:modified_time" content="2020-07-07T06:29:50.643Z">
 <meta property="article:author" content="Horsen Liu">
-<meta property="article:tag" content="Github">
-<meta property="article:tag" content="问题">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Servlet">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://horsenliu.github.io/解决 Github 图片不显示问题/"/>
+  <link rel="canonical" href="http://horsenliu.github.io/HttpServletResponse 应用/"/>
 
 
 
 
 
-  <title>解决 Github 图片不显示问题 | Horsen 的博客</title>
+  <title>HttpServletResonse 应用 | Horsen 的博客</title>
   
 
 
@@ -287,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.github.io/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.github.io/HttpServletResponse%20%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Horsen Liu">
@@ -304,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解决 Github 图片不显示问题</h1>
+          <h1 class="post-title" itemprop="name headline">HttpServletResonse 应用</h1>
         
 
         <div class="post-meta">
@@ -316,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-06T21:36:04+08:00">
-                2020-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T21:20:51+08:00">
+                2020-07-05
               </time>
             
 
@@ -332,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-07-07T14:24:21+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-07T14:29:50+08:00">
                 2020-07-07
               </time>
             
@@ -351,8 +352,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-NexT/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo & NexT</span>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
                   </a>
                 </span>
 
@@ -388,10 +400,93 @@
       
 
       
-        <p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+        <p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
+<ul>
+<li>如果要获取客户端请求的参数，找HttpServletRequest</li>
+<li>如果要给客户端响应一些信息，找 HttpServletResponce</li>
+</ul>
+<h4 id="1-简单分类"><a href="#1-简单分类" class="headerlink" title="1. 简单分类"></a>1. 简单分类</h4><ul>
+<li><p>负责向浏览器发送数据的方法</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">PrintWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>负责向浏览器发送响应头的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setCharacterEncoding</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLength</span><span class="params">(<span class="keyword">int</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLengthLong</span><span class="params">(<span class="keyword">long</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentType</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应的状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>请求响应成功</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>请求重定向</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>找不到资源</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务器代码错误</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="2-常见应用"><a href="#2-常见应用" class="headerlink" title="2. 常见应用"></a>2. 常见应用</h4><ul>
+<li><p>向浏览器输出消息</p>
+</li>
+<li><p>下载文件</p>
+<ol>
+<li><p>要获取下载文件的路径</p>
+</li>
+<li><p>获取下载的文件名</p>
+</li>
+<li><p>想办法让浏览器能够支持下载（遇到中文文件名，需要转换编码格式）</p>
+</li>
+<li><p>获取下载文件的输入流</p>
+</li>
+<li><p>创建缓冲区</p>
+</li>
+<li><p>获取 OutputStream 对象</p>
+</li>
+<li><p>将 FileOutputStream 写入到 buffer 缓冲区</p>
+</li>
+<li><p>使用 OutputStream 将缓冲区中的数据输出到客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 要获取下载文件的路径</span></span><br><span class="line">        String realPath = <span class="string">"E:\\Proj_Java\\JavaWeb_02_Servlet\\Response\\src\\main\\resources\\img.jpg"</span>;</span><br><span class="line">        System.out.println(<span class="string">"文件路径: "</span> + realPath);</span><br><span class="line">        <span class="comment">// 2. 获取下载的文件名</span></span><br><span class="line">        String fileName = realPath.substring(realPath.lastIndexOf(<span class="string">"\\"</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 3. 想办法让浏览器能够支持下载</span></span><br><span class="line">        resp.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;filename="</span> + fileName);</span><br><span class="line">        <span class="comment">// 4. 获取下载文件的输入流</span></span><br><span class="line">        FileInputStream in = <span class="keyword">new</span> FileInputStream(realPath);</span><br><span class="line">        <span class="comment">// 5. 创建缓冲区</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="comment">// 6. 获取 OutputStream 对象</span></span><br><span class="line">        ServletOutputStream out = resp.getOutputStream();</span><br><span class="line">        <span class="comment">// 7. 将 FileOutputStream 写入到 buffer 缓冲区  8. 使用 OutputStream 将缓冲区中的数据输出到客户端</span></span><br><span class="line">        <span class="keyword">while</span> ((len = in.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            out.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line">        out.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="3-验证码功能"><a href="#3-验证码功能" class="headerlink" title="3. 验证码功能"></a>3. 验证码功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 如何让浏览器3秒刷新一次</span></span><br><span class="line">        resp.setHeader(<span class="string">"refresh"</span>, <span class="string">"3"</span>);</span><br><span class="line">        <span class="comment">// 在内存中创建图片</span></span><br><span class="line">        BufferedImage image = <span class="keyword">new</span> BufferedImage(<span class="number">45</span>, <span class="number">20</span>, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">        <span class="comment">// 得到一支笔</span></span><br><span class="line">        Graphics2D pen = (Graphics2D) image.getGraphics();</span><br><span class="line">        <span class="comment">//设置图片背景颜色 从(0,0)填充到(80,20)</span></span><br><span class="line">        pen.setColor(Color.white);</span><br><span class="line">        pen.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">45</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="comment">// 给图片写数据 画随机数</span></span><br><span class="line">        pen.setColor(Color.blue);</span><br><span class="line">        pen.setFont(<span class="keyword">new</span> Font(<span class="keyword">null</span>, Font.BOLD, <span class="number">20</span>));</span><br><span class="line">        pen.drawString(makeRandomNumber(), <span class="number">0</span>, <span class="number">17</span>);</span><br><span class="line">        <span class="comment">// 告诉浏览器这个请求用图片的方式打开</span></span><br><span class="line">        resp.setContentType(<span class="string">"image/jpeg"</span>);</span><br><span class="line">        <span class="comment">// 网站存在缓存 所以要禁止浏览器缓存</span></span><br><span class="line">        resp.setDateHeader(<span class="string">"expires"</span>, -<span class="number">1</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        <span class="comment">// 把图片写给浏览器</span></span><br><span class="line">        <span class="keyword">boolean</span> write = ImageIO.write(image, <span class="string">"jpg"</span>, resp.getOutputStream());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成随机数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 随机数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">makeRandomNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">// 生成一个0-9999的随机数</span></span><br><span class="line">        String num = random.nextInt(<span class="number">9999</span>) + <span class="string">""</span>;</span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="comment">// 前面补0 补成四位数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - num.length(); i++) &#123;</span><br><span class="line">            sb.append(<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString() + num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-实现重定向"><a href="#4-实现重定向" class="headerlink" title="4. 实现重定向"></a>4. 实现重定向</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedirectServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        resp.setHeader("Location","/Response/img");</span></span><br><span class="line"><span class="comment">        resp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        resp.sendRedirect(<span class="string">"/Response/img"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>面试题：请你聊聊重定向和转发的区别</p>
+<ul>
+<li><p>相同点</p>
+<ul>
+<li>页面都会实现跳转</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul>
+<li>请求转发的时候，url 地址栏不会发生变化</li>
+<li>重定向的时候，url 地址栏会发生变化</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -409,9 +504,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Github/" rel="tag"><i class="fa fa-tag"></i> Github</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
-            <a href="/tags/%E9%97%AE%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 问题</a>
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
+          
+            <a href="/tags/Servlet/" rel="tag"><i class="fa fa-tag"></i> Servlet</a>
           
         </div>
       
@@ -424,8 +521,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/HttpServletResponse%20%E5%BA%94%E7%94%A8/" rel="next" title="HttpServletResonse 应用">
-                <i class="fa fa-chevron-left"></i> HttpServletResonse 应用
+              <a href="/ServletContext%20%E5%BA%94%E7%94%A8/" rel="next" title="ServletContext 应用">
+                <i class="fa fa-chevron-left"></i> ServletContext 应用
               </a>
             
           </div>
@@ -434,8 +531,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/" rel="prev" title="解决 Hexo 图片不显示问题">
-                解决 Hexo 图片不显示问题 <i class="fa fa-chevron-right"></i>
+              <a href="/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/" rel="prev" title="解决 Github 图片不显示问题">
+                解决 Github 图片不显示问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,8 +585,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,6 +657,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简单分类"><span class="nav-text">1. 简单分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-常见应用"><span class="nav-text">2. 常见应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-验证码功能"><span class="nav-text">3. 验证码功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-实现重定向"><span class="nav-text">4. 实现重定向</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
