@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Maven 配置</title>
+    <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png" class>
+
+
+
+<h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h4><table>
+<thead>
+<tr>
+<th align="left">变量名</th>
+<th align="left">变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MAVEN_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3</td>
+</tr>
+<tr>
+<td align="left">M2_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3\bin</td>
+</tr>
+<tr>
+<td align="left">Path中添加</td>
+<td align="left">%MAVEN_HOME%\bin</td>
+</tr>
+</tbody></table>
+<h4 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3. 验证安装"></a>3. 验证安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-修改镜像源"><a href="#4-修改镜像源" class="headerlink" title="4. 修改镜像源"></a>4. 修改镜像源</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,!jeecg,!jeecg-snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-建立本地仓库"><a href="#5-建立本地仓库" class="headerlink" title="5. 建立本地仓库"></a>5. 建立本地仓库</h4><ul>
+<li>maven 目录下新建文件夹 maven-repo</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704225515234.png" class>
+
+<ul>
+<li>配置文件 <settings> 标签中添加</settings></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\Environment\apache-maven-3.6.3\maven-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-在-IDEA-中使用"><a href="#6-在-IDEA-中使用" class="headerlink" title="6. 在 IDEA 中使用"></a>6. 在 IDEA 中使用</h4><h5 id="6-1-创建-MavenWeb-项目"><a href="#6-1-创建-MavenWeb-项目" class="headerlink" title="6.1 创建 MavenWeb 项目"></a>6.1 创建 MavenWeb 项目</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230404473.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230944123.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705003522875.png" class>
+
+
+
+<h5 id="6-2-设置-Maven"><a href="#6-2-设置-Maven" class="headerlink" title="6.2 设置 Maven"></a>6.2 设置 Maven</h5><p><em>每次新建项目都检查一下这部分</em></p>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705002910260.png" class>
+
+<h5 id="6-3-补全项目文件"><a href="#6-3-补全项目文件" class="headerlink" title="6.3 补全项目文件"></a>6.3 补全项目文件</h5><ul>
+<li>在 main 文件夹中新建两个文件夹</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233517122.png" class>
+
+<ul>
+<li>标记 java 文件夹</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233654214.png" class>
+
+<h5 id="6-4-配置-Tomcat"><a href="#6-4-配置-Tomcat" class="headerlink" title="6.4 配置 Tomcat"></a>6.4 配置 Tomcat</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234448579.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234427105.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png" class>
+
+
+
+<h4 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h4><ul>
+<li>文件详解</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在build中配置resources，来防止我们资源导出失败的问题</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>JavaWeb</tag>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Hexo 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="解决-Hexo-图片不显示问题"><a href="#解决-Hexo-图片不显示问题" class="headerlink" title="解决 Hexo 图片不显示问题"></a>解决 Hexo 图片不显示问题</h2><h4 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-修改-config-xml-配置文件"><a href="#2-修改-config-xml-配置文件" class="headerlink" title="2. 修改 _config.xml 配置文件"></a>2. 修改 _config.xml 配置文件</h4><p>修改 post_asset_folder 值为 true</p>
+<h4 id="3-新建一篇文章"><a href="#3-新建一篇文章" class="headerlink" title="3. 新建一篇文章"></a>3. 新建一篇文章</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new post title</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-在自动生成的资源文件夹下放入图片"><a href="#4-在自动生成的资源文件夹下放入图片" class="headerlink" title="4. 在自动生成的资源文件夹下放入图片"></a>4. 在自动生成的资源文件夹下放入图片</h4><h4 id="5-修改-md-文档"><a href="#5-修改-md-文档" class="headerlink" title="5. 修改 md 文档"></a>5. 修改 md 文档</h4><p>将图片的 markdown 格式修改为 </p>
+<p><em>详细参照官方文档 <a href="https://hexo.bootcss.com/docs/asset-folders.html" target="_blank" rel="noopener">https://hexo.bootcss.com/docs/asset-folders.html</a></em></p>
+<h4 id="6-如果有必要-禁止网页缓存"><a href="#6-如果有必要-禁止网页缓存" class="headerlink" title="6. 如果有必要 禁止网页缓存"></a>6. 如果有必要 禁止网页缓存</h4>]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA 快捷键</title>
+    <url>/IDEA%20%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+Shift+Alt</td>
+<td>多行操作</td>
+</tr>
+<tr>
+<td>psvm</td>
+<td>生成main()方法</td>
+</tr>
+<tr>
+<td>fori</td>
+<td>生成for循环</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+V</td>
+<td>自动补齐返回值类型</td>
+</tr>
+<tr>
+<td>Ctrl+O</td>
+<td>覆写方法</td>
+</tr>
+<tr>
+<td>Ctrl+I</td>
+<td>实现接口中的方法</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+U</td>
+<td>大小写转换</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Z</td>
+<td>取消撤销</td>
+</tr>
+<tr>
+<td>Alt＋Insert</td>
+<td>生成构造方法、getter、setter</td>
+</tr>
+<tr>
+<td>Ctrl+Y</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+J</td>
+<td>将选中的行合并成一行</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>定位到某一行</td>
+</tr>
+<tr>
+<td>Ctrl+Shitft+向下箭头</td>
+<td>将光标所在的代码块向下整体移动</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+向上箭头</td>
+<td>将光标所在的代码块向上整体移动</td>
+</tr>
+<tr>
+<td>Alt+Shift+向下箭头</td>
+<td>将行向下移动</td>
+</tr>
+<tr>
+<td>Alt+Shift+向上箭头</td>
+<td>将行向上移动</td>
+</tr>
+<tr>
+<td>Ctrl+F</td>
+<td>在当前文件中查找</td>
+</tr>
+<tr>
+<td>Ctrl+R</td>
+<td>替换字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+F</td>
+<td>在全局文件中查找字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+R</td>
+<td>在全局中替换字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Enter</td>
+<td>自动补齐{}或者分号</td>
+</tr>
+<tr>
+<td>Shift+Enter</td>
+<td>在当前行的下方开始新行</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+Enter</td>
+<td>在当前行的上方插入新行</td>
+</tr>
+<tr>
+<td>Ctrl+Delete</td>
+<td>删除光标所在至单词结尾处的所有字符</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="解决-Github-图片不显示问题"><a href="#解决-Github-图片不显示问题" class="headerlink" title="解决 Github 图片不显示问题"></a>解决 Github 图片不显示问题</h2><p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+</search>
