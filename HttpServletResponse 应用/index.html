@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,JavaWeb,Servlet," />
+  <meta name="keywords" content="Java,JavaWeb,Servlet,Response," />
 
 
 
@@ -81,16 +81,17 @@
 
 <meta name="description" content="web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象  如果要获取客户端请求的参数，找HttpServletRequest 如果要给客户端响应一些信息，找 HttpServletResponce  1. 简单分类 负责向浏览器发送数据的方法  123Servlet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HttpServletResonse 应用">
+<meta property="og:title" content="HttpServletResponse 应用">
 <meta property="og:url" content="http://horsenliu.github.io/HttpServletResponse%20%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="Horsen 的博客">
 <meta property="og:description" content="web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象  如果要获取客户端请求的参数，找HttpServletRequest 如果要给客户端响应一些信息，找 HttpServletResponce  1. 简单分类 负责向浏览器发送数据的方法  123Servlet">
 <meta property="article:published_time" content="2020-07-05T13:20:51.000Z">
-<meta property="article:modified_time" content="2020-07-07T06:29:50.643Z">
+<meta property="article:modified_time" content="2020-07-09T10:28:53.207Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Servlet">
+<meta property="article:tag" content="Response">
 <meta name="twitter:card" content="summary">
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title>HttpServletResonse 应用 | Horsen 的博客</title>
+  <title>HttpServletResponse 应用 | Horsen 的博客</title>
   
 
 
@@ -305,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HttpServletResonse 应用</h1>
+          <h1 class="post-title" itemprop="name headline">HttpServletResponse 应用</h1>
         
 
         <div class="post-meta">
@@ -333,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-07-07T14:29:50+08:00">
-                2020-07-07
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-09T18:28:53+08:00">
+                2020-07-09
               </time>
             
           </span>
@@ -425,8 +426,12 @@
 <td>请求响应成功</td>
 </tr>
 <tr>
-<td>3xx</td>
-<td>请求重定向</td>
+<td>302</td>
+<td>请求重定向（url会发生变化）</td>
+</tr>
+<tr>
+<td>307</td>
+<td>请求转发（url不会发生变化）</td>
 </tr>
 <tr>
 <td>4xx</td>
@@ -509,6 +514,8 @@
             <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
           
             <a href="/tags/Servlet/" rel="tag"><i class="fa fa-tag"></i> Servlet</a>
+          
+            <a href="/tags/Response/" rel="tag"><i class="fa fa-tag"></i> Response</a>
           
         </div>
       
@@ -612,7 +619,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +641,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -714,7 +721,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.9k字</span>
+  <span class="post-count">博客全站共4k字</span>
 </div>
         
 
