@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>HttpServletRequest 应用</title>
-    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
-        <tag>Request</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HttpServletResponse 应用</title>
     <url>/HttpServletResponse%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
@@ -125,6 +104,27 @@
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
         <tag>Response</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HttpServletRequest 应用</title>
+    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
+        <tag>Request</tag>
       </tags>
   </entry>
   <entry>
@@ -241,6 +241,30 @@
       <tags>
         <tag>IDEA</tag>
         <tag>快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 配置</title>
+    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
+<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+
+
+
+<h4 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h4><h5 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h5><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -401,46 +425,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Tomcat 配置</title>
-    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
-<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
-
-
-
-<h4 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h4><h5 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h5><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Github 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决 Hexo 图片不显示问题</title>
     <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h4 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
@@ -459,8 +443,24 @@
         <category>Hexo &amp; NexT</category>
       </categories>
       <tags>
-        <tag>问题</tag>
         <tag>Hexo</tag>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>Github</tag>
       </tags>
   </entry>
   <entry>
