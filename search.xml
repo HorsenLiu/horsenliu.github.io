@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>HttpServletRequest 应用</title>
-    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
-        <tag>Request</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA 快捷键</title>
     <url>/IDEA%20%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<table>
@@ -137,6 +114,165 @@
       <tags>
         <tag>IDEA</tag>
         <tag>快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HttpServletRequest 应用</title>
+    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
+        <tag>Request</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven 配置</title>
+    <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png" class>
+
+
+
+<h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h4><table>
+<thead>
+<tr>
+<th align="left">变量名</th>
+<th align="left">变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MAVEN_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3</td>
+</tr>
+<tr>
+<td align="left">M2_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3\bin</td>
+</tr>
+<tr>
+<td align="left">Path中添加</td>
+<td align="left">%MAVEN_HOME%\bin</td>
+</tr>
+</tbody></table>
+<h4 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3. 验证安装"></a>3. 验证安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="4-修改镜像源"><a href="#4-修改镜像源" class="headerlink" title="4. 修改镜像源"></a>4. 修改镜像源</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,!jeecg,!jeecg-snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-建立本地仓库"><a href="#5-建立本地仓库" class="headerlink" title="5. 建立本地仓库"></a>5. 建立本地仓库</h4><ul>
+<li>maven 目录下新建文件夹 maven-repo</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704225515234.png" class>
+
+<ul>
+<li>配置文件 <settings> 标签中添加</settings></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\Environment\apache-maven-3.6.3\maven-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-在-IDEA-中使用"><a href="#6-在-IDEA-中使用" class="headerlink" title="6. 在 IDEA 中使用"></a>6. 在 IDEA 中使用</h4><h5 id="6-1-创建-MavenWeb-项目"><a href="#6-1-创建-MavenWeb-项目" class="headerlink" title="6.1 创建 MavenWeb 项目"></a>6.1 创建 MavenWeb 项目</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230404473.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230944123.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705003522875.png" class>
+
+
+
+<h5 id="6-2-设置-Maven"><a href="#6-2-设置-Maven" class="headerlink" title="6.2 设置 Maven"></a>6.2 设置 Maven</h5><p><em>每次新建项目都检查一下这部分</em></p>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705002910260.png" class>
+
+<h5 id="6-3-补全项目文件"><a href="#6-3-补全项目文件" class="headerlink" title="6.3 补全项目文件"></a>6.3 补全项目文件</h5><ul>
+<li>在 main 文件夹中新建两个文件夹</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233517122.png" class>
+
+<ul>
+<li>标记 java 文件夹</li>
+</ul>
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233654214.png" class>
+
+<h5 id="6-4-配置-Tomcat"><a href="#6-4-配置-Tomcat" class="headerlink" title="6.4 配置 Tomcat"></a>6.4 配置 Tomcat</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234448579.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234427105.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png" class>
+
+<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png" class>
+
+
+
+<h4 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h4><ul>
+<li>文件详解</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在build中配置resources，来防止我们资源导出失败的问题</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda 表达式</title>
+    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
+<p><em>函数式接口：只有一个方法的接口</em></p>
+<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是有参方法，也没问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
+
+<p>常用的地方是线程中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Java 基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Java 基础</tag>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -405,139 +541,82 @@
       </tags>
   </entry>
   <entry>
-    <title>Lambda 表达式</title>
-    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
-<p><em>函数式接口：只有一个方法的接口</em></p>
-<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+    <title>Session 和 Cookie</title>
+    <url>/Session%20%E5%92%8C%20Cookie/</url>
+    <content><![CDATA[<h4 id="1-什么是-Session"><a href="#1-什么是-Session" class="headerlink" title="1. 什么是 Session"></a>1. 什么是 Session</h4><ul>
+<li><p><strong>Session（会话）</strong>：用户打开了一个浏览器，点击了很多超链接，访问多个 web 资源，关闭浏览器。</p>
+</li>
+<li><p><strong>有状态会话</strong>：一个同学来过教室，下次再来教室，我们会知道这个同学曾经来过。</p>
+</li>
+</ul>
+<h4 id="2-保存会话的两种技术"><a href="#2-保存会话的两种技术" class="headerlink" title="2. 保存会话的两种技术"></a>2. 保存会话的两种技术</h4><ul>
+<li><strong>Cookie</strong>：客户端技术（响应、请求）</li>
+<li><strong>Session</strong> ：服务器技术。利用这个技术，可以保存用户的会话信息。我们可以把信息或数据放在Session中</li>
+</ul>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如果是有参方法，也没问题</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="3-Cookie"><a href="#3-Cookie" class="headerlink" title="3. Cookie"></a>3. Cookie</h4><ol>
+<li><p>从请求中拿到 Cookie 信息</p>
+</li>
+<li><p>服务器响应给客户端</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 服务器端从客户端获取Cookie</span></span><br><span class="line">Cookie[] cookies = req.getCookies();</span><br><span class="line"><span class="comment">// 获取Cookie的名字</span></span><br><span class="line">cookie.getName();</span><br><span class="line"><span class="comment">// 获取Cookie的值</span></span><br><span class="line">cookie.getValue()</span><br><span class="line"><span class="comment">// 服务器给客户端响应一个Cookie</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"lastLoginTime"</span>, System.currentTimeMillis() + <span class="string">""</span>);</span><br><span class="line"><span class="comment">// 设置Cookie有效期为1天</span></span><br><span class="line">cookie.setMaxAge(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br><span class="line"><span class="comment">// 响应给客户端一个Cookie</span></span><br><span class="line">resp.addCookie(cookie);</span><br></pre></td></tr></table></figure>
 
-<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>删除 Cookie：设置有效期为0</p>
+</li>
+<li><p>传递中文数据时，为了防止乱码，最好存入时编码，取出时解码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 编码</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, URLEncoder.encode(<span class="string">"你好"</span>, <span class="string">"utf-8"</span>));</span><br><span class="line"><span class="comment">// 解码</span></span><br><span class="line"> out.println(URLDecoder.decode(cookies[i].getValue(), <span class="string">"utf-8"</span>));</span><br></pre></td></tr></table></figure>
 
-<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
 
-<p>常用的地方是线程中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h4 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h4><ul>
+<li>服务器给每一个用户（浏览器）创建一个 Session 对象</li>
+<li>一个 Session 独占一个浏览器，只要浏览器没有关闭，这个 Session 就存在</li>
+<li>使用场景<ul>
+<li>保存一个用户的登录信息</li>
+<li>购物车信息</li>
+<li>保存在整个网站中经常会使用多个数据</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>向 Session 中存</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_01</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 给Session中存东西</span></span><br><span class="line">        session.setAttribute(<span class="string">"person"</span>, <span class="keyword">new</span> Person(<span class="string">"刘昊鑫"</span>, <span class="number">100</span>));</span><br><span class="line">        <span class="comment">// 获取Session的ID</span></span><br><span class="line">        String id = session.getId();</span><br><span class="line">        <span class="comment">// 判断Session是不是新创建的</span></span><br><span class="line">        <span class="keyword">if</span> (session.isNew()) &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"session创建成功, ID: "</span> + id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"session已经在服务器中, ID: "</span> + id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从 Session 中获得</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_02</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 获取Session中存的东西</span></span><br><span class="line">        Person person = (Person) session.getAttribute(<span class="string">"person"</span>);</span><br><span class="line">        System.out.println(person.toString());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注销 Session</p>
+<p>3.1 手动注销</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        session.removeAttribute(<span class="string">"person"</span>);</span><br><span class="line">        <span class="comment">// 手动注销Session</span></span><br><span class="line">        session.invalidate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 设置失效时间</p>
+<p>在 web.xml 中</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置Session默认的失效时间 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- x分钟后Session自动失效 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>1<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="5-区别"><a href="#5-区别" class="headerlink" title="5. 区别"></a>5. 区别</h4><ul>
+<li>Cookie 把用户的数据写给用户的浏览器，浏览器保存（可以保存多个）。</li>
+<li>Session 把用户的数据写到用户独占的 Session 中，服务器保存（只保存重要的信息，减少服务器资源的浪费）。</li>
+</ul>
 ]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Java 基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Java 基础</tag>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Maven 配置</title>
-    <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png" class>
-
-
-
-<h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h4><table>
-<thead>
-<tr>
-<th align="left">变量名</th>
-<th align="left">变量值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">MAVEN_HOME</td>
-<td align="left">D:\Environment\apache-maven-3.6.3</td>
-</tr>
-<tr>
-<td align="left">M2_HOME</td>
-<td align="left">D:\Environment\apache-maven-3.6.3\bin</td>
-</tr>
-<tr>
-<td align="left">Path中添加</td>
-<td align="left">%MAVEN_HOME%\bin</td>
-</tr>
-</tbody></table>
-<h4 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3. 验证安装"></a>3. 验证安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="4-修改镜像源"><a href="#4-修改镜像源" class="headerlink" title="4. 修改镜像源"></a>4. 修改镜像源</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,!jeecg,!jeecg-snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-建立本地仓库"><a href="#5-建立本地仓库" class="headerlink" title="5. 建立本地仓库"></a>5. 建立本地仓库</h4><ul>
-<li>maven 目录下新建文件夹 maven-repo</li>
-</ul>
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704225515234.png" class>
-
-<ul>
-<li>配置文件 <settings> 标签中添加</settings></li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\Environment\apache-maven-3.6.3\maven-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="6-在-IDEA-中使用"><a href="#6-在-IDEA-中使用" class="headerlink" title="6. 在 IDEA 中使用"></a>6. 在 IDEA 中使用</h4><h5 id="6-1-创建-MavenWeb-项目"><a href="#6-1-创建-MavenWeb-项目" class="headerlink" title="6.1 创建 MavenWeb 项目"></a>6.1 创建 MavenWeb 项目</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230404473.png" class>
-
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230944123.png" class>
-
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705003522875.png" class>
-
-
-
-<h5 id="6-2-设置-Maven"><a href="#6-2-设置-Maven" class="headerlink" title="6.2 设置 Maven"></a>6.2 设置 Maven</h5><p><em>每次新建项目都检查一下这部分</em></p>
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705002910260.png" class>
-
-<h5 id="6-3-补全项目文件"><a href="#6-3-补全项目文件" class="headerlink" title="6.3 补全项目文件"></a>6.3 补全项目文件</h5><ul>
-<li>在 main 文件夹中新建两个文件夹</li>
-</ul>
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233517122.png" class>
-
-<ul>
-<li>标记 java 文件夹</li>
-</ul>
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233654214.png" class>
-
-<h5 id="6-4-配置-Tomcat"><a href="#6-4-配置-Tomcat" class="headerlink" title="6.4 配置 Tomcat"></a>6.4 配置 Tomcat</h5><img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234448579.png" class>
-
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234427105.png" class>
-
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png" class>
-
-<img src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png" class>
-
-
-
-<h4 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h4><ul>
-<li>文件详解</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在build中配置resources，来防止我们资源导出失败的问题</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java 学习笔记</category>
         <category>JavaWeb</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Maven</tag>
+        <tag>Session</tag>
+        <tag>Cookie</tag>
       </tags>
   </entry>
   <entry>
@@ -602,81 +681,6 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Session 和 Cookie</title>
-    <url>/Session%20%E5%92%8C%20Cookie/</url>
-    <content><![CDATA[<h4 id="1-什么是-Session"><a href="#1-什么是-Session" class="headerlink" title="1. 什么是 Session"></a>1. 什么是 Session</h4><ul>
-<li><p><strong>Session（会话）</strong>：用户打开了一个浏览器，点击了很多超链接，访问多个 web 资源，关闭浏览器。</p>
-</li>
-<li><p><strong>有状态会话</strong>：一个同学来过教室，下次再来教室，我们会知道这个同学曾经来过。</p>
-</li>
-</ul>
-<h4 id="2-保存会话的两种技术"><a href="#2-保存会话的两种技术" class="headerlink" title="2. 保存会话的两种技术"></a>2. 保存会话的两种技术</h4><ul>
-<li><strong>Cookie</strong>：客户端技术（响应、请求）</li>
-<li><strong>Session</strong> ：服务器技术。利用这个技术，可以保存用户的会话信息。我们可以把信息或数据放在Session中</li>
-</ul>
-<h4 id="3-Cookie"><a href="#3-Cookie" class="headerlink" title="3. Cookie"></a>3. Cookie</h4><ol>
-<li><p>从请求中拿到 Cookie 信息</p>
-</li>
-<li><p>服务器响应给客户端</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 服务器端从客户端获取Cookie</span></span><br><span class="line">Cookie[] cookies = req.getCookies();</span><br><span class="line"><span class="comment">// 获取Cookie的名字</span></span><br><span class="line">cookie.getName();</span><br><span class="line"><span class="comment">// 获取Cookie的值</span></span><br><span class="line">cookie.getValue()</span><br><span class="line"><span class="comment">// 服务器给客户端响应一个Cookie</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"lastLoginTime"</span>, System.currentTimeMillis() + <span class="string">""</span>);</span><br><span class="line"><span class="comment">// 设置Cookie有效期为1天</span></span><br><span class="line">cookie.setMaxAge(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br><span class="line"><span class="comment">// 响应给客户端一个Cookie</span></span><br><span class="line">resp.addCookie(cookie);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>删除 Cookie：设置有效期为0</p>
-</li>
-<li><p>传递中文数据时，为了防止乱码，最好存入时编码，取出时解码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 编码</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, URLEncoder.encode(<span class="string">"你好"</span>, <span class="string">"utf-8"</span>));</span><br><span class="line"><span class="comment">// 解码</span></span><br><span class="line"> out.println(URLDecoder.decode(cookies[i].getValue(), <span class="string">"utf-8"</span>));</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h4 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h4><ul>
-<li>服务器给每一个用户（浏览器）创建一个 Session 对象</li>
-<li>一个 Session 独占一个浏览器，只要浏览器没有关闭，这个 Session 就存在</li>
-<li>使用场景<ul>
-<li>保存一个用户的登录信息</li>
-<li>购物车信息</li>
-<li>保存在整个网站中经常会使用多个数据</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><p>向 Session 中存</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_01</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 给Session中存东西</span></span><br><span class="line">        session.setAttribute(<span class="string">"person"</span>, <span class="keyword">new</span> Person(<span class="string">"刘昊鑫"</span>, <span class="number">100</span>));</span><br><span class="line">        <span class="comment">// 获取Session的ID</span></span><br><span class="line">        String id = session.getId();</span><br><span class="line">        <span class="comment">// 判断Session是不是新创建的</span></span><br><span class="line">        <span class="keyword">if</span> (session.isNew()) &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"session创建成功, ID: "</span> + id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">"session已经在服务器中, ID: "</span> + id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从 Session 中获得</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_02</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 获取Session中存的东西</span></span><br><span class="line">        Person person = (Person) session.getAttribute(<span class="string">"person"</span>);</span><br><span class="line">        System.out.println(person.toString());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注销 Session</p>
-<p>3.1 手动注销</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        session.removeAttribute(<span class="string">"person"</span>);</span><br><span class="line">        <span class="comment">// 手动注销Session</span></span><br><span class="line">        session.invalidate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.2 设置失效时间</p>
-<p>在 web.xml 中</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置Session默认的失效时间 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- x分钟后Session自动失效 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>1<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h4 id="5-区别"><a href="#5-区别" class="headerlink" title="5. 区别"></a>5. 区别</h4><ul>
-<li>Cookie 把用户的数据写给用户的浏览器，浏览器保存（可以保存多个）。</li>
-<li>Session 把用户的数据写到用户独占的 Session 中，服务器保存（只保存重要的信息，减少服务器资源的浪费）。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Session</tag>
-        <tag>Cookie</tag>
       </tags>
   </entry>
   <entry>
@@ -810,6 +814,8 @@
 </ul>
 <img src="/%E5%8F%8D%E5%B0%84/image-20200723135607184.png" class>
 
+<a id="more"></a>
+
 <ul>
 <li>反射机制提供的功能（在运行时）<ul>
 <li>判断任意一个对象所属的类</li>
@@ -918,6 +924,10 @@
 <td>抑制警告信息</td>
 </tr>
 </tbody></table>
+<a id="more"></a>
+
+
+
 <h4 id="2-元注解"><a href="#2-元注解" class="headerlink" title="2. 元注解"></a>2. 元注解</h4><table>
 <thead>
 <tr>
@@ -1075,6 +1085,51 @@
       </tags>
   </entry>
   <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Hexo 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h4 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-修改-config-xml-配置文件"><a href="#2-修改-config-xml-配置文件" class="headerlink" title="2. 修改 _config.xml 配置文件"></a>2. 修改 _config.xml 配置文件</h4><p>修改 post_asset_folder 值为 true</p>
+<a id="more"></a>
+
+
+
+<h4 id="3-新建一篇文章"><a href="#3-新建一篇文章" class="headerlink" title="3. 新建一篇文章"></a>3. 新建一篇文章</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new post title</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-在自动生成的资源文件夹下放入图片"><a href="#4-在自动生成的资源文件夹下放入图片" class="headerlink" title="4. 在自动生成的资源文件夹下放入图片"></a>4. 在自动生成的资源文件夹下放入图片</h4><h4 id="5-修改-md-文档"><a href="#5-修改-md-文档" class="headerlink" title="5. 修改 md 文档"></a>5. 修改 md 文档</h4><p>将图片的 markdown 格式修改为 </p>
+<p><em>详细参照官方文档 <a href="https://hexo.bootcss.com/docs/asset-folders.html" target="_blank" rel="noopener">https://hexo.bootcss.com/docs/asset-folders.html</a></em></p>
+<h4 id="6-如果有必要-禁止网页缓存"><a href="#6-如果有必要-禁止网页缓存" class="headerlink" title="6. 如果有必要 禁止网页缓存"></a>6. 如果有必要 禁止网页缓存</h4>]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线程进阶</title>
     <url>/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h4 id="1-死锁概念"><a href="#1-死锁概念" class="headerlink" title="1. 死锁概念"></a>1. 死锁概念</h4><p>多个线程互相抱着对方需要的资源，然后形成僵持</p>
@@ -1134,51 +1189,6 @@
         <tag>死锁</tag>
         <tag>生产者消费者</tag>
         <tag>线程池</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Github 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Hexo 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h4 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-修改-config-xml-配置文件"><a href="#2-修改-config-xml-配置文件" class="headerlink" title="2. 修改 _config.xml 配置文件"></a>2. 修改 _config.xml 配置文件</h4><p>修改 post_asset_folder 值为 true</p>
-<a id="more"></a>
-
-
-
-<h4 id="3-新建一篇文章"><a href="#3-新建一篇文章" class="headerlink" title="3. 新建一篇文章"></a>3. 新建一篇文章</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new post title</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-在自动生成的资源文件夹下放入图片"><a href="#4-在自动生成的资源文件夹下放入图片" class="headerlink" title="4. 在自动生成的资源文件夹下放入图片"></a>4. 在自动生成的资源文件夹下放入图片</h4><h4 id="5-修改-md-文档"><a href="#5-修改-md-文档" class="headerlink" title="5. 修改 md 文档"></a>5. 修改 md 文档</h4><p>将图片的 markdown 格式修改为 </p>
-<p><em>详细参照官方文档 <a href="https://hexo.bootcss.com/docs/asset-folders.html" target="_blank" rel="noopener">https://hexo.bootcss.com/docs/asset-folders.html</a></em></p>
-<h4 id="6-如果有必要-禁止网页缓存"><a href="#6-如果有必要-禁止网页缓存" class="headerlink" title="6. 如果有必要 禁止网页缓存"></a>6. 如果有必要 禁止网页缓存</h4>]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
