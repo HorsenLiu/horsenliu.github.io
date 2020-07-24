@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>HttpServletRequest 应用</title>
-    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
-        <tag>Request</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HttpServletResponse 应用</title>
     <url>/HttpServletResponse%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
@@ -132,6 +109,29 @@
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
         <tag>Response</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HttpServletRequest 应用</title>
+    <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h4 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">"hobbies"</span>);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="2-请求转发"><a href="#2-请求转发" class="headerlink" title="2. 请求转发"></a>2. 请求转发</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过请求转发 (请求转发是项目内部资源的事情 不需要加上下文或项目的路径)</span></span><br><span class="line">req.getRequestDispatcher(<span class="string">"/success.jsp"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
+        <tag>Request</tag>
       </tags>
   </entry>
   <entry>
@@ -248,42 +248,6 @@
       <tags>
         <tag>IDEA</tag>
         <tag>快捷键</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lambda 表达式</title>
-    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
-<p><em>函数式接口：只有一个方法的接口</em></p>
-<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果是有参方法，也没问题</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
-
-<p>常用的地方是线程中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Java 基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Java 基础</tag>
-        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -541,6 +505,30 @@
       </tags>
   </entry>
   <entry>
+    <title>Tomcat 配置</title>
+    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
+<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+
+
+
+<h4 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h4><h5 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h5><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ServletContext 应用</title>
     <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
@@ -602,6 +590,96 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda 表达式</title>
+    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
+<p><em>函数式接口：只有一个方法的接口</em></p>
+<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是有参方法，也没问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
+
+<p>常用的地方是线程中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Java 基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Java 基础</tag>
+        <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>反射</title>
+    <url>/%E5%8F%8D%E5%B0%84/</url>
+    <content><![CDATA[<h4 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h4><ul>
+<li>反射机制允许程序在执行期借助于 Reflection API 获取任何类的内部信息，并能直接操作任意对象的内部属性及方法。</li>
+</ul>
+<img src="/%E5%8F%8D%E5%B0%84/image-20200723135607184.png" class>
+
+<ul>
+<li>反射机制提供的功能（在运行时）<ul>
+<li>判断任意一个对象所属的类</li>
+<li>构造任意一个类的对象</li>
+<li>判断任意一个类所具有的成员变量和方法</li>
+<li>获取泛型信息</li>
+<li>调用任意一个对象的成员变量和方法</li>
+<li>处理注解</li>
+<li>生成动态代理</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-Class-类"><a href="#2-Class-类" class="headerlink" title="2. Class 类"></a>2. Class 类</h4><ul>
+<li>Class 对象只能由系统建立</li>
+<li>一个类在 JVM 中只有一个 Class 对象</li>
+<li>一个类被加载后，类的整个结构都会被封装在 Class 对象中</li>
+<li>Class 类是 Reflection 的根源，针对任何想要动态加载、运行的类，唯有先获得相应的 Class 对象</li>
+</ul>
+<h4 id="3-获取-Class-类的实例"><a href="#3-获取-Class-类的实例" class="headerlink" title="3. 获取 Class 类的实例"></a>3. 获取 Class 类的实例</h4><ol>
+<li><p>已知具体的类，通过类的 class 属性获取，该方法最安全可靠</p>
+<p><code>Class clazz = Person.class;</code></p>
+</li>
+<li><p>已知某个类的实例，调用该实例的 getClass() 方法获取 Class 对象</p>
+<p><code>Class clazz = person.getClass();</code></p>
+</li>
+<li><p>已知一个类的全类名，且该类在类路径下，通过 Class 类的静态方法 forName() 获取</p>
+<p><code>Class class = Class.forName(&quot;demo01.Student&quot;);</code></p>
+</li>
+<li><p>内置基本数据类型可以直接用类名.TYPE</p>
+</li>
+<li><p>利用 ClassLoader</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line">        System.out.println(<span class="string">"这个人是: "</span> + person.name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式一: 通过对象获得</span></span><br><span class="line">        Class c1 = person.getClass();</span><br><span class="line">        System.out.println(c1.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式二: forName获得</span></span><br><span class="line">        Class c2 = Class.forName(<span class="string">"com.horsen.reflection.Student"</span>);</span><br><span class="line">        System.out.println(c2.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式三: 通过类名.class</span></span><br><span class="line">        Class c3 = Student<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        System.out.println(c3.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式四: 基本内置类型的包装类都有一个TYPE属性</span></span><br><span class="line">        Class c4 = Integer.TYPE;</span><br><span class="line">        System.out.println(c4);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得父类的类型</span></span><br><span class="line">        Class c5 = c1.getSuperclass();</span><br><span class="line">        System.out.println(c5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Persion&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">"学生"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>注解和反射</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>反射</tag>
       </tags>
   </entry>
   <entry>
@@ -704,27 +782,84 @@
       </tags>
   </entry>
   <entry>
-    <title>Tomcat 配置</title>
-    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h4><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
-<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+    <title>注解</title>
+    <url>/%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<h4 id="1-内置注解"><a href="#1-内置注解" class="headerlink" title="1. 内置注解"></a>1. 内置注解</h4><table>
+<thead>
+<tr>
+<th><strong>注解</strong></th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Override</td>
+<td>重写父类方法</td>
+</tr>
+<tr>
+<td>@Deprecated</td>
+<td>不推荐使用的方法</td>
+</tr>
+<tr>
+<td>@SuppressWarnings</td>
+<td>抑制警告信息</td>
+</tr>
+</tbody></table>
+<h4 id="2-元注解"><a href="#2-元注解" class="headerlink" title="2. 元注解"></a>2. 元注解</h4><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Target</td>
+<td>描述注解的适用范围</td>
+</tr>
+<tr>
+<td>@Retention</td>
+<td>描述注解的生命周期</td>
+</tr>
+<tr>
+<td>@Documented</td>
+<td>说明将改注解包含在JavaDoc中</td>
+</tr>
+<tr>
+<td>@Inherited</td>
+<td>说明子类可以继承父类中的该注解</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MyAnnotation</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个注解</span></span><br><span class="line"><span class="comment">// Target表示注解可以用在哪些地方</span></span><br><span class="line"><span class="meta">@Target</span>(value = &#123;ElementType.METHOD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="comment">// Retention表示注解在什么地方有效</span></span><br><span class="line"><span class="comment">// runtime &gt; class &gt; sources</span></span><br><span class="line"><span class="meta">@Retention</span>(value = RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="comment">// Ducomented 表示是否将注解生成在JavaDoc中</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="comment">// Inherited 表示子类可以继承父类的注解</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation &#123;&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h4><h5 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h5><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
-
-
+<h4 id="3-自定义注解"><a href="#3-自定义注解" class="headerlink" title="3. 自定义注解"></a>3. 自定义注解</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MyAnnotation</span>2(name = <span class="string">"lhx"</span>, schools = &#123;<span class="string">"njit"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果参数名为value 可以省略不写</span></span><br><span class="line">    <span class="meta">@MyAnnotation</span>3(<span class="string">"lhx"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2 &#123;</span><br><span class="line">    <span class="comment">// 注解的参数: 参数类型 + 参数名()</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果默认值为-1 代表不存在</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">id</span><span class="params">()</span> <span class="keyword">default</span> -1</span>;</span><br><span class="line"></span><br><span class="line">    String[] schools();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> MyAnnotation3 &#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
         <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
+        <category>注解和反射</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Tomcat</tag>
+        <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -883,6 +1018,23 @@
       </tags>
   </entry>
   <entry>
+    <title>解决 NexT 翻页按钮图标问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>见下图</p>
+<a id="more"></a>
+
+<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线程进阶</title>
     <url>/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h4 id="1-死锁概念"><a href="#1-死锁概念" class="headerlink" title="1. 死锁概念"></a>1. 死锁概念</h4><p>多个线程互相抱着对方需要的资源，然后形成僵持</p>
@@ -945,21 +1097,18 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 Github 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
+    <title>解决 NexT 首页文章预览问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>见下图</p>
 <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/pic.png" class>]]></content>
       <categories>
         <category>Hexo &amp; NexT</category>
       </categories>
       <tags>
-        <tag>Github</tag>
         <tag>问题</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -987,38 +1136,6 @@
       <tags>
         <tag>问题</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 NexT 首页文章预览问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>见下图</p>
-<a id="more"></a>
-
-<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/pic.png" class>]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-        <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 NexT 翻页按钮图标问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>见下图</p>
-<a id="more"></a>
-
-<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
 </search>
