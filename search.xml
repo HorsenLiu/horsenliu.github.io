@@ -24,6 +24,117 @@
       </tags>
   </entry>
   <entry>
+    <title>HttpServletResponse 应用</title>
+    <url>/HttpServletResponse%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
+<ul>
+<li>如果要获取客户端请求的参数，找HttpServletRequest</li>
+<li>如果要给客户端响应一些信息，找 HttpServletResponce</li>
+</ul>
+<h3 id="1-简单分类"><a href="#1-简单分类" class="headerlink" title="1. 简单分类"></a>1. 简单分类</h3><ul>
+<li><p>负责向浏览器发送数据的方法</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">PrintWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>负责向浏览器发送响应头的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setCharacterEncoding</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLength</span><span class="params">(<span class="keyword">int</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLengthLong</span><span class="params">(<span class="keyword">long</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentType</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应的状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>请求响应成功</td>
+</tr>
+<tr>
+<td>302</td>
+<td>请求重定向（url会发生变化）</td>
+</tr>
+<tr>
+<td>307</td>
+<td>请求转发（url不会发生变化）</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>找不到资源</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务器代码错误</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="2-常见应用"><a href="#2-常见应用" class="headerlink" title="2. 常见应用"></a>2. 常见应用</h3><ul>
+<li><p>向浏览器输出消息</p>
+</li>
+<li><p>下载文件</p>
+<ol>
+<li><p>要获取下载文件的路径</p>
+</li>
+<li><p>获取下载的文件名</p>
+</li>
+<li><p>想办法让浏览器能够支持下载（遇到中文文件名，需要转换编码格式）</p>
+</li>
+<li><p>获取下载文件的输入流</p>
+</li>
+<li><p>创建缓冲区</p>
+</li>
+<li><p>获取 OutputStream 对象</p>
+</li>
+<li><p>将 FileOutputStream 写入到 buffer 缓冲区</p>
+</li>
+<li><p>使用 OutputStream 将缓冲区中的数据输出到客户端</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 要获取下载文件的路径</span></span><br><span class="line">        String realPath = <span class="string">"E:\\Proj_Java\\JavaWeb_02_Servlet\\Response\\src\\main\\resources\\img.jpg"</span>;</span><br><span class="line">        System.out.println(<span class="string">"文件路径: "</span> + realPath);</span><br><span class="line">        <span class="comment">// 2. 获取下载的文件名</span></span><br><span class="line">        String fileName = realPath.substring(realPath.lastIndexOf(<span class="string">"\\"</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 3. 想办法让浏览器能够支持下载</span></span><br><span class="line">        resp.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;filename="</span> + fileName);</span><br><span class="line">        <span class="comment">// 4. 获取下载文件的输入流</span></span><br><span class="line">        FileInputStream in = <span class="keyword">new</span> FileInputStream(realPath);</span><br><span class="line">        <span class="comment">// 5. 创建缓冲区</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="comment">// 6. 获取 OutputStream 对象</span></span><br><span class="line">        ServletOutputStream out = resp.getOutputStream();</span><br><span class="line">        <span class="comment">// 7. 将 FileOutputStream 写入到 buffer 缓冲区  8. 使用 OutputStream 将缓冲区中的数据输出到客户端</span></span><br><span class="line">        <span class="keyword">while</span> ((len = in.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            out.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line">        out.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-验证码功能"><a href="#3-验证码功能" class="headerlink" title="3. 验证码功能"></a>3. 验证码功能</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 如何让浏览器3秒刷新一次</span></span><br><span class="line">        resp.setHeader(<span class="string">"refresh"</span>, <span class="string">"3"</span>);</span><br><span class="line">        <span class="comment">// 在内存中创建图片</span></span><br><span class="line">        BufferedImage image = <span class="keyword">new</span> BufferedImage(<span class="number">45</span>, <span class="number">20</span>, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">        <span class="comment">// 得到一支笔</span></span><br><span class="line">        Graphics2D pen = (Graphics2D) image.getGraphics();</span><br><span class="line">        <span class="comment">//设置图片背景颜色 从(0,0)填充到(80,20)</span></span><br><span class="line">        pen.setColor(Color.white);</span><br><span class="line">        pen.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">45</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="comment">// 给图片写数据 画随机数</span></span><br><span class="line">        pen.setColor(Color.blue);</span><br><span class="line">        pen.setFont(<span class="keyword">new</span> Font(<span class="keyword">null</span>, Font.BOLD, <span class="number">20</span>));</span><br><span class="line">        pen.drawString(makeRandomNumber(), <span class="number">0</span>, <span class="number">17</span>);</span><br><span class="line">        <span class="comment">// 告诉浏览器这个请求用图片的方式打开</span></span><br><span class="line">        resp.setContentType(<span class="string">"image/jpeg"</span>);</span><br><span class="line">        <span class="comment">// 网站存在缓存 所以要禁止浏览器缓存</span></span><br><span class="line">        resp.setDateHeader(<span class="string">"expires"</span>, -<span class="number">1</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        <span class="comment">// 把图片写给浏览器</span></span><br><span class="line">        <span class="keyword">boolean</span> write = ImageIO.write(image, <span class="string">"jpg"</span>, resp.getOutputStream());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成随机数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 随机数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">makeRandomNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">// 生成一个0-9999的随机数</span></span><br><span class="line">        String num = random.nextInt(<span class="number">9999</span>) + <span class="string">""</span>;</span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="comment">// 前面补0 补成四位数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - num.length(); i++) &#123;</span><br><span class="line">            sb.append(<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString() + num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-实现重定向"><a href="#4-实现重定向" class="headerlink" title="4. 实现重定向"></a>4. 实现重定向</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedirectServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        resp.setHeader("Location","/Response/img");</span></span><br><span class="line"><span class="comment">        resp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        resp.sendRedirect(<span class="string">"/Response/img"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>面试题：请你聊聊重定向和转发的区别</p>
+<ul>
+<li><p>相同点</p>
+<ul>
+<li>页面都会实现跳转</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul>
+<li>请求转发的时候，url 地址栏不会发生变化</li>
+<li>重定向的时候，url 地址栏会发生变化</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
+        <tag>Response</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IDEA 快捷键</title>
     <url>/IDEA%20%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<table>
@@ -294,114 +405,39 @@
       </tags>
   </entry>
   <entry>
-    <title>HttpServletResponse 应用</title>
-    <url>/HttpServletResponse%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
-<ul>
-<li>如果要获取客户端请求的参数，找HttpServletRequest</li>
-<li>如果要给客户端响应一些信息，找 HttpServletResponce</li>
-</ul>
-<h3 id="1-简单分类"><a href="#1-简单分类" class="headerlink" title="1. 简单分类"></a>1. 简单分类</h3><ul>
-<li><p>负责向浏览器发送数据的方法</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">PrintWriter <span class="title">getWriter</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+    <title>Lambda 表达式</title>
+    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
+<p><em>函数式接口：只有一个方法的接口</em></p>
+<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
 <a id="more"></a>
 
-<ul>
-<li><p>负责向浏览器发送响应头的方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setCharacterEncoding</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLength</span><span class="params">(<span class="keyword">int</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentLengthLong</span><span class="params">(<span class="keyword">long</span> var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setContentType</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addDateHeader</span><span class="params">(String var1, <span class="keyword">long</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addIntHeader</span><span class="params">(String var1, <span class="keyword">int</span> var2)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>响应的状态码</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>200</td>
-<td>请求响应成功</td>
-</tr>
-<tr>
-<td>302</td>
-<td>请求重定向（url会发生变化）</td>
-</tr>
-<tr>
-<td>307</td>
-<td>请求转发（url不会发生变化）</td>
-</tr>
-<tr>
-<td>4xx</td>
-<td>找不到资源</td>
-</tr>
-<tr>
-<td>5xx</td>
-<td>服务器代码错误</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h3 id="2-常见应用"><a href="#2-常见应用" class="headerlink" title="2. 常见应用"></a>2. 常见应用</h3><ul>
-<li><p>向浏览器输出消息</p>
-</li>
-<li><p>下载文件</p>
-<ol>
-<li><p>要获取下载文件的路径</p>
-</li>
-<li><p>获取下载的文件名</p>
-</li>
-<li><p>想办法让浏览器能够支持下载（遇到中文文件名，需要转换编码格式）</p>
-</li>
-<li><p>获取下载文件的输入流</p>
-</li>
-<li><p>创建缓冲区</p>
-</li>
-<li><p>获取 OutputStream 对象</p>
-</li>
-<li><p>将 FileOutputStream 写入到 buffer 缓冲区</p>
-</li>
-<li><p>使用 OutputStream 将缓冲区中的数据输出到客户端</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 要获取下载文件的路径</span></span><br><span class="line">        String realPath = <span class="string">"E:\\Proj_Java\\JavaWeb_02_Servlet\\Response\\src\\main\\resources\\img.jpg"</span>;</span><br><span class="line">        System.out.println(<span class="string">"文件路径: "</span> + realPath);</span><br><span class="line">        <span class="comment">// 2. 获取下载的文件名</span></span><br><span class="line">        String fileName = realPath.substring(realPath.lastIndexOf(<span class="string">"\\"</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 3. 想办法让浏览器能够支持下载</span></span><br><span class="line">        resp.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;filename="</span> + fileName);</span><br><span class="line">        <span class="comment">// 4. 获取下载文件的输入流</span></span><br><span class="line">        FileInputStream in = <span class="keyword">new</span> FileInputStream(realPath);</span><br><span class="line">        <span class="comment">// 5. 创建缓冲区</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="comment">// 6. 获取 OutputStream 对象</span></span><br><span class="line">        ServletOutputStream out = resp.getOutputStream();</span><br><span class="line">        <span class="comment">// 7. 将 FileOutputStream 写入到 buffer 缓冲区  8. 使用 OutputStream 将缓冲区中的数据输出到客户端</span></span><br><span class="line">        <span class="keyword">while</span> ((len = in.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            out.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">        in.close();</span><br><span class="line">        out.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>如果是有参方法，也没问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="3-验证码功能"><a href="#3-验证码功能" class="headerlink" title="3. 验证码功能"></a>3. 验证码功能</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 如何让浏览器3秒刷新一次</span></span><br><span class="line">        resp.setHeader(<span class="string">"refresh"</span>, <span class="string">"3"</span>);</span><br><span class="line">        <span class="comment">// 在内存中创建图片</span></span><br><span class="line">        BufferedImage image = <span class="keyword">new</span> BufferedImage(<span class="number">45</span>, <span class="number">20</span>, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">        <span class="comment">// 得到一支笔</span></span><br><span class="line">        Graphics2D pen = (Graphics2D) image.getGraphics();</span><br><span class="line">        <span class="comment">//设置图片背景颜色 从(0,0)填充到(80,20)</span></span><br><span class="line">        pen.setColor(Color.white);</span><br><span class="line">        pen.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">45</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="comment">// 给图片写数据 画随机数</span></span><br><span class="line">        pen.setColor(Color.blue);</span><br><span class="line">        pen.setFont(<span class="keyword">new</span> Font(<span class="keyword">null</span>, Font.BOLD, <span class="number">20</span>));</span><br><span class="line">        pen.drawString(makeRandomNumber(), <span class="number">0</span>, <span class="number">17</span>);</span><br><span class="line">        <span class="comment">// 告诉浏览器这个请求用图片的方式打开</span></span><br><span class="line">        resp.setContentType(<span class="string">"image/jpeg"</span>);</span><br><span class="line">        <span class="comment">// 网站存在缓存 所以要禁止浏览器缓存</span></span><br><span class="line">        resp.setDateHeader(<span class="string">"expires"</span>, -<span class="number">1</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        <span class="comment">// 把图片写给浏览器</span></span><br><span class="line">        <span class="keyword">boolean</span> write = ImageIO.write(image, <span class="string">"jpg"</span>, resp.getOutputStream());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成随机数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 随机数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">makeRandomNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">// 生成一个0-9999的随机数</span></span><br><span class="line">        String num = random.nextInt(<span class="number">9999</span>) + <span class="string">""</span>;</span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="comment">// 前面补0 补成四位数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> - num.length(); i++) &#123;</span><br><span class="line">            sb.append(<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString() + num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
 
+<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
 
+<p>常用的地方是线程中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-实现重定向"><a href="#4-实现重定向" class="headerlink" title="4. 实现重定向"></a>4. 实现重定向</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedirectServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        resp.setHeader("Location","/Response/img");</span></span><br><span class="line"><span class="comment">        resp.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        resp.sendRedirect(<span class="string">"/Response/img"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>面试题：请你聊聊重定向和转发的区别</p>
-<ul>
-<li><p>相同点</p>
-<ul>
-<li>页面都会实现跳转</li>
-</ul>
-</li>
-<li><p>不同点</p>
-<ul>
-<li>请求转发的时候，url 地址栏不会发生变化</li>
-<li>重定向的时候，url 地址栏会发生变化</li>
-</ul>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
+        <category>Java 基础</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
-        <tag>Response</tag>
+        <tag>Java 基础</tag>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -509,103 +545,269 @@
       </tags>
   </entry>
   <entry>
-    <title>ServletContext 应用</title>
-    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
-<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
-<ul>
-<li><p>第一个 Servlet</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">"Horsen"</span>;</span><br><span class="line">        context.setAttribute(<span class="string">"username"</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+    <title>MySQL 函数</title>
+    <url>/MySQL%20%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>官网：<a href="https://dev.mysql.com/doc/refman/5.7/en/function-reference.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/function-reference.html</a></p>
+</blockquote>
+<h3 id="1-常用函数"><a href="#1-常用函数" class="headerlink" title="1. 常用函数"></a>1. 常用函数</h3><h4 id="1-1-数学运算"><a href="#1-1-数学运算" class="headerlink" title="1.1 数学运算"></a>1.1 数学运算</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ABS()</td>
+<td>返回绝对值</td>
+<td>select ABS(-8)</td>
+</tr>
+<tr>
+<td>CEILING()</td>
+<td>向上取整</td>
+<td>select CEILING(9.4)</td>
+</tr>
+<tr>
+<td>FLOOR()</td>
+<td>向下取整</td>
+<td>select FLOOR(9.4)</td>
+</tr>
+<tr>
+<td>RAND()</td>
+<td>返回一个0~1之间的随机数</td>
+<td>select RAND()</td>
+</tr>
+<tr>
+<td>SIGN()</td>
+<td>返回参数的符号（负数返回-1，正数返回1，0返回0）</td>
+<td>select SIGN(-10)</td>
+</tr>
+</tbody></table>
 <a id="more"></a>
 
+
+
+<h4 id="1-2-字符串函数"><a href="#1-2-字符串函数" class="headerlink" title="1.2 字符串函数"></a>1.2 字符串函数</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR_LENGTH()</td>
+<td>返回字符串长度</td>
+<td>select CHAR_LENGTH(‘lhx’)</td>
+</tr>
+<tr>
+<td>CONCAT()</td>
+<td>合并字符串</td>
+<td>select CONCAT(‘l’, ‘h’, ‘x’)</td>
+</tr>
+<tr>
+<td>INSERT()</td>
+<td>从某个位置开始替换某个长度</td>
+<td>select INSERT(‘我爱编程’, 1, 2, ‘超级热爱’)</td>
+</tr>
+<tr>
+<td>LOWER()</td>
+<td>转换为小写</td>
+<td>select LOWER(‘HELLO’)</td>
+</tr>
+<tr>
+<td>UPPER()</td>
+<td>转换为大写</td>
+<td>select LOWER(‘hello’)</td>
+</tr>
+<tr>
+<td>INSTR()</td>
+<td>返回第一次出现的子串的索引</td>
+<td>select INSTR(‘lhxhello’, ‘h’)</td>
+</tr>
+<tr>
+<td>REPLACE()</td>
+<td>替换出现的指定字符串</td>
+<td>select REPLACE(‘坚持就能成功’, ‘坚持’, ‘努力’)</td>
+</tr>
+<tr>
+<td>SUBSTR()</td>
+<td>截取字符串</td>
+<td>select SUBSTR(‘坚持就能成功’, 1, 2)</td>
+</tr>
+<tr>
+<td>REVERSE()</td>
+<td>反转字符串</td>
+<td>select REVERSE(‘坚持就能成功’)</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询姓周的同学，改为邹</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">replace</span>(studentName, <span class="string">'周'</span>, <span class="string">'邹'</span>) <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">where</span> studentName <span class="keyword">like</span> <span class="string">'周%'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-3-时间和日期函数（记住）"><a href="#1-3-时间和日期函数（记住）" class="headerlink" title="1.3 时间和日期函数（记住）"></a>1.3 时间和日期函数（记住）</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CURRENT_DATE()</td>
+<td>获取当前日期</td>
+</tr>
+<tr>
+<td>CURDATE()</td>
+<td>获取当前日期</td>
+</tr>
+<tr>
+<td>NOW()</td>
+<td>获取当前时间</td>
+</tr>
+<tr>
+<td>LOCALTIME()</td>
+<td>获取本地时间</td>
+</tr>
+<tr>
+<td>SYSDATE()</td>
+<td>获取系统时间</td>
+</tr>
+<tr>
+<td>YEAR(NOW())</td>
+<td>获取当前年</td>
+</tr>
+<tr>
+<td>MONTH(NOW())</td>
+<td>获取当前月</td>
+</tr>
+<tr>
+<td>DAY(NOW())</td>
+<td>获取当前日</td>
+</tr>
+<tr>
+<td>HOUR(NOW())</td>
+<td>获取当前时</td>
+</tr>
+<tr>
+<td>MINUTE(NOW())</td>
+<td>获取当前分</td>
+</tr>
+<tr>
+<td>SECOND(NOW())</td>
+<td>获取当前秒</td>
+</tr>
+</tbody></table>
+<h4 id="1-4-系统函数"><a href="#1-4-系统函数" class="headerlink" title="1.4 系统函数"></a>1.4 系统函数</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYSTEM_USER()</td>
+<td>获取当前用户</td>
+</tr>
+<tr>
+<td>USER()</td>
+<td>获取当前用户</td>
+</tr>
+<tr>
+<td>VERSION()</td>
+<td>获取版本</td>
+</tr>
+</tbody></table>
+<h3 id="2-聚合函数"><a href="#2-聚合函数" class="headerlink" title="2. 聚合函数"></a>2. 聚合函数</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COUNT()</td>
+<td>计数</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>求和</td>
+</tr>
+<tr>
+<td>AVG()</td>
+<td>平均值</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>最大值</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>最小值</td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询学生人数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(studentName) <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="number">1</span>) <span class="keyword">from</span> student</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>第二个 Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">"username"</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">"用户名: "</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>web.xml</p>
-  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
+<li>count(字段) 会忽略所有的 null 值</li>
+<li>count(*) 不会忽略 null 值</li>
+<li>count(1) 不会忽略 null 值</li>
 </ul>
-<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
-<li><p>web.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">"url"</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
+<h3 id="3-分组和过滤"><a href="#3-分组和过滤" class="headerlink" title="3. 分组和过滤"></a>3. 分组和过滤</h3><ul>
+<li>having –&gt; 过滤<strong>分组</strong>的记录必须满足的<strong>次要条件</strong></li>
 </ul>
-<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">"/gp"</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询不同课程的平均分 最高分 最低分 平均分大于80</span></span><br><span class="line"><span class="keyword">select</span> subjectName,<span class="keyword">avg</span>(StudentResult) <span class="keyword">as</span> 平均分,<span class="keyword">max</span>(StudentResult) <span class="keyword">as</span> 最高分,<span class="keyword">min</span>(StudentResult) <span class="keyword">as</span> 最低分</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> r.subjectNo</span><br><span class="line"><span class="keyword">having</span> 平均分&gt;<span class="number">80</span></span><br></pre></td></tr></table></figure>
 
 
 
-</li>
-</ul>
-<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
-<ul>
-<li><p>db.properties</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">"/WEB-INF/classes/db.properties"</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">"username"</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">"password"</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">": "</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-数据库级别的-MD5-加密"><a href="#4-数据库级别的-MD5-加密" class="headerlink" title="4. 数据库级别的 MD5 加密"></a>4. 数据库级别的 MD5 加密</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 加密全部的密码</span></span><br><span class="line"><span class="keyword">update</span> testmd5 <span class="keyword">set</span> pwd = <span class="keyword">md5</span>(pwd)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入的时候加密</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testmd5 <span class="keyword">values</span>(<span class="number">4</span>,<span class="string">'lhx'</span>,<span class="keyword">md5</span>(<span class="string">'123456'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 校验用户传递进来的密码</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> testmd5 <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'lhx'</span> <span class="keyword">and</span> pwd=<span class="keyword">md5</span>(<span class="string">'123456'</span>)</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 ]]></content>
       <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
+        <category>MySQL 学习笔记</category>
       </categories>
       <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
+        <tag>MySQL</tag>
+        <tag>MySQL 查询</tag>
+        <tag>MD5 加密</tag>
       </tags>
   </entry>
   <entry>
-    <title>Lambda 表达式</title>
-    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
-<p><em>函数式接口：只有一个方法的接口</em></p>
-<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+    <title>事务</title>
+    <url>/%E4%BA%8B%E5%8A%A1/</url>
+    <content><![CDATA[<h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
+<p>参考博客：<a href="https://blog.csdn.net/dengjili/article/details/82468576" target="_blank" rel="noopener">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
+<ul>
+<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
+<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
+<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
+<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
+</ul>
+<p>做不到隔离性所导致的问题：</p>
+<ul>
+<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
+<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
+<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
+</ul>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如果是有参方法，也没问题</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
-<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
-
-<p>常用的地方是线程中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<p>模拟场景：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'A'</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'B'</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Java 学习笔记</category>
-        <category>Java 基础</category>
+        <category>MySQL 学习笔记</category>
       </categories>
       <tags>
-        <tag>Java</tag>
-        <tag>Java 基础</tag>
-        <tag>Lambda</tag>
+        <tag>MySQL</tag>
+        <tag>事务</tag>
       </tags>
   </entry>
   <entry>
@@ -712,6 +914,70 @@
       </tags>
   </entry>
   <entry>
+    <title>关于数据库表的引擎</title>
+    <url>/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/</url>
+    <content><![CDATA[<h3 id="1-对比"><a href="#1-对比" class="headerlink" title="1. 对比"></a>1. 对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>MYISAM</th>
+<th>INNODB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务支持</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>👌</td>
+<td>🙅‍♂️</td>
+</tr>
+<tr>
+<td>表空间的大小</td>
+<td>👎较小</td>
+<td>👍较大 ，约2倍</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<p>常规使用操作</p>
+<ul>
+<li>MYISAM    节约空间，速度较快</li>
+<li>INNODB    安全性搞，事务的处理，多表多用户操作</li>
+</ul>
+<h3 id="2-MySQL-引擎在物理文件上的区别"><a href="#2-MySQL-引擎在物理文件上的区别" class="headerlink" title="2. MySQL 引擎在物理文件上的区别"></a>2. MySQL 引擎在物理文件上的区别</h3><ul>
+<li><p>InnoDB 在数据库表中只有一个 *.frm，以及上级目录下的 ibdata1 文件</p>
+</li>
+<li><p>MyISAM 对应文件</p>
+<ul>
+<li>*.frm –&gt; 表结构对应文件</li>
+<li>*.myd –&gt; 数据文件（data）</li>
+<li>*.MYI –&gt; 索引文件（index）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库引擎</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>初识 Servlet</title>
     <url>/%E5%88%9D%E8%AF%86%20Servlet/</url>
     <content><![CDATA[<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>开发 Servlet 程序步骤</p>
@@ -811,42 +1077,135 @@
       </tags>
   </entry>
   <entry>
-    <title>实现多线程的方法</title>
-    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
-<li>线程类继承 Thread 类</li>
-<li>重写 run() 方法</li>
-<li>声明线程类对象</li>
-<li>对象调用 start() 方法</li>
-</ol>
-<p><em>使用 commons.io 包下载网络图片</em></p>
+    <title>安装 MySQL</title>
+    <url>/%E5%AE%89%E8%A3%85%20MySQL/</url>
+    <content><![CDATA[<blockquote>
+<p>参照狂神说的博客：<a href="https://blog.csdn.net/qq_33369905/article/details/105828923" target="_blank" rel="noopener">https://blog.csdn.net/qq_33369905/article/details/105828923</a></p>
+</blockquote>
+<h3 id="1-下载-zip-格式的安装文件"><a href="#1-下载-zip-格式的安装文件" class="headerlink" title="1. 下载 zip 格式的安装文件"></a>1. 下载 zip 格式的安装文件</h3><p>MySQL v5.7.31</p>
+<p><a href="https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.31-winx64.zip" target="_blank" rel="noopener">https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.31-winx64.zip</a></p>
+<h3 id="2-解压到安装目录"><a href="#2-解压到安装目录" class="headerlink" title="2. 解压到安装目录"></a>2. 解压到安装目录</h3><h3 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h3><p>Path 变量添加 D:\Environment\mysql-5.7.31\bin</p>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">"下载文件: "</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili1.png"</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili2.png"</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili3.png"</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="4-新建配置文件-my-ini"><a href="#4-新建配置文件-my-ini" class="headerlink" title="4. 新建配置文件 my.ini"></a>4. 新建配置文件 my.ini</h3><p><em>注意：修改路径</em></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">basedir</span>=D:\Environment\mysql-<span class="number">5.7</span>.<span class="number">31</span>\</span><br><span class="line"><span class="attr">datadir</span>=D:\Environment\mysql-<span class="number">5.7</span>.<span class="number">31</span>\data\</span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line">skip-grant-tables</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
-<li>线程类继承 Runnable 接口</li>
-<li>实现 run() 方法</li>
-<li>声明线程类对象</li>
-<li>创建 Thread 对象，参数传入线程类对象</li>
-<li>调用 start() 方法</li>
+<h3 id="5-启动管理员模式的-cmd"><a href="#5-启动管理员模式的-cmd" class="headerlink" title="5. 启动管理员模式的 cmd"></a>5. 启动管理员模式的 cmd</h3><ol>
+<li><p>切换到 bin 目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">d:</span><br><span class="line">cd Environment\mysql-5.7.31\bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 mysqld 服务，初始化 mysql</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqld –install</span><br><span class="line">mysqld --initialize-insecure --user=mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改管理员密码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql –u root –p</span><br><span class="line">update mysql.user set authentication_string=password('123456') where user='root' and Host = 'localhost';</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run方法---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-注释-my-ini-文件的最后一句话"><a href="#6-注释-my-ini-文件的最后一句话" class="headerlink" title="6. 注释 my.ini 文件的最后一句话"></a>6. 注释 my.ini 文件的最后一句话</h3><h3 id="7-重启-MySQL"><a href="#7-重启-MySQL" class="headerlink" title="7. 重启 MySQL"></a>7. 重启 MySQL</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">exit</span><br><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"兔子"</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">"兔子睡觉了"</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;跑了"</span> + i + <span class="string">"步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">"Winner is "</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"兔子"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"乌龟"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-测试连接"><a href="#8-测试连接" class="headerlink" title="8. 测试连接"></a>8. 测试连接</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="9-使用-SQLyog-管理数据库"><a href="#9-使用-SQLyog-管理数据库" class="headerlink" title="9. 使用 SQLyog 管理数据库"></a>9. 使用 SQLyog 管理数据库</h3><h4 id="9-0-SQLyog-注册码"><a href="#9-0-SQLyog-注册码" class="headerlink" title="9.0 SQLyog 注册码"></a>9.0 SQLyog 注册码</h4><p>kuangshen</p>
+<p>8d8120df-a5c3-4989-8f47-5afc79c56e7c</p>
+<h4 id="9-1-新建数据库"><a href="#9-1-新建数据库" class="headerlink" title="9.1 新建数据库"></a>9.1 新建数据库</h4><ul>
+<li><p>左侧边栏右键 -&gt; 点击【新建数据库】</p>
+</li>
+<li><p>字符集：utf8</p>
+</li>
+<li><p>排序规则：utf8_general_ci</p>
+</li>
+</ul>
+<h4 id="9-2-新建表"><a href="#9-2-新建表" class="headerlink" title="9.2 新建表"></a>9.2 新建表</h4><ul>
+<li>引擎：InnoDB</li>
+<li>字符集：utf8</li>
+<li>核对：utf8_general_ci</li>
+</ul>
+<h4 id="9-3-添加记录"><a href="#9-3-添加记录" class="headerlink" title="9.3 添加记录"></a>9.3 添加记录</h4><ul>
+<li>右键表 -&gt; 【打开表】</li>
+<li>输入</li>
+<li>右上角刷新 保存</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ServletContext 应用</title>
+    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
+<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
+<ul>
+<li><p>第一个 Servlet</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">"Horsen"</span>;</span><br><span class="line">        context.setAttribute(<span class="string">"username"</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>第二个 Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">"username"</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">"用户名: "</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>web.xml</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
+<li><p>web.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">"url"</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">"/gp"</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
+<ul>
+<li><p>db.properties</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">"/WEB-INF/classes/db.properties"</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">"username"</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">"password"</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">": "</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Java 学习笔记</category>
-        <category>多线程</category>
+        <category>JavaWeb</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>多线程</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
       </tags>
   </entry>
   <entry>
@@ -903,6 +1262,248 @@
       <tags>
         <tag>Java</tag>
         <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库操作</title>
+    <url>/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h3 id="1-命令行操作"><a href="#1-命令行操作" class="headerlink" title="1. 命令行操作"></a>1. 命令行操作</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 连接数据库</span></span><br><span class="line">mysql -uroot -p123456</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看所有数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 切换数据库</span></span><br><span class="line"><span class="keyword">use</span> school;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看数据库中所有的表</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表结构</span></span><br><span class="line"><span class="keyword">describe</span> student；</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 新建数据库</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> newdb;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h3 id="2-结构化查询语句分类"><a href="#2-结构化查询语句分类" class="headerlink" title="2. 结构化查询语句分类"></a>2. 结构化查询语句分类</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>解释</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DDL（数据定义语言）</td>
+<td>定义和管理数据对象，如数据库、数据表等</td>
+<td>create、drop、alter</td>
+</tr>
+<tr>
+<td>DML（数据操作语言）</td>
+<td>操作数据库对象中所包含的数据</td>
+<td>insert、update、delete</td>
+</tr>
+<tr>
+<td>DQL（数据查询语言）</td>
+<td>查询数据库数据</td>
+<td>select</td>
+</tr>
+<tr>
+<td>DCL（数据控制语言）</td>
+<td>管理数据库的语言，包括管理权限及数据更改</td>
+<td>grant、commit、rollback</td>
+</tr>
+</tbody></table>
+<h3 id="3-操作数据库"><a href="#3-操作数据库" class="headerlink" title="3. 操作数据库"></a>3. 操作数据库</h3><ol>
+<li><p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] xxx;</span><br></pre></td></tr></table></figure>
+
+<p>查看数据库的定义语句（逆向）</p>
+<p><code>show create database xxx</code></p>
+</li>
+<li><p>删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">exists</span>] xxx;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="string">`xxx`</span>;</span><br><span class="line"><span class="comment">-- 如果表明或字段名为关键字 则需要加``</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">database</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="4-操作数据库中的表"><a href="#4-操作数据库中的表" class="headerlink" title="4. 操作数据库中的表"></a>4. 操作数据库中的表</h3><ol start="0">
+<li><p>数据库表的字段属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unsigned</td>
+<td>无符号整数（表示不能为负数）</td>
+</tr>
+<tr>
+<td>Zerofill</td>
+<td>0填充（不足位数自动补0）</td>
+</tr>
+<tr>
+<td>自增</td>
+<td>通常用来设计唯一主键（必须是整数类型）</td>
+</tr>
+<tr>
+<td>非空</td>
+<td>not null：不赋值报错    null：默认值为null</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>默认值</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>创建数据库表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] <span class="string">`student`</span>(</span><br><span class="line">	<span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">4</span>) <span class="keyword">not</span> <span class="literal">null</span> auto_increment <span class="keyword">comment</span> <span class="string">'学号'</span>,</span><br><span class="line">    <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'匿名'</span> <span class="keyword">comment</span> <span class="string">'姓名'</span>,</span><br><span class="line">    <span class="string">`pwd`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'123456'</span> <span class="keyword">comment</span> <span class="string">'密码'</span>,</span><br><span class="line">    <span class="string">`sex`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'男'</span> <span class="keyword">comment</span> <span class="string">'性别'</span>,</span><br><span class="line">    <span class="string">`birthday`</span> datetime <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'出生日期'</span>,</span><br><span class="line">    <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'家庭住址'</span>,</span><br><span class="line">    <span class="string">`email`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'邮箱'</span>,</span><br><span class="line">    primary <span class="keyword">key</span> (<span class="string">`id`</span>)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">innodb</span> <span class="keyword">default</span> <span class="keyword">charset</span>=utf8</span><br></pre></td></tr></table></figure>
+
+<p>查看数据库表的定义语句（逆向）</p>
+<p><code>show create table xxx</code></p>
+</li>
+<li><p>显示表的结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">desc xxx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改数据库表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 修改表名</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> oldName <span class="keyword">rename</span> <span class="keyword">as</span> newName</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 增加表的字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> teacher <span class="keyword">add</span> age <span class="built_in">int</span>(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表的字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> teacher <span class="keyword">modify</span> age <span class="built_in">varchar</span>(<span class="number">11</span>) <span class="comment">-- 修改约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> teacher <span class="keyword">change</span> age age1 <span class="built_in">int</span>(<span class="number">3</span>) <span class="comment">-- 字段重命名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表的字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> teacher <span class="keyword">drop</span> age1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据库表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> [<span class="keyword">if</span> <span class="keyword">exists</span>] teacher</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="5-操作表的数据"><a href="#5-操作表的数据" class="headerlink" title="5. 操作表的数据"></a>5. 操作表的数据</h3><h4 id="5-1-添加外键（了解）"><a href="#5-1-添加外键（了解）" class="headerlink" title="5.1 添加外键（了解）"></a>5.1 添加外键（了解）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">`student`</span> </span><br><span class="line"><span class="keyword">add</span> <span class="keyword">constraint</span> <span class="string">`FK_gradeId`</span> <span class="keyword">foreign</span> <span class="keyword">key</span>(<span class="string">`gradeId`</span>) <span class="keyword">references</span> <span class="string">`grade`</span>(<span class="string">`gradeId`</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-2-添加"><a href="#5-2-添加" class="headerlink" title="5.2 添加"></a>5.2 添加</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="string">`grade`</span>(<span class="string">`gradeName`</span>) <span class="keyword">values</span>(<span class="string">'大四'</span>)</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="string">`grade`</span>(<span class="string">`gradeName`</span>) <span class="keyword">values</span>(<span class="string">'大一'</span>),(<span class="string">'大二'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="string">`student`</span>(<span class="string">`name`</span>,<span class="string">`pwd`</span>,<span class="string">`sex`</span>) <span class="keyword">values</span>(<span class="string">'张三'</span>,<span class="string">'aaaa'</span>,<span class="string">'女'</span>)</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="string">`student`</span>(<span class="string">`name`</span>,<span class="string">`pwd`</span>,<span class="string">`sex`</span>) <span class="keyword">values</span>(<span class="string">'王五'</span>,<span class="string">'cccc'</span>,<span class="string">'女'</span>),(<span class="string">'李四'</span>,<span class="string">'bbbb'</span>,<span class="string">'男'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-3-修改"><a href="#5-3-修改" class="headerlink" title="5.3 修改"></a>5.3 修改</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="string">`student`</span> <span class="keyword">set</span> <span class="string">`name`</span>=<span class="string">'lhx'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">update</span> <span class="string">`student`</span> <span class="keyword">set</span> <span class="string">`name`</span>=<span class="string">'lhx1'</span>,<span class="string">`email`</span>=<span class="string">'horsenliu@qq.com'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-4-删除"><a href="#5-4-删除" class="headerlink" title="5.4 删除"></a>5.4 删除</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="string">`student`</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 清空一个数据库表</span></span><br><span class="line"><span class="keyword">truncate</span> <span class="string">`student`</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-查询数据（重点）"><a href="#6-查询数据（重点）" class="headerlink" title="6. 查询数据（重点）"></a>6. 查询数据（重点）</h3><h4 id="6-1-简单查询"><a href="#6-1-简单查询" class="headerlink" title="6.1 简单查询"></a>6.1 简单查询</h4><ol>
+<li><p>别名</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span> <span class="keyword">as</span> 学号,<span class="string">`studentName`</span> <span class="keyword">as</span> 学生姓名 <span class="keyword">from</span> <span class="string">`student`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拼接字符串</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名:'</span>,<span class="string">`studentName`</span>) <span class="keyword">as</span> 新名字 <span class="keyword">from</span> <span class="string">`student`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>去重</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="string">`studentNo`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排除</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">not</span> <span class="string">`studentNo`</span>=<span class="number">1000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模糊查询</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is null</td>
+<td>xxx is null</td>
+</tr>
+<tr>
+<td>is not null</td>
+<td>xxx is not null</td>
+</tr>
+<tr>
+<td>between</td>
+<td>xxx between 90 and 100</td>
+</tr>
+<tr>
+<td>like</td>
+<td>a like b</td>
+</tr>
+<tr>
+<td>in</td>
+<td>xxx in (a, b, c)</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询姓刘的同学</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`studentName`</span> <span class="keyword">like</span> <span class="string">'刘%'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓刘的名字后面只有一个字的同学</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`studentName`</span> <span class="keyword">like</span> <span class="string">'刘_'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓刘的名字后面只有两个字的同学</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`studentName`</span> <span class="keyword">like</span> <span class="string">'刘__'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字中有嘉字的同学</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`studentName`</span> <span class="keyword">like</span> <span class="string">'%嘉%'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询1001,1002,1003学员</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`studentNo`</span> <span class="keyword">in</span> (<span class="number">1001</span>,<span class="number">1002</span>,<span class="number">1003</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询地址为空的学生</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">`studentNo`</span>,<span class="string">`studentResult`</span> <span class="keyword">from</span> <span class="string">`result`</span></span><br><span class="line"><span class="keyword">where</span> <span class="string">`address`</span>=<span class="string">''</span> <span class="keyword">or</span> <span class="string">`address`</span> <span class="keyword">is</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="6-2-联表查询"><a href="#6-2-联表查询" class="headerlink" title="6.2 联表查询"></a>6.2 联表查询</h4><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/sql_joins.jpg" class>
+
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>inner join</td>
+<td>交集</td>
+</tr>
+<tr>
+<td>left join</td>
+<td>返回左表中所有的值，即使右表中没有匹配</td>
+</tr>
+<tr>
+<td>right join</td>
+<td>返回右表中所有的值，即使左表中没有匹配</td>
+</tr>
+</tbody></table>
+<p>   <strong>SQL 语句编写思路：</strong></p>
+<ol>
+<li><p><strong>分析需求，分析查询的字段来自哪些表</strong></p>
+</li>
+<li><p><strong>确定使用哪种连接查询</strong></p>
+</li>
+<li><p><strong>确定交叉点（两张表中的相同数据）</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询参加了考试的同学</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectNo,subjectResult</span><br><span class="line"><span class="keyword">from</span> student <span class="keyword">as</span> s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> <span class="keyword">as</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectNo,subjectResult</span><br><span class="line"><span class="keyword">from</span> student <span class="keyword">as</span> s</span><br><span class="line"><span class="keyword">right</span> <span class="keyword">join</span> <span class="keyword">result</span> <span class="keyword">as</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询没有考试的同学</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectNo,subjectResult</span><br><span class="line"><span class="keyword">from</span> student <span class="keyword">as</span> s</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> <span class="keyword">result</span> <span class="keyword">as</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"><span class="keyword">where</span> subjectResult <span class="keyword">is</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询参加了考试的同学信息（学号、学生姓名、科目名、分数）</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectName,studentResult</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">right</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> r.studentNo = s.studentNo</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> sub.subjectNo = r.subjectNo</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询学员所属的年级（学号、学生姓名、年级名称）</span></span><br><span class="line"><span class="keyword">select</span> studentNo,studentName,gradeName</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> grade g</span><br><span class="line"><span class="keyword">on</span> s.gradeId = g.gradeId</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询科目所属的年级（科目名称、年级名称）</span></span><br><span class="line"><span class="keyword">select</span> subjectName，gradeName</span><br><span class="line"><span class="keyword">from</span> subject sub</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> grade g</span><br><span class="line"><span class="keyword">on</span> sub.gradeId = g.gradeId</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询参加了 数据库结构-1 考试的同学信息（学号、学生姓名、科目名、分数）</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectName,studentResult</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">where</span> subjectName = <span class="string">'数据库结构-1'</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="6-3-自连接"><a href="#6-3-自连接" class="headerlink" title="6.3 自连接"></a>6.3 自连接</h4><p>举一个例子：</p>
+<p>category 表如下所示</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/E:%5CFile_MarkDown%5CMySQL%5C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C.assets%5Cimage-20200725152825843.png" alt="image-20200725152825843"></p>
+<p>想要将这一张表拆开，使父栏目和子栏目的对应关系清晰可见</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="string">`categoryName`</span> <span class="keyword">AS</span> <span class="string">'父栏目'</span>,b.<span class="string">`categoryName`</span> <span class="keyword">AS</span> <span class="string">'子栏目'</span> </span><br><span class="line"><span class="keyword">FROM</span> <span class="string">`category`</span> <span class="keyword">AS</span> a,<span class="string">`category`</span> <span class="keyword">AS</span> b </span><br><span class="line"><span class="keyword">WHERE</span> a.<span class="string">`categoryId`</span> = b.<span class="string">`pid`</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/E:%5CFile_MarkDown%5CMySQL%5C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C.assets%5Cimage-20200725153113879.png" alt="image-20200725153113879"></p>
+<h4 id="6-4-分页和排序"><a href="#6-4-分页和排序" class="headerlink" title="6.4 分页和排序"></a>6.4 分页和排序</h4><ul>
+<li>升序 –&gt; ASC</li>
+<li>降序 –&gt; DESC</li>
+<li>分页公式：<ul>
+<li>当前页 n</li>
+<li>页面大小 m</li>
+<li>起始下标 (n-1)*m</li>
+<li>总页数 = ⌈数据总数/页面大小⌉</li>
+<li><strong>limit (起始下标, 页面大小)</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询参加了 数据库结构-1 考试的同学信息</span></span><br><span class="line"><span class="comment">-- 按成绩降序排序</span></span><br><span class="line"><span class="comment">-- 每页只显示5条数据</span></span><br><span class="line"><span class="comment">-- limit 0,5 0-起始下标 5-显示数目</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectName,studentResult</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">where</span> subjectName = <span class="string">'数据库结构-1'</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> studentResult <span class="keyword">desc</span></span><br><span class="line"><span class="keyword">limit</span> <span class="number">0</span>,<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询 JAVA第一学年 课程成绩排名前十并且分数大于80的学生信息（学号、姓名、课程名称、分数）</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName,subjectName,studentResult</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> sub.subjectNo = r.subjectNo</span><br><span class="line"><span class="keyword">where</span> studentName = <span class="string">'JAVA第一学年'</span> <span class="keyword">and</span> studentResult &gt;= <span class="number">80</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> studentResult <span class="keyword">desc</span></span><br><span class="line"><span class="keyword">limit</span> <span class="number">0</span>,<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-5-子查询和嵌套查询"><a href="#6-5-子查询和嵌套查询" class="headerlink" title="6.5 子查询和嵌套查询"></a>6.5 子查询和嵌套查询</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查询 数据库结构-1 的所有考试结果（学号、科目编号、成绩）降序</span></span><br><span class="line"><span class="comment">-- 方式一：使用连接查询</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,r.subjectNo,studentResult</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">where</span> subjectName = <span class="string">'数据库结构-1'</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> studentResult <span class="keyword">desc</span></span><br><span class="line"><span class="comment">-- 方式二：使用子查询</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,r.subjectNo,studentResult</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">where</span> subjectNo = (</span><br><span class="line">	<span class="keyword">select</span> subjectNo <span class="keyword">from</span> subject</span><br><span class="line">    <span class="keyword">where</span> subjectName = <span class="string">'数据库结构-1'</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> studentResult <span class="keyword">desc</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询 高等数学-2 分数不小于80的学生的学号、姓名</span></span><br><span class="line"><span class="comment">-- 方式一：连接查询</span></span><br><span class="line"><span class="keyword">select</span> s.studentNo,studentName</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> s.studentNo = r.studentNo</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">where</span> subjectName = <span class="string">'高等数学-2'</span> <span class="keyword">and</span> studentResult &gt;= <span class="number">80</span></span><br><span class="line"><span class="comment">-- 方式二：子查询</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> s.studentNo,studentName</span><br><span class="line"><span class="keyword">from</span> student s</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">on</span> r.studentNo = s.studentNo</span><br><span class="line"><span class="keyword">where</span> studentResult &gt;= <span class="number">80</span> <span class="keyword">and</span> stubjectNo = (</span><br><span class="line">	<span class="keyword">select</span> subjectNo <span class="keyword">from</span> subject <span class="keyword">where</span> subjectName=<span class="string">'高等数学-2'</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">-- 方式三：嵌套查询</span></span><br><span class="line"><span class="keyword">select</span> studentNo,studentName <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">where</span> studentNo <span class="keyword">in</span> (</span><br><span class="line">	<span class="keyword">select</span> studentNo <span class="keyword">from</span> <span class="keyword">result</span></span><br><span class="line">    <span class="keyword">where</span> studentResult &gt;= <span class="number">80</span> <span class="keyword">and</span> subjectNo = (</span><br><span class="line">    	<span class="keyword">select</span> subjectNo <span class="keyword">from</span> subject</span><br><span class="line">        <span class="keyword">where</span> subjectName = <span class="string">'高等数学'</span></span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>MySQL 查询</tag>
+        <tag>CURD</tag>
       </tags>
   </entry>
   <entry>
@@ -973,67 +1574,106 @@
       </tags>
   </entry>
   <entry>
-    <title>线程状态</title>
-    <url>/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<h3 id="0-综述"><a href="#0-综述" class="headerlink" title="0. 综述"></a>0. 综述</h3><img src="/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/image-20200719163614163.png" class>
-
-
-
-<h3 id="1-线程停止-Stop"><a href="#1-线程停止-Stop" class="headerlink" title="1. 线程停止 Stop"></a>1. 线程停止 Stop</h3><ul>
-<li>建议线程正常停止：利用次数，不建议死循环</li>
-<li>建议使用标志位</li>
-<li>不要使用 stop() 或 destroy() 等过时或者 JDK 不建议使用的方法</li>
+    <title>索引</title>
+    <url>/%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<blockquote>
+<p>博客：<a href="https://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">https://blog.codinglabs.org/articles/theory-of-mysql-index.html</a></p>
+</blockquote>
+<h3 id="1-分类"><a href="#1-分类" class="headerlink" title="1. 分类"></a>1. 分类</h3><ul>
+<li>主键索引（Primary Key）<ul>
+<li>唯一的标识，主键不可重复</li>
+</ul>
+</li>
+<li>唯一索引（Unique Key）<ul>
+<li>避免重复的列出现，唯一索引可以重复，多个列都可以标识为唯一索引</li>
+</ul>
+</li>
+<li>常规索引（Key/Index）<ul>
+<li>默认的</li>
+</ul>
+</li>
+<li>全文索引 （FullText）<ul>
+<li>在特定的数据库引擎下才有</li>
+<li>快速定位数据</li>
+</ul>
+</li>
 </ul>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 设置一个标志位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run...Thread"</span> + i++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2. 设置一个公开的方法转换标志位 停止线程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.flag = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        StopTest stopTest = <span class="keyword">new</span> StopTest();</span><br><span class="line">        <span class="keyword">new</span> Thread(stopTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"main"</span> + i);</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">900</span>) &#123;</span><br><span class="line">                <span class="comment">// 调用stop()停止线程</span></span><br><span class="line">                stopTest.stop();</span><br><span class="line">                System.out.println(<span class="string">"线程该停止了"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h3><ul>
+<li><p>显示所有索引信息</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> student</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加一个全文索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> school.student <span class="keyword">add</span> fulltext <span class="keyword">index</span> studentName(studentName)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分析 SQL 执行的状况</p>
+<blockquote>
+<p>博客：<a href="https://blog.csdn.net/jiadajing267/article/details/81269067" target="_blank" rel="noopener">https://blog.csdn.net/jiadajing267/article/details/81269067</a></p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 非全文索引</span></span><br><span class="line"><span class="keyword">explain</span> <span class="keyword">select</span> * <span class="keyword">from</span> student</span><br><span class="line"><span class="comment">-- 全文索引</span></span><br><span class="line"><span class="keyword">explain</span> <span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">match</span>(studentName) against(<span class="string">'刘'</span>)</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="2-线程休眠-Sleep"><a href="#2-线程休眠-Sleep" class="headerlink" title="2. 线程休眠 Sleep"></a>2. 线程休眠 Sleep</h3><ul>
-<li>sleep() 方法使线程阻塞，时间到后进入就绪状态</li>
-<li>每一个对象都有一个锁，sleep() 不会释放锁</li>
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SleepTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-测试索引"><a href="#3-测试索引" class="headerlink" title="3. 测试索引"></a>3. 测试索引</h3><ol>
+<li><p>整100万条数据</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 插入100万数据.</span></span><br><span class="line">DELIMITER $$</span><br><span class="line"><span class="comment">-- 写函数之前必须要写，标志</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> mock_data ()</span><br><span class="line"><span class="keyword">RETURNS</span> <span class="built_in">INT</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	<span class="keyword">DECLARE</span> <span class="keyword">num</span> <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1000000</span>;</span><br><span class="line">	<span class="keyword">DECLARE</span> i <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">	WHILE i&lt;num DO</span><br><span class="line">		<span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`app_user`</span>(<span class="string">`name`</span>,<span class="string">`email`</span>,<span class="string">`phone`</span>,<span class="string">`gender`</span>,<span class="string">`password`</span>,<span class="string">`age`</span>) <span class="keyword">VALUES</span>(<span class="keyword">CONCAT</span>(<span class="string">'用户'</span>,i),<span class="string">'horsenliu@qq.com'</span>,<span class="keyword">CONCAT</span>(<span class="string">'18'</span>,<span class="keyword">FLOOR</span>(<span class="keyword">RAND</span>()*((<span class="number">999999999</span><span class="number">-100000000</span>)+<span class="number">100000000</span>))),<span class="keyword">FLOOR</span>(<span class="keyword">RAND</span>()*<span class="number">2</span>),<span class="keyword">UUID</span>(),<span class="keyword">FLOOR</span>(<span class="keyword">RAND</span>()*<span class="number">100</span>));</span><br><span class="line">		<span class="keyword">SET</span> i=i+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">END</span> <span class="keyword">WHILE</span>;</span><br><span class="line">	RETURN i;</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> mock_data(); <span class="comment">-- 执行此函数 生成一百万条数据</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">FUNCTION</span> mock_data;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给表字段添加索引（索引名：id_表名_字段名）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> id_app_user_name <span class="keyword">ON</span> app_user(<span class="string">`name`</span>);</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="3-线程礼让-Yield"><a href="#3-线程礼让-Yield" class="headerlink" title="3. 线程礼让 Yield"></a>3. 线程礼让 Yield</h3><ul>
-<li>让当前正在执行的线程暂停，但不阻塞</li>
-<li>将线程转为就绪状态</li>
-<li>让 CPU 重新调度，但礼让不一定成功</li>
+</li>
+</ol>
+<h3 id="4-索引原则"><a href="#4-索引原则" class="headerlink" title="4. 索引原则"></a>4. 索引原则</h3><ul>
+<li>索引不是越多越好</li>
+<li>不要对经常变动的数据加索引</li>
+<li>小数据量的表不需要加索引</li>
+<li>索引一般加载常用来查询的字段上</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YieldTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyYield myYield = <span class="keyword">new</span> MyYield();</span><br><span class="line">        <span class="keyword">new</span> Thread(myYield, <span class="string">"a"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(myYield, <span class="string">"b"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyYield</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"线程开始执行"</span>);</span><br><span class="line">        Thread.yield();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"线程停止执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实现多线程的方法</title>
+    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
+<li>线程类继承 Thread 类</li>
+<li>重写 run() 方法</li>
+<li>声明线程类对象</li>
+<li>对象调用 start() 方法</li>
+</ol>
+<p><em>使用 commons.io 包下载网络图片</em></p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">"下载文件: "</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili1.png"</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili2.png"</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili3.png"</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="4-线程强制执行-Join"><a href="#4-线程强制执行-Join" class="headerlink" title="4. 线程强制执行 Join"></a>4. 线程强制执行 Join</h3><ul>
-<li>想象成插队</li>
-<li>插队的线程执行时阻塞其他线程，该线程执行完毕再执行其他线程 </li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoinTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"vip线程来了"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        JoinTest joinTest = <span class="keyword">new</span> JoinTest();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(joinTest);</span><br><span class="line">        thread.start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">500</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">200</span>) &#123;</span><br><span class="line">                thread.join();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"main"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
+<li>线程类继承 Runnable 接口</li>
+<li>实现 run() 方法</li>
+<li>声明线程类对象</li>
+<li>创建 Thread 对象，参数传入线程类对象</li>
+<li>调用 start() 方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run方法---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="5-观测线程状态"><a href="#5-观测线程状态" class="headerlink" title="5. 观测线程状态"></a>5. 观测线程状态</h3><p><em>注意：死掉的线程不能再启动</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="comment">// 线程倒计时5秒后结束</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"----线程结束了----"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 观察状态</span></span><br><span class="line">        <span class="comment">// new</span></span><br><span class="line">        Thread.State state = thread.getState();</span><br><span class="line">        System.out.println(state);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动</span></span><br><span class="line">        thread.start();</span><br><span class="line">        state = thread.getState();</span><br><span class="line">        System.out.println(state);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只要线程不终止 就一直输出状态 每500ms输出一次</span></span><br><span class="line">        <span class="keyword">while</span> (state != Thread.State.TERMINATED) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                <span class="comment">// 更新线程状态</span></span><br><span class="line">                state = thread.getState();</span><br><span class="line">                System.out.println(state);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"兔子"</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">"兔子睡觉了"</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;跑了"</span> + i + <span class="string">"步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">"Winner is "</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"兔子"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"乌龟"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="6-线程优先级"><a href="#6-线程优先级" class="headerlink" title="6. 线程优先级"></a>6. 线程优先级</h3><ul>
-<li>范围 1~10</li>
-<li>先设置优先级，再启动线程</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PriorityTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyPriority myPriority = <span class="keyword">new</span> MyPriority();</span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t3 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t4 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t5 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t6 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先设置优先级 再启动</span></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.setPriority(<span class="number">1</span>);</span><br><span class="line">        t2.start();</span><br><span class="line">        t3.setPriority(<span class="number">4</span>);</span><br><span class="line">        t3.start();</span><br><span class="line">        t4.setPriority(Thread.MAX_PRIORITY);</span><br><span class="line">        t4.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;"</span> + Thread.currentThread().getPriority());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPriority</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;"</span> + Thread.currentThread().getPriority());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="7-守护线程"><a href="#7-守护线程" class="headerlink" title="7. 守护线程"></a>7. 守护线程</h3><ul>
-<li>线程分为用户线程和守护线程</li>
-<li>虚拟机不用等待守护线程执行完毕</li>
-<li>虚拟机必须等待用户线程执行完毕</li>
-<li>应用：后台记录操作日志、监控内存、垃圾回收等等</li>
-</ul>
 ]]></content>
       <categories>
         <category>Java 学习笔记</category>
@@ -1042,7 +1682,6 @@
       <tags>
         <tag>Java</tag>
         <tag>多线程</tag>
-        <tag>线程状态</tag>
       </tags>
   </entry>
   <entry>
@@ -1156,35 +1795,76 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 NexT 翻页按钮图标问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>见下图</p>
+    <title>线程状态</title>
+    <url>/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h3 id="0-综述"><a href="#0-综述" class="headerlink" title="0. 综述"></a>0. 综述</h3><img src="/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/image-20200719163614163.png" class>
+
+
+
+<h3 id="1-线程停止-Stop"><a href="#1-线程停止-Stop" class="headerlink" title="1. 线程停止 Stop"></a>1. 线程停止 Stop</h3><ul>
+<li>建议线程正常停止：利用次数，不建议死循环</li>
+<li>建议使用标志位</li>
+<li>不要使用 stop() 或 destroy() 等过时或者 JDK 不建议使用的方法</li>
+</ul>
 <a id="more"></a>
 
-<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 设置一个标志位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run...Thread"</span> + i++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2. 设置一个公开的方法转换标志位 停止线程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.flag = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        StopTest stopTest = <span class="keyword">new</span> StopTest();</span><br><span class="line">        <span class="keyword">new</span> Thread(stopTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"main"</span> + i);</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">900</span>) &#123;</span><br><span class="line">                <span class="comment">// 调用stop()停止线程</span></span><br><span class="line">                stopTest.stop();</span><br><span class="line">                System.out.println(<span class="string">"线程该停止了"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="2-线程休眠-Sleep"><a href="#2-线程休眠-Sleep" class="headerlink" title="2. 线程休眠 Sleep"></a>2. 线程休眠 Sleep</h3><ul>
+<li>sleep() 方法使线程阻塞，时间到后进入就绪状态</li>
+<li>每一个对象都有一个锁，sleep() 不会释放锁</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SleepTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-线程礼让-Yield"><a href="#3-线程礼让-Yield" class="headerlink" title="3. 线程礼让 Yield"></a>3. 线程礼让 Yield</h3><ul>
+<li>让当前正在执行的线程暂停，但不阻塞</li>
+<li>将线程转为就绪状态</li>
+<li>让 CPU 重新调度，但礼让不一定成功</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YieldTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyYield myYield = <span class="keyword">new</span> MyYield();</span><br><span class="line">        <span class="keyword">new</span> Thread(myYield, <span class="string">"a"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(myYield, <span class="string">"b"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyYield</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"线程开始执行"</span>);</span><br><span class="line">        Thread.yield();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"线程停止执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-线程强制执行-Join"><a href="#4-线程强制执行-Join" class="headerlink" title="4. 线程强制执行 Join"></a>4. 线程强制执行 Join</h3><ul>
+<li>想象成插队</li>
+<li>插队的线程执行时阻塞其他线程，该线程执行完毕再执行其他线程 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoinTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"vip线程来了"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        JoinTest joinTest = <span class="keyword">new</span> JoinTest();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(joinTest);</span><br><span class="line">        thread.start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">500</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">200</span>) &#123;</span><br><span class="line">                thread.join();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"main"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-观测线程状态"><a href="#5-观测线程状态" class="headerlink" title="5. 观测线程状态"></a>5. 观测线程状态</h3><p><em>注意：死掉的线程不能再启动</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="comment">// 线程倒计时5秒后结束</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"----线程结束了----"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 观察状态</span></span><br><span class="line">        <span class="comment">// new</span></span><br><span class="line">        Thread.State state = thread.getState();</span><br><span class="line">        System.out.println(state);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动</span></span><br><span class="line">        thread.start();</span><br><span class="line">        state = thread.getState();</span><br><span class="line">        System.out.println(state);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只要线程不终止 就一直输出状态 每500ms输出一次</span></span><br><span class="line">        <span class="keyword">while</span> (state != Thread.State.TERMINATED) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                <span class="comment">// 更新线程状态</span></span><br><span class="line">                state = thread.getState();</span><br><span class="line">                System.out.println(state);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-线程优先级"><a href="#6-线程优先级" class="headerlink" title="6. 线程优先级"></a>6. 线程优先级</h3><ul>
+<li>范围 1~10</li>
+<li>先设置优先级，再启动线程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PriorityTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyPriority myPriority = <span class="keyword">new</span> MyPriority();</span><br><span class="line"></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t3 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t4 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t5 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line">        Thread t6 = <span class="keyword">new</span> Thread(myPriority);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先设置优先级 再启动</span></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.setPriority(<span class="number">1</span>);</span><br><span class="line">        t2.start();</span><br><span class="line">        t3.setPriority(<span class="number">4</span>);</span><br><span class="line">        t3.start();</span><br><span class="line">        t4.setPriority(Thread.MAX_PRIORITY);</span><br><span class="line">        t4.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;"</span> + Thread.currentThread().getPriority());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPriority</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;"</span> + Thread.currentThread().getPriority());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-守护线程"><a href="#7-守护线程" class="headerlink" title="7. 守护线程"></a>7. 守护线程</h3><ul>
+<li>线程分为用户线程和守护线程</li>
+<li>虚拟机不用等待守护线程执行完毕</li>
+<li>虚拟机必须等待用户线程执行完毕</li>
+<li>应用：后台记录操作日志、监控内存、垃圾回收等等</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Hexo &amp; NexT</category>
+        <category>Java 学习笔记</category>
+        <category>多线程</category>
       </categories>
       <tags>
-        <tag>NexT</tag>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 NexT 首页文章预览问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>见下图</p>
-<a id="more"></a>
-
-<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/pic.png" class>]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>NexT</tag>
-        <tag>问题</tag>
+        <tag>Java</tag>
+        <tag>多线程</tag>
+        <tag>线程状态</tag>
       </tags>
   </entry>
   <entry>
@@ -1201,8 +1881,8 @@
         <category>Hexo &amp; NexT</category>
       </categories>
       <tags>
-        <tag>问题</tag>
         <tag>Github</tag>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1230,6 +1910,38 @@
       <tags>
         <tag>问题</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 NexT 翻页按钮图标问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>见下图</p>
+<a id="more"></a>
+
+<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 NexT 首页文章预览问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>见下图</p>
+<a id="more"></a>
+
+<img src="/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/pic.png" class>]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
 </search>
