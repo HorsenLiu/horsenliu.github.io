@@ -336,14 +336,15 @@
 
 
 <h3 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h3><ul>
-<li>文件详解</li>
-</ul>
+<li><p>文件详解</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 build 中配置 resources，来防止我们资源导出失败的问题</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>在build中配置resources，来防止我们资源导出失败的问题</li>
+</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <categories>
         <category>Java 学习笔记</category>
         <category>JavaWeb</category>
@@ -352,42 +353,6 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lambda 表达式</title>
-    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
-<p><em>函数式接口：只有一个方法的接口</em></p>
-<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果是有参方法，也没问题</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
-
-<p>常用的地方是线程中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Java 基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Java 基础</tag>
-        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -542,6 +507,42 @@
         <tag>Java</tag>
         <tag>Java 基础</tag>
         <tag>IO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda 表达式</title>
+    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
+<p><em>函数式接口：只有一个方法的接口</em></p>
+<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, too"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, three"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"this is lambda, four"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"this is lambda, five"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"this is lambda"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是有参方法，也没问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"i love you "</span> + a);</span><br><span class="line">    System.out.println(<span class="string">"i love you, too "</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
+
+<p>常用的地方是线程中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Java 基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Java 基础</tag>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
@@ -777,6 +778,94 @@
       </tags>
   </entry>
   <entry>
+    <title>Tomcat 配置</title>
+    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
+<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+
+
+
+<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于数据库表的引擎</title>
+    <url>/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/</url>
+    <content><![CDATA[<h3 id="1-对比"><a href="#1-对比" class="headerlink" title="1. 对比"></a>1. 对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>MYISAM</th>
+<th>INNODB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务支持</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>🙅‍♂️</td>
+<td>👌</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>👌</td>
+<td>🙅‍♂️</td>
+</tr>
+<tr>
+<td>表空间的大小</td>
+<td>👎较小</td>
+<td>👍较大 ，约2倍</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<p>常规使用操作</p>
+<ul>
+<li>MYISAM    节约空间，速度较快</li>
+<li>INNODB    安全性搞，事务的处理，多表多用户操作</li>
+</ul>
+<h3 id="2-MySQL-引擎在物理文件上的区别"><a href="#2-MySQL-引擎在物理文件上的区别" class="headerlink" title="2. MySQL 引擎在物理文件上的区别"></a>2. MySQL 引擎在物理文件上的区别</h3><ul>
+<li><p>InnoDB 在数据库表中只有一个 *.frm，以及上级目录下的 ibdata1 文件</p>
+</li>
+<li><p>MyISAM 对应文件</p>
+<ul>
+<li>*.frm –&gt; 表结构对应文件</li>
+<li>*.myd –&gt; 数据文件（data）</li>
+<li>*.MYI –&gt; 索引文件（index）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库引擎</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ServletContext 应用</title>
     <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
@@ -838,66 +927,6 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 配置</title>
-    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/" target="_blank" rel="noopener">https://tomcat.apache.org/</a></p>
-<img src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
-
-
-
-<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>事务</title>
-    <url>/%E4%BA%8B%E5%8A%A1/</url>
-    <content><![CDATA[<h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
-<blockquote>
-<p>参考博客：<a href="https://blog.csdn.net/dengjili/article/details/82468576" target="_blank" rel="noopener">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
-</blockquote>
-<ul>
-<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
-<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
-<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
-<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
-</ul>
-<p>做不到隔离性所导致的问题：</p>
-<ul>
-<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
-<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
-<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
-</ul>
-<a id="more"></a>
-
-
-
-<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>模拟场景：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'A'</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'B'</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>MySQL 学习笔记</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>事务</tag>
       </tags>
   </entry>
   <entry>
@@ -980,67 +1009,39 @@
       </tags>
   </entry>
   <entry>
-    <title>关于数据库表的引擎</title>
-    <url>/%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/</url>
-    <content><![CDATA[<h3 id="1-对比"><a href="#1-对比" class="headerlink" title="1. 对比"></a>1. 对比</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>MYISAM</th>
-<th>INNODB</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>事务支持</td>
-<td>🙅‍♂️</td>
-<td>👌</td>
-</tr>
-<tr>
-<td>数据行锁定</td>
-<td>🙅‍♂️</td>
-<td>👌</td>
-</tr>
-<tr>
-<td>外键约束</td>
-<td>🙅‍♂️</td>
-<td>👌</td>
-</tr>
-<tr>
-<td>全文索引</td>
-<td>👌</td>
-<td>🙅‍♂️</td>
-</tr>
-<tr>
-<td>表空间的大小</td>
-<td>👎较小</td>
-<td>👍较大 ，约2倍</td>
-</tr>
-</tbody></table>
+    <title>事务</title>
+    <url>/%E4%BA%8B%E5%8A%A1/</url>
+    <content><![CDATA[<h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
+<blockquote>
+<p>参考博客：<a href="https://blog.csdn.net/dengjili/article/details/82468576" target="_blank" rel="noopener">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
+</blockquote>
+<ul>
+<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
+<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
+<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
+<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
+</ul>
+<p>做不到隔离性所导致的问题：</p>
+<ul>
+<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
+<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
+<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
+</ul>
 <a id="more"></a>
 
-<p>常规使用操作</p>
-<ul>
-<li>MYISAM    节约空间，速度较快</li>
-<li>INNODB    安全性搞，事务的处理，多表多用户操作</li>
-</ul>
-<h3 id="2-MySQL-引擎在物理文件上的区别"><a href="#2-MySQL-引擎在物理文件上的区别" class="headerlink" title="2. MySQL 引擎在物理文件上的区别"></a>2. MySQL 引擎在物理文件上的区别</h3><ul>
-<li><p>InnoDB 在数据库表中只有一个 *.frm，以及上级目录下的 ibdata1 文件</p>
-</li>
-<li><p>MyISAM 对应文件</p>
-<ul>
-<li>*.frm –&gt; 表结构对应文件</li>
-<li>*.myd –&gt; 数据文件（data）</li>
-<li>*.MYI –&gt; 索引文件（index）</li>
-</ul>
-</li>
-</ul>
-]]></content>
+
+
+<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>模拟场景：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'A'</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">'B'</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>MySQL 学习笔记</category>
       </categories>
       <tags>
         <tag>MySQL</tag>
-        <tag>数据库引擎</tag>
+        <tag>事务</tag>
       </tags>
   </entry>
   <entry>
@@ -1097,45 +1098,6 @@
       <tags>
         <tag>Java</tag>
         <tag>反射</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实现多线程的方法</title>
-    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
-<li>线程类继承 Thread 类</li>
-<li>重写 run() 方法</li>
-<li>声明线程类对象</li>
-<li>对象调用 start() 方法</li>
-</ol>
-<p><em>使用 commons.io 包下载网络图片</em></p>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">"下载文件: "</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili1.png"</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili2.png"</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili3.png"</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
-<li>线程类继承 Runnable 接口</li>
-<li>实现 run() 方法</li>
-<li>声明线程类对象</li>
-<li>创建 Thread 对象，参数传入线程类对象</li>
-<li>调用 start() 方法</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run方法---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"兔子"</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">"兔子睡觉了"</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;跑了"</span> + i + <span class="string">"步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">"Winner is "</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"兔子"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"乌龟"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>多线程</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -1303,6 +1265,45 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实现多线程的方法</title>
+    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
+<li>线程类继承 Thread 类</li>
+<li>重写 run() 方法</li>
+<li>声明线程类对象</li>
+<li>对象调用 start() 方法</li>
+</ol>
+<p><em>使用 commons.io 包下载网络图片</em></p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">"下载文件: "</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili1.png"</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili2.png"</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">"http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png"</span>, <span class="string">"bilibili3.png"</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
+<li>线程类继承 Runnable 接口</li>
+<li>实现 run() 方法</li>
+<li>声明线程类对象</li>
+<li>创建 Thread 对象，参数传入线程类对象</li>
+<li>调用 start() 方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"run方法---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"主线程---"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"兔子"</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">"兔子睡觉了"</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"--&gt;跑了"</span> + i + <span class="string">"步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">"Winner is "</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"兔子"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">"乌龟"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>多线程</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -1615,57 +1616,6 @@
       </tags>
   </entry>
   <entry>
-    <title>线程同步</title>
-    <url>/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h3 id="1-三大线程不安全案例"><a href="#1-三大线程不安全案例" class="headerlink" title="1. 三大线程不安全案例"></a>1. 三大线程不安全案例</h3><h4 id="1-1-不安全的购票"><a href="#1-1-不安全的购票" class="headerlink" title="1.1 不安全的购票"></a>1.1 不安全的购票</h4><ul>
-<li><p>一张票同时被多人买到</p>
-</li>
-<li><p>出现买到无中生有的票的情况</p>
-</li>
-</ul>
-<a id="more"></a>
-
-   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeBuyTicket</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BuyTicket station = <span class="keyword">new</span> BuyTicket();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"我"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"你"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"黄牛"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 买票</span></span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            buy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断是否有票</span></span><br><span class="line">        <span class="keyword">if</span> (ticketNums &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">" 拿到了 "</span> + ticketNums--);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-不安全的取钱"><a href="#1-2-不安全的取钱" class="headerlink" title="1.2 不安全的取钱"></a>1.2 不安全的取钱</h4><ul>
-<li><p>取出无中生有的钱，银行血亏</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeBank</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Account account = <span class="keyword">new</span> Account(<span class="number">100</span>, <span class="string">"基金"</span>);</span><br><span class="line">        Drawing you = <span class="keyword">new</span> Drawing(account, <span class="number">50</span>, <span class="string">"你"</span>);</span><br><span class="line">        Drawing girlFriend = <span class="keyword">new</span> Drawing(account, <span class="number">100</span>, <span class="string">"女朋友"</span>);</span><br><span class="line">        you.start();</span><br><span class="line">        girlFriend.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * money    余额</span></span><br><span class="line"><span class="comment">     * name     卡名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> money;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(<span class="keyword">int</span> money, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drawing</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    Account account;</span><br><span class="line">    <span class="keyword">int</span> drawingMoney;</span><br><span class="line">    <span class="keyword">int</span> nowMoney;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Drawing</span><span class="params">(Account account, <span class="keyword">int</span> drawingMoney, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.account = account;</span><br><span class="line">        <span class="keyword">this</span>.drawingMoney = drawingMoney;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断有没有钱</span></span><br><span class="line">        <span class="keyword">if</span> (account.money - drawingMoney &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"钱不够 无法取钱"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 卡内余额</span></span><br><span class="line">        account.money -= drawingMoney;</span><br><span class="line">        <span class="comment">// 手里的钱</span></span><br><span class="line">        nowMoney += drawingMoney;</span><br><span class="line">        System.out.println(account.name + <span class="string">"余额为: "</span> + account.money);</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName() + <span class="string">"手里的钱: "</span> + nowMoney);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h4 id="1-3-不安全的集合"><a href="#1-3-不安全的集合" class="headerlink" title="1.3 不安全的集合"></a>1.3 不安全的集合</h4><ul>
-<li><p>多个线程同时向集合中添加元素，添加在同一位置，导致数组实际大小与预期不符</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeList</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                list.add(Thread.currentThread().getName());</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="2-同步方法和同步块"><a href="#2-同步方法和同步块" class="headerlink" title="2. 同步方法和同步块"></a>2. 同步方法和同步块</h3><p>用 synchronized 锁住公共资源</p>
-<h4 id="2-1-安全的购票"><a href="#2-1-安全的购票" class="headerlink" title="2.1 安全的购票"></a>2.1 安全的购票</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有票</span></span><br><span class="line">    <span class="keyword">if</span> (ticketNums &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">" 拿到了 "</span> + ticketNums--);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-2-安全的取钱"><a href="#2-2-安全的取钱" class="headerlink" title="2.2 安全的取钱"></a>2.2 安全的取钱</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (account)&#123;</span><br><span class="line">        <span class="comment">// 判断有没有钱</span></span><br><span class="line">        <span class="keyword">if</span> (account.money - drawingMoney &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"钱不够 无法取钱"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 卡内余额</span></span><br><span class="line">        account.money -= drawingMoney;</span><br><span class="line">        <span class="comment">// 手里的钱</span></span><br><span class="line">        nowMoney += drawingMoney;</span><br><span class="line">        System.out.println(account.name + <span class="string">"余额为: "</span> + account.money);</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName() + <span class="string">"手里的钱: "</span> + nowMoney);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-3-安全的集合"><a href="#2-3-安全的集合" class="headerlink" title="2.3 安全的集合"></a>2.3 安全的集合</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (list) &#123;</span><br><span class="line">        list.add(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>多线程</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>多线程</tag>
-        <tag>synchronized</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>索引</title>
     <url>/%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<blockquote>
@@ -1735,6 +1685,57 @@
       <tags>
         <tag>MySQL</tag>
         <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线程同步</title>
+    <url>/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h3 id="1-三大线程不安全案例"><a href="#1-三大线程不安全案例" class="headerlink" title="1. 三大线程不安全案例"></a>1. 三大线程不安全案例</h3><h4 id="1-1-不安全的购票"><a href="#1-1-不安全的购票" class="headerlink" title="1.1 不安全的购票"></a>1.1 不安全的购票</h4><ul>
+<li><p>一张票同时被多人买到</p>
+</li>
+<li><p>出现买到无中生有的票的情况</p>
+</li>
+</ul>
+<a id="more"></a>
+
+   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeBuyTicket</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BuyTicket station = <span class="keyword">new</span> BuyTicket();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"我"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"你"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(station, <span class="string">"黄牛"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicket</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticketNums = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 买票</span></span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            buy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断是否有票</span></span><br><span class="line">        <span class="keyword">if</span> (ticketNums &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">" 拿到了 "</span> + ticketNums--);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-不安全的取钱"><a href="#1-2-不安全的取钱" class="headerlink" title="1.2 不安全的取钱"></a>1.2 不安全的取钱</h4><ul>
+<li><p>取出无中生有的钱，银行血亏</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeBank</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Account account = <span class="keyword">new</span> Account(<span class="number">100</span>, <span class="string">"基金"</span>);</span><br><span class="line">        Drawing you = <span class="keyword">new</span> Drawing(account, <span class="number">50</span>, <span class="string">"你"</span>);</span><br><span class="line">        Drawing girlFriend = <span class="keyword">new</span> Drawing(account, <span class="number">100</span>, <span class="string">"女朋友"</span>);</span><br><span class="line">        you.start();</span><br><span class="line">        girlFriend.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * money    余额</span></span><br><span class="line"><span class="comment">     * name     卡名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> money;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(<span class="keyword">int</span> money, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drawing</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    Account account;</span><br><span class="line">    <span class="keyword">int</span> drawingMoney;</span><br><span class="line">    <span class="keyword">int</span> nowMoney;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Drawing</span><span class="params">(Account account, <span class="keyword">int</span> drawingMoney, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name);</span><br><span class="line">        <span class="keyword">this</span>.account = account;</span><br><span class="line">        <span class="keyword">this</span>.drawingMoney = drawingMoney;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断有没有钱</span></span><br><span class="line">        <span class="keyword">if</span> (account.money - drawingMoney &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"钱不够 无法取钱"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 卡内余额</span></span><br><span class="line">        account.money -= drawingMoney;</span><br><span class="line">        <span class="comment">// 手里的钱</span></span><br><span class="line">        nowMoney += drawingMoney;</span><br><span class="line">        System.out.println(account.name + <span class="string">"余额为: "</span> + account.money);</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName() + <span class="string">"手里的钱: "</span> + nowMoney);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="1-3-不安全的集合"><a href="#1-3-不安全的集合" class="headerlink" title="1.3 不安全的集合"></a>1.3 不安全的集合</h4><ul>
+<li><p>多个线程同时向集合中添加元素，添加在同一位置，导致数组实际大小与预期不符</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeList</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                list.add(Thread.currentThread().getName());</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="2-同步方法和同步块"><a href="#2-同步方法和同步块" class="headerlink" title="2. 同步方法和同步块"></a>2. 同步方法和同步块</h3><p>用 synchronized 锁住公共资源</p>
+<h4 id="2-1-安全的购票"><a href="#2-1-安全的购票" class="headerlink" title="2.1 安全的购票"></a>2.1 安全的购票</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有票</span></span><br><span class="line">    <span class="keyword">if</span> (ticketNums &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">" 拿到了 "</span> + ticketNums--);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-安全的取钱"><a href="#2-2-安全的取钱" class="headerlink" title="2.2 安全的取钱"></a>2.2 安全的取钱</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (account)&#123;</span><br><span class="line">        <span class="comment">// 判断有没有钱</span></span><br><span class="line">        <span class="keyword">if</span> (account.money - drawingMoney &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"钱不够 无法取钱"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 卡内余额</span></span><br><span class="line">        account.money -= drawingMoney;</span><br><span class="line">        <span class="comment">// 手里的钱</span></span><br><span class="line">        nowMoney += drawingMoney;</span><br><span class="line">        System.out.println(account.name + <span class="string">"余额为: "</span> + account.money);</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName() + <span class="string">"手里的钱: "</span> + nowMoney);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-安全的集合"><a href="#2-3-安全的集合" class="headerlink" title="2.3 安全的集合"></a>2.3 安全的集合</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (list) &#123;</span><br><span class="line">        list.add(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>多线程</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>多线程</tag>
+        <tag>synchronized</tag>
       </tags>
   </entry>
   <entry>
@@ -1811,24 +1812,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 Github 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决 Hexo 图片不显示问题</title>
     <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
@@ -1851,8 +1834,8 @@
         <category>Hexo &amp; NexT</category>
       </categories>
       <tags>
-        <tag>问题</tag>
         <tag>Hexo</tag>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1912,6 +1895,24 @@
         <tag>死锁</tag>
         <tag>生产者消费者</tag>
         <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>Github</tag>
       </tags>
   </entry>
   <entry>
