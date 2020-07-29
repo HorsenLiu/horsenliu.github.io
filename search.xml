@@ -405,6 +405,42 @@
       </tags>
   </entry>
   <entry>
+    <title>Lambda 表达式</title>
+    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
+<p><em>函数式接口：只有一个方法的接口</em></p>
+<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this is lambda, too&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;this is lambda, three&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;this is lambda, four&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this is lambda, five&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;this is lambda&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是有参方法，也没问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you, too &quot;</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you, too &quot;</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
+
+<p>常用的地方是线程中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Java 基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Java 基础</tag>
+        <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IO 流</title>
     <url>/IO%E6%B5%81/</url>
     <content><![CDATA[<h3 id="1-四大家族"><a href="#1-四大家族" class="headerlink" title="1. 四大家族"></a>1. 四大家族</h3><table>
@@ -551,42 +587,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lambda 表达式</title>
-    <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
-<p><em>函数式接口：只有一个方法的接口</em></p>
-<p>Lambda 表达式可以通过以下这样一步一步简化来理解</p>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest01</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3. 静态内部类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Like2</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this is lambda, too&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILike iLike = <span class="keyword">new</span> Like();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        iLike = <span class="keyword">new</span> Like2();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 4. 局部内部类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Like3</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;this is lambda, three&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        iLike = <span class="keyword">new</span> Like3();</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 5. 匿名内部类 没有类的名称, 必须借助接口或者父类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        iLike = <span class="keyword">new</span> ILike() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;this is lambda, four&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. lambda表达式</span></span><br><span class="line">        iLike = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this is lambda, five&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLike.lambda();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. 函数式接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2. 实现类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="keyword">implements</span> <span class="title">ILike</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;this is lambda&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果是有参方法，也没问题</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LambdaTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ILove iLove = (<span class="keyword">int</span> a) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">        &#125;;</span><br><span class="line">        iLove.love(<span class="number">520</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ILove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">love</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而且可以简化成这个样子。简化了括号，参数类型，花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = <span class="keyword">null</span>;</span><br><span class="line">iLove = a -&gt; System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法中不止一行代码，就不能简化掉花括号</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = a -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you, too &quot;</span> + a);</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>);</span><br></pre></td></tr></table></figure>
-
-<p>但是如果方法不止一个参数，还是可以简化掉参数类型的，但是括号就得写上了</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ILove iLove = (a, b) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you &quot;</span> + a);</span><br><span class="line">    System.out.println(<span class="string">&quot;i love you, too &quot;</span> + b) ;</span><br><span class="line">&#125;;</span><br><span class="line">iLove.love(<span class="number">520</span>, <span class="number">521</span>);</span><br></pre></td></tr></table></figure>
-
-<p>常用的地方是线程中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            Date date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(date));</span><br><span class="line">                    date = <span class="keyword">new</span> Date(System.currentTimeMillis());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Java 基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Java 基础</tag>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Maven 配置</title>
     <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
@@ -689,6 +689,70 @@
         <tag>Java</tag>
         <tag>JavaWeb</tag>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ServletContext 应用</title>
+    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
+<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
+<ul>
+<li><p>第一个 Servlet</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">&quot;Horsen&quot;</span>;</span><br><span class="line">        context.setAttribute(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>第二个 Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">&quot;用户名: &quot;</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>web.xml</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
+<li><p>web.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">&quot;/gp&quot;</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
+<ul>
+<li><p>db.properties</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">&quot;/WEB-INF/classes/db.properties&quot;</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">&quot;: &quot;</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
       </tags>
   </entry>
   <entry>
@@ -921,70 +985,6 @@
         <tag>MySQL</tag>
         <tag>MySQL 查询</tag>
         <tag>MD5 加密</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ServletContext 应用</title>
-    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
-<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
-<ul>
-<li><p>第一个 Servlet</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">&quot;Horsen&quot;</span>;</span><br><span class="line">        context.setAttribute(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<a id="more"></a>
-
-<ul>
-<li><p>第二个 Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">&quot;用户名: &quot;</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>web.xml</p>
-  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
-<li><p>web.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">&quot;/gp&quot;</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
-<ul>
-<li><p>db.properties</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">&quot;/WEB-INF/classes/db.properties&quot;</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">&quot;: &quot;</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
       </tags>
   </entry>
   <entry>
@@ -1290,6 +1290,62 @@
       </tags>
   </entry>
   <entry>
+    <title>反射</title>
+    <url>/%E5%8F%8D%E5%B0%84/</url>
+    <content><![CDATA[<h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><ul>
+<li>反射机制允许程序在执行期借助于 Reflection API 获取任何类的内部信息，并能直接操作任意对象的内部属性及方法。</li>
+</ul>
+<img src="/%E5%8F%8D%E5%B0%84/image-20200723135607184.png" class>
+
+<a id="more"></a>
+
+<ul>
+<li>反射机制提供的功能（在运行时）<ul>
+<li>判断任意一个对象所属的类</li>
+<li>构造任意一个类的对象</li>
+<li>判断任意一个类所具有的成员变量和方法</li>
+<li>获取泛型信息</li>
+<li>调用任意一个对象的成员变量和方法</li>
+<li>处理注解</li>
+<li>生成动态代理</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Class-类"><a href="#2-Class-类" class="headerlink" title="2. Class 类"></a>2. Class 类</h3><ul>
+<li>Class 对象只能由系统建立</li>
+<li>一个类在 JVM 中只有一个 Class 对象</li>
+<li>一个类被加载后，类的整个结构都会被封装在 Class 对象中</li>
+<li>Class 类是 Reflection 的根源，针对任何想要动态加载、运行的类，唯有先获得相应的 Class 对象</li>
+</ul>
+<h3 id="3-获取-Class-类的实例"><a href="#3-获取-Class-类的实例" class="headerlink" title="3. 获取 Class 类的实例"></a>3. 获取 Class 类的实例</h3><ol>
+<li><p>已知具体的类，通过类的 class 属性获取，该方法最安全可靠</p>
+<p><code>Class clazz = Person.class;</code></p>
+</li>
+<li><p>已知某个类的实例，调用该实例的 getClass() 方法获取 Class 对象</p>
+<p><code>Class clazz = person.getClass();</code></p>
+</li>
+<li><p>已知一个类的全类名，且该类在类路径下，通过 Class 类的静态方法 forName() 获取</p>
+<p><code>Class class = Class.forName(&quot;demo01.Student&quot;);</code></p>
+</li>
+<li><p>内置基本数据类型可以直接用类名.TYPE</p>
+</li>
+<li><p>利用 ClassLoader</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line">        System.out.println(<span class="string">&quot;这个人是: &quot;</span> + person.name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式一: 通过对象获得</span></span><br><span class="line">        Class c1 = person.getClass();</span><br><span class="line">        System.out.println(c1.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式二: forName获得</span></span><br><span class="line">        Class c2 = Class.forName(<span class="string">&quot;com.horsen.reflection.Student&quot;</span>);</span><br><span class="line">        System.out.println(c2.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式三: 通过类名.class</span></span><br><span class="line">        Class c3 = Student.class;</span><br><span class="line">        System.out.println(c3.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式四: 基本内置类型的包装类都有一个TYPE属性</span></span><br><span class="line">        Class c4 = Integer.TYPE;</span><br><span class="line">        System.out.println(c4);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得父类的类型</span></span><br><span class="line">        Class c5 = c1.getSuperclass();</span><br><span class="line">        System.out.println(c5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Persion&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">&quot;学生&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>注解和反射</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>安装 MySQL</title>
     <url>/%E5%AE%89%E8%A3%85%20MySQL/</url>
     <content><![CDATA[<blockquote>
@@ -1355,62 +1411,6 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>反射</title>
-    <url>/%E5%8F%8D%E5%B0%84/</url>
-    <content><![CDATA[<h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><ul>
-<li>反射机制允许程序在执行期借助于 Reflection API 获取任何类的内部信息，并能直接操作任意对象的内部属性及方法。</li>
-</ul>
-<img src="/%E5%8F%8D%E5%B0%84/image-20200723135607184.png" class>
-
-<a id="more"></a>
-
-<ul>
-<li>反射机制提供的功能（在运行时）<ul>
-<li>判断任意一个对象所属的类</li>
-<li>构造任意一个类的对象</li>
-<li>判断任意一个类所具有的成员变量和方法</li>
-<li>获取泛型信息</li>
-<li>调用任意一个对象的成员变量和方法</li>
-<li>处理注解</li>
-<li>生成动态代理</li>
-<li>……</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-Class-类"><a href="#2-Class-类" class="headerlink" title="2. Class 类"></a>2. Class 类</h3><ul>
-<li>Class 对象只能由系统建立</li>
-<li>一个类在 JVM 中只有一个 Class 对象</li>
-<li>一个类被加载后，类的整个结构都会被封装在 Class 对象中</li>
-<li>Class 类是 Reflection 的根源，针对任何想要动态加载、运行的类，唯有先获得相应的 Class 对象</li>
-</ul>
-<h3 id="3-获取-Class-类的实例"><a href="#3-获取-Class-类的实例" class="headerlink" title="3. 获取 Class 类的实例"></a>3. 获取 Class 类的实例</h3><ol>
-<li><p>已知具体的类，通过类的 class 属性获取，该方法最安全可靠</p>
-<p><code>Class clazz = Person.class;</code></p>
-</li>
-<li><p>已知某个类的实例，调用该实例的 getClass() 方法获取 Class 对象</p>
-<p><code>Class clazz = person.getClass();</code></p>
-</li>
-<li><p>已知一个类的全类名，且该类在类路径下，通过 Class 类的静态方法 forName() 获取</p>
-<p><code>Class class = Class.forName(&quot;demo01.Student&quot;);</code></p>
-</li>
-<li><p>内置基本数据类型可以直接用类名.TYPE</p>
-</li>
-<li><p>利用 ClassLoader</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Student();</span><br><span class="line">        System.out.println(<span class="string">&quot;这个人是: &quot;</span> + person.name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式一: 通过对象获得</span></span><br><span class="line">        Class c1 = person.getClass();</span><br><span class="line">        System.out.println(c1.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式二: forName获得</span></span><br><span class="line">        Class c2 = Class.forName(<span class="string">&quot;com.horsen.reflection.Student&quot;</span>);</span><br><span class="line">        System.out.println(c2.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式三: 通过类名.class</span></span><br><span class="line">        Class c3 = Student.class;</span><br><span class="line">        System.out.println(c3.hashCode());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式四: 基本内置类型的包装类都有一个TYPE属性</span></span><br><span class="line">        Class c4 = Integer.TYPE;</span><br><span class="line">        System.out.println(c4);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得父类的类型</span></span><br><span class="line">        Class c5 = c1.getSuperclass();</span><br><span class="line">        System.out.println(c5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Persion&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">&quot;学生&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>注解和反射</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>反射</tag>
       </tags>
   </entry>
   <entry>
