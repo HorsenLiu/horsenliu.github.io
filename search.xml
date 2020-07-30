@@ -1,6 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CRUD</title>
+    <url>/CRUD/</url>
+    <content><![CDATA[<p><strong>CRUD 操作都在 Mapper.xml 中编写，即 Mapper 接口的实现类（通过配置文件实现）</strong></p>
+<p><em>注意：增删改操作需要提交事务</em></p>
+<p><code>sqlSession.commit();</code></p>
+<h3 id="1-namespace"><a href="#1-namespace" class="headerlink" title="1. namespace"></a>1. namespace</h3><p>namespace 中的包名要和 mapper 接口的包名一致</p>
+<a id="more"></a>
+
+
+
+<h3 id="2-Select"><a href="#2-Select" class="headerlink" title="2. Select"></a>2. Select</h3><p>选择，查询语句</p>
+<ul>
+<li>id : 就是对应的 namespace 中的方法名</li>
+<li>resultType：Sql 语句执行的返回值</li>
+<li>parameterType ： 参数类型</li>
+</ul>
+<ol>
+<li><p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据id查询用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> user</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">User <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写对应的 mapper 中的 sql 语句</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    select * from mybatis.user where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserById</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    User user = mapper.getUserById(<span class="number">1</span>);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="3-Insert"><a href="#3-Insert" class="headerlink" title="3. Insert"></a>3. Insert</h3><ol>
+<li><p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入一个用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写对应的 mapper 中的 sql 语句</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 对象中的属性可以直接取出来 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    insert into mybatis.user (id, name, pwd) values (#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增删改需要提交事务</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    <span class="keyword">int</span> res = mapper.addUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;haha&quot;</span>, <span class="string">&quot;123123&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="4-Update"><a href="#4-Update" class="headerlink" title="4. Update"></a>4. Update</h3><ol>
+<li><p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 修改用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> user 用户</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写对应的 mapper 中的 sql 语句</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    update mybatis.user set name=#&#123;name&#125;, pwd=#&#123;pwd&#125; where id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.updateUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;heihei&quot;</span>, <span class="string">&quot;999999&quot;</span>));</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="5-Delete"><a href="#5-Delete" class="headerlink" title="5. Delete"></a>5. Delete</h3><ol>
+<li><p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id 用户id</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteUser</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写对应的 mapper 中的 sql 语句</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span>&gt;</span></span><br><span class="line">    delete from mybatis.user where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.deleteUser(<span class="number">4</span>);</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="6-万能-Map"><a href="#6-万能-Map" class="headerlink" title="6. 万能 Map"></a>6. 万能 Map</h3><p>如果实体类或者数据库中的表的字段，或者参数过多，应当考虑使用 Map</p>
+<ol>
+<li><p>编写接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addUser2</span><span class="params">(Map&lt;String, Object&gt; map)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写对应的 mapper 中的 sql 语句</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 传递map中的key --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser2&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    insert into mybatis.user (id, name, pwd) values (#&#123;userId&#125;,#&#123;userName&#125;,#&#123;pwd&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;userId&quot;</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;pwd&quot;</span>, <span class="string">&quot;22223333&quot;</span>);</span><br><span class="line">    mapper.addUser2(map);</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Map 传递参数，直接在 sql 中取出 key 即可 <code>parameterType=&quot;map&quot;</code></p>
+<p>对象传递参数，直接在 sql 中取对象的属性即可<code>parameterType=&quot;Object&quot;</code></p>
+<p>只有一个基本类型参数的情况下，可以直接在 sql 中取到</p>
+<p>多个参数用Map，<strong>或者注解</strong></p>
+<h3 id="7-模糊查询"><a href="#7-模糊查询" class="headerlink" title="7. 模糊查询"></a>7. 模糊查询</h3><ol>
+<li><p>方式一：在 Java 代码执行的时候，传递通配符%</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; userList = mapper.getUserLike(<span class="string">&quot;%李%&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二：在 sql 语句中添加通配符%</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mybatis.user <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">&quot;%&quot;</span><span class="comment">#&#123;value&#125;&quot;%&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HttpServletResponse 应用</title>
     <url>/HttpServletResponse%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>web 服务器接收到客户端的 http 请求，针对这个请求，分别创建一个代表请求的HttpServletRequest 对象，和一个代表响应的 HttpServletResponce 对象</p>
@@ -112,115 +221,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CRUD</title>
-    <url>/CRUD/</url>
-    <content><![CDATA[<p><strong>CRUD 操作都在 Mapper.xml 中编写，即 Mapper 接口的实现类（通过配置文件实现）</strong></p>
-<p><em>注意：增删改操作需要提交事务</em></p>
-<p><code>sqlSession.commit();</code></p>
-<h3 id="1-namespace"><a href="#1-namespace" class="headerlink" title="1. namespace"></a>1. namespace</h3><p>namespace 中的包名要和 mapper 接口的包名一致</p>
-<a id="more"></a>
-
-
-
-<h3 id="2-Select"><a href="#2-Select" class="headerlink" title="2. Select"></a>2. Select</h3><p>选择，查询语句</p>
-<ul>
-<li>id : 就是对应的 namespace 中的方法名</li>
-<li>resultType：Sql 语句执行的返回值</li>
-<li>parameterType ： 参数类型</li>
-</ul>
-<ol>
-<li><p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据id查询用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> user</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">User <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写对应的 mapper 中的 sql 语句</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    select * from mybatis.user where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserById</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    User user = mapper.getUserById(<span class="number">1</span>);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="3-Insert"><a href="#3-Insert" class="headerlink" title="3. Insert"></a>3. Insert</h3><ol>
-<li><p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入一个用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写对应的 mapper 中的 sql 语句</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 对象中的属性可以直接取出来 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    insert into mybatis.user (id, name, pwd) values (#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增删改需要提交事务</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    <span class="keyword">int</span> res = mapper.addUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;haha&quot;</span>, <span class="string">&quot;123123&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="4-Update"><a href="#4-Update" class="headerlink" title="4. Update"></a>4. Update</h3><ol>
-<li><p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 修改用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> user 用户</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写对应的 mapper 中的 sql 语句</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.horsen.pojo.User&quot;</span>&gt;</span></span><br><span class="line">    update mybatis.user set name=#&#123;name&#125;, pwd=#&#123;pwd&#125; where id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.updateUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;heihei&quot;</span>, <span class="string">&quot;999999&quot;</span>));</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="5-Delete"><a href="#5-Delete" class="headerlink" title="5. Delete"></a>5. Delete</h3><ol>
-<li><p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id 用户id</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteUser</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写对应的 mapper 中的 sql 语句</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span>&gt;</span></span><br><span class="line">    delete from mybatis.user where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.deleteUser(<span class="number">4</span>);</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="6-万能-Map"><a href="#6-万能-Map" class="headerlink" title="6. 万能 Map"></a>6. 万能 Map</h3><p>如果实体类或者数据库中的表的字段，或者参数过多，应当考虑使用 Map</p>
-<ol>
-<li><p>编写接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addUser2</span><span class="params">(Map&lt;String, Object&gt; map)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写对应的 mapper 中的 sql 语句</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 传递map中的key --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser2&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    insert into mybatis.user (id, name, pwd) values (#&#123;userId&#125;,#&#123;userName&#125;,#&#123;pwd&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;userId&quot;</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;pwd&quot;</span>, <span class="string">&quot;22223333&quot;</span>);</span><br><span class="line">    mapper.addUser2(map);</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>Map 传递参数，直接在 sql 中取出 key 即可 <code>parameterType=&quot;map&quot;</code></p>
-<p>对象传递参数，直接在 sql 中取对象的属性即可<code>parameterType=&quot;Object&quot;</code></p>
-<p>只有一个基本类型参数的情况下，可以直接在 sql 中取到</p>
-<p>多个参数用Map，<strong>或者注解</strong></p>
-<h3 id="7-模糊查询"><a href="#7-模糊查询" class="headerlink" title="7. 模糊查询"></a>7. 模糊查询</h3><ol>
-<li><p>方式一：在 Java 代码执行的时候，传递通配符%</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; userList = mapper.getUserLike(<span class="string">&quot;%李%&quot;</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方式二：在 sql 语句中添加通配符%</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mybatis.user <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">&quot;%&quot;</span><span class="comment">#&#123;value&#125;&quot;%&quot;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Mybatis</category>
-      </categories>
-      <tags>
-        <tag>Mybatis</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HttpServletRequest 应用</title>
     <url>/HttpServletRequest%20%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h3 id="1-获取前端传递的参数"><a href="#1-获取前端传递的参数" class="headerlink" title="1. 获取前端传递的参数"></a>1. 获取前端传递的参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 避免后台接收出现中文乱码</span></span><br><span class="line">req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"><span class="comment">// 避免浏览器出现中文乱码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">String username = req.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">String password = req.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">String[] hobbies = req.getParameterValues(<span class="string">&quot;hobbies&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -241,123 +241,6 @@
         <tag>JavaWeb</tag>
         <tag>Servlet</tag>
         <tag>Request</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA 快捷键</title>
-    <url>/IDEA%20%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Ctrl+Shift+Alt</td>
-<td>多行操作</td>
-</tr>
-<tr>
-<td>psvm</td>
-<td>生成main()方法</td>
-</tr>
-<tr>
-<td>fori</td>
-<td>生成for循环</td>
-</tr>
-<tr>
-<td>Ctrl+Alt+V</td>
-<td>自动补齐返回值类型</td>
-</tr>
-<tr>
-<td>Ctrl+O</td>
-<td>覆写方法</td>
-</tr>
-<tr>
-<td>Ctrl+I</td>
-<td>实现接口中的方法</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+U</td>
-<td>大小写转换</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+Z</td>
-<td>取消撤销</td>
-</tr>
-<tr>
-<td>Alt＋Insert</td>
-<td>生成构造方法、getter、setter</td>
-</tr>
-<tr>
-<td>Ctrl+Y</td>
-<td>删除当前行</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+J</td>
-<td>将选中的行合并成一行</td>
-</tr>
-<tr>
-<td>Ctrl+G</td>
-<td>定位到某一行</td>
-</tr>
-<tr>
-<td>Ctrl+Shitft+向下箭头</td>
-<td>将光标所在的代码块向下整体移动</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+向上箭头</td>
-<td>将光标所在的代码块向上整体移动</td>
-</tr>
-<tr>
-<td>Alt+Shift+向下箭头</td>
-<td>将行向下移动</td>
-</tr>
-<tr>
-<td>Alt+Shift+向上箭头</td>
-<td>将行向上移动</td>
-</tr>
-<tr>
-<td>Ctrl+F</td>
-<td>在当前文件中查找</td>
-</tr>
-<tr>
-<td>Ctrl+R</td>
-<td>替换字符串</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+F</td>
-<td>在全局文件中查找字符串</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+R</td>
-<td>在全局中替换字符串</td>
-</tr>
-<tr>
-<td>Ctrl+Shift+Enter</td>
-<td>自动补齐{}或者分号</td>
-</tr>
-<tr>
-<td>Shift+Enter</td>
-<td>在当前行的下方开始新行</td>
-</tr>
-<tr>
-<td>Ctrl+Alt+Enter</td>
-<td>在当前行的上方插入新行</td>
-</tr>
-<tr>
-<td>Ctrl+Delete</td>
-<td>删除光标所在至单词结尾处的所有字符</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>IDEA</tag>
-        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -512,6 +395,123 @@
         <tag>Java</tag>
         <tag>Java 基础</tag>
         <tag>IO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA 快捷键</title>
+    <url>/IDEA%20%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+Shift+Alt</td>
+<td>多行操作</td>
+</tr>
+<tr>
+<td>psvm</td>
+<td>生成main()方法</td>
+</tr>
+<tr>
+<td>fori</td>
+<td>生成for循环</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+V</td>
+<td>自动补齐返回值类型</td>
+</tr>
+<tr>
+<td>Ctrl+O</td>
+<td>覆写方法</td>
+</tr>
+<tr>
+<td>Ctrl+I</td>
+<td>实现接口中的方法</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+U</td>
+<td>大小写转换</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Z</td>
+<td>取消撤销</td>
+</tr>
+<tr>
+<td>Alt＋Insert</td>
+<td>生成构造方法、getter、setter</td>
+</tr>
+<tr>
+<td>Ctrl+Y</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+J</td>
+<td>将选中的行合并成一行</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>定位到某一行</td>
+</tr>
+<tr>
+<td>Ctrl+Shitft+向下箭头</td>
+<td>将光标所在的代码块向下整体移动</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+向上箭头</td>
+<td>将光标所在的代码块向上整体移动</td>
+</tr>
+<tr>
+<td>Alt+Shift+向下箭头</td>
+<td>将行向下移动</td>
+</tr>
+<tr>
+<td>Alt+Shift+向上箭头</td>
+<td>将行向上移动</td>
+</tr>
+<tr>
+<td>Ctrl+F</td>
+<td>在当前文件中查找</td>
+</tr>
+<tr>
+<td>Ctrl+R</td>
+<td>替换字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+F</td>
+<td>在全局文件中查找字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+R</td>
+<td>在全局中替换字符串</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Enter</td>
+<td>自动补齐{}或者分号</td>
+</tr>
+<tr>
+<td>Shift+Enter</td>
+<td>在当前行的下方开始新行</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+Enter</td>
+<td>在当前行的上方插入新行</td>
+</tr>
+<tr>
+<td>Ctrl+Delete</td>
+<td>删除光标所在至单词结尾处的所有字符</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -980,6 +980,31 @@
       </tags>
   </entry>
   <entry>
+    <title>Tomcat 配置</title>
+    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+<img data-src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+
+
+
+<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>环境搭建</tag>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Session 和 Cookie</title>
     <url>/Session%20%E5%92%8C%20Cookie/</url>
     <content><![CDATA[<h3 id="1-什么是-Session"><a href="#1-什么是-Session" class="headerlink" title="1. 什么是 Session"></a>1. 什么是 Session</h3><ul>
@@ -1056,31 +1081,6 @@
         <tag>Java</tag>
         <tag>Session</tag>
         <tag>Cookie</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 配置</title>
-    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-<img data-src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
-
-
-
-<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>环境搭建</tag>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -1407,6 +1407,122 @@
       </tags>
   </entry>
   <entry>
+    <title>动态 SQL</title>
+    <url>/%E5%8A%A8%E6%80%81%20SQL/</url>
+    <content><![CDATA[<p><strong>动态 SQL 就是指根据不同的条件生成不同的SQL语句</strong></p>
+<p>官方是这样介绍的：</p>
+<blockquote>
+<p>动态 SQL 是 MyBatis 的强大特性之一。如果你使用过 JDBC 或其它类似的框架，你应该能理解根据不同条件拼接 SQL 语句有多痛苦，例如拼接时要确保不能忘记添加必要的空格，还要注意去掉列表最后一个列名的逗号。利用动态 SQL，可以彻底摆脱这种痛苦。</p>
+<p>动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在 MyBatis 之前的版本中，有很多元素需要花时间了解。MyBatis 3 大大精简了元素种类，现在只需学习原来一半的元素便可。MyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。</p>
+</blockquote>
+<a id="more"></a>
+
+
+
+<h3 id="0-环境搭建"><a href="#0-环境搭建" class="headerlink" title="0. 环境搭建"></a>0. 环境搭建</h3><ol>
+<li><p>准备数据库表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`blog`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客id&#x27;</span>,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客标题&#x27;</span>,</span><br><span class="line">  <span class="string">`author`</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客作者&#x27;</span>,</span><br><span class="line">  <span class="string">`create_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">  <span class="string">`views`</span> <span class="built_in">int</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;浏览量&#x27;</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实体类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> String author;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> views;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 Java 代码插入数据</p>
+<p>3.1 接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> blog 博客</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addBlog</span><span class="params">(Blog blog)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 Mapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addBlog&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    insert into blog (id, title, author, create_time, views)</span><br><span class="line">    values (#&#123;id&#125;, #&#123;title&#125;, #&#123;author&#125;, #&#123;createTime&#125;, #&#123;views&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.3 测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBlog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    Blog blog = <span class="keyword">new</span> Blog();</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Mybatis如此简单&quot;</span>);</span><br><span class="line">    blog.setAuthor(<span class="string">&quot;狂神说&quot;</span>);</span><br><span class="line">    blog.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">    blog.setViews(<span class="number">9999</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Java如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Spring如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;微服务如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="1-if"><a href="#1-if" class="headerlink" title="1. if"></a>1. if</h3><p><strong>需求</strong>：当没有任何参数传入的时候，查询所有博客，当有标题或作者作为参数传入的时候，就根据传入的参数查找。</p>
+<p>传统的做法是设计多个查询类，每一个类的参数对应不同的查询条件。</p>
+<p>但是，使用<code>&lt;if&gt;</code>标签可以省去重载方法，用一个方法解决问题。</p>
+<ol>
+<li><p>接口</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询博客</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> map</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">List&lt;Blog&gt; <span class="title">queryBlogIf</span><span class="params">(Map map)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mapper.xml</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogIf&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;title&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">            and author = #&#123;author&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <em>注意：这里还用了一个<code>&lt;where&gt;</code>标签</em></p>
+<blockquote>
+<p><em>where</em> 元素只会在子元素返回任何内容的情况下才插入 “WHERE” 子句。而且，若子句的开头为 “AND” 或 “OR”，<em>where</em> 元素也会将它们去除。</p>
+</blockquote>
+</li>
+<li><p>测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryBlogIf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    HashMap map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    <span class="comment">//map.put(&quot;title&quot;,&quot;Java如此简单&quot;);</span></span><br><span class="line">    map.put(<span class="string">&quot;author&quot;</span>,<span class="string">&quot;狂神说&quot;</span>);</span><br><span class="line">    List&lt;Blog&gt; blogs = mapper.queryBlogIf(map);</span><br><span class="line">    <span class="keyword">for</span> (Blog blog : blogs) &#123;</span><br><span class="line">        System.out.println(blog);</span><br><span class="line">    &#125;</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="2-choose-when-otherwise"><a href="#2-choose-when-otherwise" class="headerlink" title="2. choose, when, otherwise"></a>2. choose, when, otherwise</h3><blockquote>
+<p>有时候，我们不想使用所有的条件，而只是想从多个条件中选择一个使用。针对这种情况，MyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。</p>
+</blockquote>
+<p>可以这样理解：==choose== 相当于 <code>swich</code>；==when== 相当于<code> case</code>；==otherwise== 相当于 <code>default</code>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogChoose&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">                title = #&#123;title&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">                author = #&#123;author&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">                views = #&#123;views&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-trim-where-set"><a href="#3-trim-where-set" class="headerlink" title="3. trim, where, set"></a>3. trim, where, set</h3><p>和之前的需求类似，为了在保证修改数据时，满足各种各样的传入的参数，动态的修改某一行数据的对应字段，就可以使用<code>&lt;set&gt;</code>标签，避免重载多个不同参数的插入方法。类似<code>&lt;where&gt;</code>，<code>&lt;set&gt;</code>会动态地在行首插入 SET 关键字，并会删掉额外的逗号。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateBlog&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    update blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;title&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">            author = #&#123;author&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    where id =#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-SQL-片段"><a href="#4-SQL-片段" class="headerlink" title="4. SQL 片段"></a>4. SQL 片段</h3><p>有的时候，我们可能会将一些功能的部分抽取出来，方便复用</p>
+<ol>
+<li><p>使用<code>&lt;sql&gt;</code>标签抽取公共的部分</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;if-title-author&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">        title = #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">        and author = #&#123;author&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要使用的地方使用<code>&lt;include&gt;</code>标签引用即可</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogIF&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;blog&quot;</span>&gt;</span></span><br><span class="line">    select * from mybatis.blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;if-title-author&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>最好基于单表来定义 SQL 片段</li>
+<li>不要存在where标签</li>
+</ul>
+<h3 id="5-foreach"><a href="#5-foreach" class="headerlink" title="5. foreach"></a>5. foreach</h3><p>动态 SQL 的另一个常见使用场景是对集合进行遍历（尤其是在构建 IN 条件语句的时候）。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> blog</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为了方便举例，使用这条有同样的效果 sql 语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * </span><br><span class="line"><span class="keyword">from</span> blog</span><br><span class="line"><span class="keyword">where</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">and</span> (<span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">or</span> <span class="keyword">id</span> = <span class="number">2</span> <span class="keyword">or</span> <span class="keyword">id</span>=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>Mapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogForeach&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select * from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span></span></span><br><span class="line"><span class="tag">                 <span class="attr">open</span>=<span class="string">&quot;and (&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">            id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryBlogForeach</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    HashMap map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    ArrayList&lt;String&gt; ids = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    ids.add(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    ids.add(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">    ids.add(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;ids&quot;</span>,ids);</span><br><span class="line">    List&lt;Blog&gt; blogs = mapper.queryBlogForeach(map);</span><br><span class="line">    <span class="keyword">for</span> (Blog blog : blogs) &#123;</span><br><span class="line">        System.out.println(blog);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h3><ul>
+<li>所谓动态 SQL，本质还是 SQL 语句， 知识我们可以在 SQL 层面去执行一个逻辑代码。</li>
+<li>动态 SQL 就是在拼接 SQL 语句，只要保证 SQL 的正确性，按照 SQL 的格式去排列组合就可以了。</li>
+<li>建议先写出完整的 SQL，再对应着修改为动态 SQL 实现通用。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>反射</title>
     <url>/%E5%8F%8D%E5%B0%84/</url>
     <content><![CDATA[<h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><ul>
@@ -1554,122 +1670,6 @@
         <tag>Mybatis</tag>
         <tag>环境搭建</tag>
         <tag>ResultMap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态 SQL</title>
-    <url>/%E5%8A%A8%E6%80%81%20SQL/</url>
-    <content><![CDATA[<p><strong>动态 SQL 就是指根据不同的条件生成不同的SQL语句</strong></p>
-<p>官方是这样介绍的：</p>
-<blockquote>
-<p>动态 SQL 是 MyBatis 的强大特性之一。如果你使用过 JDBC 或其它类似的框架，你应该能理解根据不同条件拼接 SQL 语句有多痛苦，例如拼接时要确保不能忘记添加必要的空格，还要注意去掉列表最后一个列名的逗号。利用动态 SQL，可以彻底摆脱这种痛苦。</p>
-<p>动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在 MyBatis 之前的版本中，有很多元素需要花时间了解。MyBatis 3 大大精简了元素种类，现在只需学习原来一半的元素便可。MyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。</p>
-</blockquote>
-<a id="more"></a>
-
-
-
-<h3 id="0-环境搭建"><a href="#0-环境搭建" class="headerlink" title="0. 环境搭建"></a>0. 环境搭建</h3><ol>
-<li><p>准备数据库表</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`blog`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客id&#x27;</span>,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客标题&#x27;</span>,</span><br><span class="line">  <span class="string">`author`</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;博客作者&#x27;</span>,</span><br><span class="line">  <span class="string">`create_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">  <span class="string">`views`</span> <span class="built_in">int</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;浏览量&#x27;</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blog</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line">    <span class="keyword">private</span> String author;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> views;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用 Java 代码插入数据</p>
-<p>3.1 接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> blog 博客</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addBlog</span><span class="params">(Blog blog)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>3.2 Mapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addBlog&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    insert into blog (id, title, author, create_time, views)</span><br><span class="line">    values (#&#123;id&#125;, #&#123;title&#125;, #&#123;author&#125;, #&#123;createTime&#125;, #&#123;views&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>3.3 测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBlog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    Blog blog = <span class="keyword">new</span> Blog();</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Mybatis如此简单&quot;</span>);</span><br><span class="line">    blog.setAuthor(<span class="string">&quot;狂神说&quot;</span>);</span><br><span class="line">    blog.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">    blog.setViews(<span class="number">9999</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Java如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;Spring如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    blog.setId(IdUtils.getId());</span><br><span class="line">    blog.setTitle(<span class="string">&quot;微服务如此简单&quot;</span>);</span><br><span class="line">    mapper.addBlog(blog);</span><br><span class="line">    </span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="1-if"><a href="#1-if" class="headerlink" title="1. if"></a>1. if</h3><p><strong>需求</strong>：当没有任何参数传入的时候，查询所有博客，当有标题或作者作为参数传入的时候，就根据传入的参数查找。</p>
-<p>传统的做法是设计多个查询类，每一个类的参数对应不同的查询条件。</p>
-<p>但是，使用<code>&lt;if&gt;</code>标签可以省去重载方法，用一个方法解决问题。</p>
-<ol>
-<li><p>接口</p>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询博客</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> map</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">List&lt;Blog&gt; <span class="title">queryBlogIf</span><span class="params">(Map map)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Mapper.xml</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogIf&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;title&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">            and author = #&#123;author&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p> <em>注意：这里还用了一个<code>&lt;where&gt;</code>标签</em></p>
-<blockquote>
-<p><em>where</em> 元素只会在子元素返回任何内容的情况下才插入 “WHERE” 子句。而且，若子句的开头为 “AND” 或 “OR”，<em>where</em> 元素也会将它们去除。</p>
-</blockquote>
-</li>
-<li><p>测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryBlogIf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    HashMap map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    <span class="comment">//map.put(&quot;title&quot;,&quot;Java如此简单&quot;);</span></span><br><span class="line">    map.put(<span class="string">&quot;author&quot;</span>,<span class="string">&quot;狂神说&quot;</span>);</span><br><span class="line">    List&lt;Blog&gt; blogs = mapper.queryBlogIf(map);</span><br><span class="line">    <span class="keyword">for</span> (Blog blog : blogs) &#123;</span><br><span class="line">        System.out.println(blog);</span><br><span class="line">    &#125;</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="2-choose-when-otherwise"><a href="#2-choose-when-otherwise" class="headerlink" title="2. choose, when, otherwise"></a>2. choose, when, otherwise</h3><blockquote>
-<p>有时候，我们不想使用所有的条件，而只是想从多个条件中选择一个使用。针对这种情况，MyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。</p>
-</blockquote>
-<p>可以这样理解：==choose== 相当于 <code>swich</code>；==when== 相当于<code> case</code>；==otherwise== 相当于 <code>default</code>。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogChoose&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">                title = #&#123;title&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">                author = #&#123;author&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">                views = #&#123;views&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-trim-where-set"><a href="#3-trim-where-set" class="headerlink" title="3. trim, where, set"></a>3. trim, where, set</h3><p>和之前的需求类似，为了在保证修改数据时，满足各种各样的传入的参数，动态的修改某一行数据的对应字段，就可以使用<code>&lt;set&gt;</code>标签，避免重载多个不同参数的插入方法。类似<code>&lt;where&gt;</code>，<code>&lt;set&gt;</code>会动态地在行首插入 SET 关键字，并会删掉额外的逗号。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateBlog&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">    update blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;title&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">            author = #&#123;author&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    where id =#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-SQL-片段"><a href="#4-SQL-片段" class="headerlink" title="4. SQL 片段"></a>4. SQL 片段</h3><p>有的时候，我们可能会将一些功能的部分抽取出来，方便复用</p>
-<ol>
-<li><p>使用<code>&lt;sql&gt;</code>标签抽取公共的部分</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;if-title-author&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">        title = #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">        and author = #&#123;author&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在需要使用的地方使用<code>&lt;include&gt;</code>标签引用即可</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogIF&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;blog&quot;</span>&gt;</span></span><br><span class="line">    select * from mybatis.blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;if-title-author&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><strong>注意：</strong></p>
-<ul>
-<li>最好基于单表来定义 SQL 片段</li>
-<li>不要存在where标签</li>
-</ul>
-<h3 id="5-foreach"><a href="#5-foreach" class="headerlink" title="5. foreach"></a>5. foreach</h3><p>动态 SQL 的另一个常见使用场景是对集合进行遍历（尤其是在构建 IN 条件语句的时候）。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> blog</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-<p>为了方便举例，使用这条有同样的效果 sql 语句：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * </span><br><span class="line"><span class="keyword">from</span> blog</span><br><span class="line"><span class="keyword">where</span> <span class="number">1</span>=<span class="number">1</span> <span class="keyword">and</span> (<span class="keyword">id</span>=<span class="number">1</span> <span class="keyword">or</span> <span class="keyword">id</span> = <span class="number">2</span> <span class="keyword">or</span> <span class="keyword">id</span>=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>Mapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryBlogForeach&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">    select * from blog</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span></span></span><br><span class="line"><span class="tag">                 <span class="attr">open</span>=<span class="string">&quot;and (&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">            id = #&#123;id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryBlogForeach</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);</span><br><span class="line">    HashMap map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    ArrayList&lt;String&gt; ids = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    ids.add(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    ids.add(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">    ids.add(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;ids&quot;</span>,ids);</span><br><span class="line">    List&lt;Blog&gt; blogs = mapper.queryBlogForeach(map);</span><br><span class="line">    <span class="keyword">for</span> (Blog blog : blogs) &#123;</span><br><span class="line">        System.out.println(blog);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h3><ul>
-<li>所谓动态 SQL，本质还是 SQL 语句， 知识我们可以在 SQL 层面去执行一个逻辑代码。</li>
-<li>动态 SQL 就是在拼接 SQL 语句，只要保证 SQL 的正确性，按照 SQL 的格式去排列组合就可以了。</li>
-<li>建议先写出完整的 SQL，再对应着修改为动态 SQL 实现通用。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Mybatis</category>
-      </categories>
-      <tags>
-        <tag>Mybatis</tag>
-        <tag>CRUD</tag>
       </tags>
   </entry>
   <entry>
@@ -2644,23 +2644,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 NexT 翻页按钮图标问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>见下图</p>
-<a id="more"></a>
-
-<img data-src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-        <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决 Hexo 图片不显示问题</title>
     <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
@@ -2685,6 +2668,23 @@
       <tags>
         <tag>问题</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 NexT 翻页按钮图标问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>见下图</p>
+<a id="more"></a>
+
+<img data-src="/%E8%A7%A3%E5%86%B3%20NexT%20%E7%BF%BB%E9%A1%B5%E6%8C%89%E9%92%AE%E5%9B%BE%E6%A0%87%E9%97%AE%E9%A2%98/image-20200722154007256.png" class>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
