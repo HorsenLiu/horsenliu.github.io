@@ -361,33 +361,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lombok</title>
-    <url>/Lombok/</url>
-    <content><![CDATA[<ol>
-<li><p>IDEA 中安装插件</p>
-</li>
-<li><p>项目中导入 jar 包</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-</li>
-<li><p>常用注解</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Getter</span> and <span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@FieldNameConstants</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="meta">@EqualsAndHashCode</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span>, <span class="meta">@RequiredArgsConstructor</span> and <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Log</span>, <span class="meta">@Log4j</span>, <span class="meta">@Log4j2</span>, <span class="meta">@Slf4j</span>, <span class="meta">@XSlf4j</span>, <span class="meta">@CommonsLog</span>, <span class="meta">@JBossLog</span>, <span class="meta">@Flogger</span></span><br><span class="line"><span class="meta">@Data</span> <span class="comment">//最常用 生成无参构造、getter、setter、 toString、hashCode、equals</span></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="meta">@Singular</span></span><br><span class="line"><span class="meta">@Delegate</span></span><br><span class="line"><span class="meta">@Value</span></span><br><span class="line"><span class="meta">@Accessors</span></span><br><span class="line"><span class="meta">@Wither</span></span><br><span class="line"><span class="meta">@SneakyThrows</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>注解</tag>
-        <tag>插件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IO 流</title>
     <url>/IO%20%E6%B5%81/</url>
     <content><![CDATA[<h3 id="1-四大家族"><a href="#1-四大家族" class="headerlink" title="1. 四大家族"></a>1. 四大家族</h3><table>
@@ -542,6 +515,139 @@
       </tags>
   </entry>
   <entry>
+    <title>Lombok</title>
+    <url>/Lombok/</url>
+    <content><![CDATA[<ol>
+<li><p>IDEA 中安装插件</p>
+</li>
+<li><p>项目中导入 jar 包</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+</li>
+<li><p>常用注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Getter</span> and <span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@FieldNameConstants</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="meta">@EqualsAndHashCode</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span>, <span class="meta">@RequiredArgsConstructor</span> and <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Log</span>, <span class="meta">@Log4j</span>, <span class="meta">@Log4j2</span>, <span class="meta">@Slf4j</span>, <span class="meta">@XSlf4j</span>, <span class="meta">@CommonsLog</span>, <span class="meta">@JBossLog</span>, <span class="meta">@Flogger</span></span><br><span class="line"><span class="meta">@Data</span> <span class="comment">//最常用 生成无参构造、getter、setter、 toString、hashCode、equals</span></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="meta">@Singular</span></span><br><span class="line"><span class="meta">@Delegate</span></span><br><span class="line"><span class="meta">@Value</span></span><br><span class="line"><span class="meta">@Accessors</span></span><br><span class="line"><span class="meta">@Wither</span></span><br><span class="line"><span class="meta">@SneakyThrows</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>注解</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven 配置</title>
+    <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png" class>
+
+
+
+<h3 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h3><table>
+<thead>
+<tr>
+<th align="left">变量名</th>
+<th align="left">变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">MAVEN_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3</td>
+</tr>
+<tr>
+<td align="left">M2_HOME</td>
+<td align="left">D:\Environment\apache-maven-3.6.3\bin</td>
+</tr>
+<tr>
+<td align="left">Path中添加</td>
+<td align="left">%MAVEN_HOME%\bin</td>
+</tr>
+</tbody></table>
+<h3 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3. 验证安装"></a>3. 验证安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h3 id="4-修改镜像源"><a href="#4-修改镜像源" class="headerlink" title="4. 修改镜像源"></a>4. 修改镜像源</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,!jeecg,!jeecg-snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-建立本地仓库"><a href="#5-建立本地仓库" class="headerlink" title="5. 建立本地仓库"></a>5. 建立本地仓库</h3><ul>
+<li>maven 目录下新建文件夹 maven-repo</li>
+</ul>
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704225515234.png" class>
+
+<ul>
+<li>配置文件 <settings> 标签中添加</settings></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\Environment\apache-maven-3.6.3\maven-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-在-IDEA-中使用"><a href="#6-在-IDEA-中使用" class="headerlink" title="6. 在 IDEA 中使用"></a>6. 在 IDEA 中使用</h3><h4 id="6-1-创建-MavenWeb-项目"><a href="#6-1-创建-MavenWeb-项目" class="headerlink" title="6.1 创建 MavenWeb 项目"></a>6.1 创建 MavenWeb 项目</h4><img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230404473.png" class>
+
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230944123.png" class>
+
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705003522875.png" class>
+
+
+
+<h4 id="6-2-设置-Maven"><a href="#6-2-设置-Maven" class="headerlink" title="6.2 设置 Maven"></a>6.2 设置 Maven</h4><p><em>每次新建项目都检查一下这部分</em></p>
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705002910260.png" class>
+
+
+
+<h4 id="6-3-补全项目文件"><a href="#6-3-补全项目文件" class="headerlink" title="6.3 补全项目文件"></a>6.3 补全项目文件</h4><ul>
+<li>在 main 文件夹中新建两个文件夹</li>
+</ul>
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233517122.png" class>
+
+<ul>
+<li>标记 java 文件夹</li>
+</ul>
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233654214.png" class>
+
+
+
+<h4 id="6-4-配置-Tomcat"><a href="#6-4-配置-Tomcat" class="headerlink" title="6.4 配置 Tomcat"></a>6.4 配置 Tomcat</h4><img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234448579.png" class>
+
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234427105.png" class>
+
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png" class>
+
+<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png" class>
+
+
+
+<h3 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h3><ul>
+<li><p>文件详解</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 build 中配置 resources，来防止我们资源导出失败的问题</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Maven</tag>
+        <tag>环境搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lambda 表达式</title>
     <url>/Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<p>当需要定义一个匿名内部类来为实现一个函数式接口的对象时，可以使用 Lambda 表达式简化代码</p>
@@ -575,6 +681,149 @@
         <tag>Java</tag>
         <tag>Java 基础</tag>
         <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Session 和 Cookie</title>
+    <url>/Session%20%E5%92%8C%20Cookie/</url>
+    <content><![CDATA[<h3 id="1-什么是-Session"><a href="#1-什么是-Session" class="headerlink" title="1. 什么是 Session"></a>1. 什么是 Session</h3><ul>
+<li><p><strong>Session（会话）</strong>：用户打开了一个浏览器，点击了很多超链接，访问多个 web 资源，关闭浏览器。</p>
+</li>
+<li><p><strong>有状态会话</strong>：一个同学来过教室，下次再来教室，我们会知道这个同学曾经来过。</p>
+</li>
+</ul>
+<h3 id="2-保存会话的两种技术"><a href="#2-保存会话的两种技术" class="headerlink" title="2. 保存会话的两种技术"></a>2. 保存会话的两种技术</h3><ul>
+<li><strong>Cookie</strong>：客户端技术（响应、请求）</li>
+<li><strong>Session</strong> ：服务器技术。利用这个技术，可以保存用户的会话信息。我们可以把信息或数据放在Session中</li>
+</ul>
+<a id="more"></a>
+
+
+
+<h3 id="3-Cookie"><a href="#3-Cookie" class="headerlink" title="3. Cookie"></a>3. Cookie</h3><ol>
+<li><p>从请求中拿到 Cookie 信息</p>
+</li>
+<li><p>服务器响应给客户端</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 服务器端从客户端获取Cookie</span></span><br><span class="line">Cookie[] cookies = req.getCookies();</span><br><span class="line"><span class="comment">// 获取Cookie的名字</span></span><br><span class="line">cookie.getName();</span><br><span class="line"><span class="comment">// 获取Cookie的值</span></span><br><span class="line">cookie.getValue()</span><br><span class="line"><span class="comment">// 服务器给客户端响应一个Cookie</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;lastLoginTime&quot;</span>, System.currentTimeMillis() + <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">// 设置Cookie有效期为1天</span></span><br><span class="line">cookie.setMaxAge(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br><span class="line"><span class="comment">// 响应给客户端一个Cookie</span></span><br><span class="line">resp.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>删除 Cookie：设置有效期为0</p>
+</li>
+<li><p>传递中文数据时，为了防止乱码，最好存入时编码，取出时解码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 编码</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;name&quot;</span>, URLEncoder.encode(<span class="string">&quot;你好&quot;</span>, <span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line"><span class="comment">// 解码</span></span><br><span class="line"> out.println(URLDecoder.decode(cookies[i].getValue(), <span class="string">&quot;utf-8&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h3><ul>
+<li>服务器给每一个用户（浏览器）创建一个 Session 对象</li>
+<li>一个 Session 独占一个浏览器，只要浏览器没有关闭，这个 Session 就存在</li>
+<li>使用场景<ul>
+<li>保存一个用户的登录信息</li>
+<li>购物车信息</li>
+<li>保存在整个网站中经常会使用多个数据</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>向 Session 中存</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_01</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 给Session中存东西</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;person&quot;</span>, <span class="keyword">new</span> Person(<span class="string">&quot;刘昊鑫&quot;</span>, <span class="number">100</span>));</span><br><span class="line">        <span class="comment">// 获取Session的ID</span></span><br><span class="line">        String id = session.getId();</span><br><span class="line">        <span class="comment">// 判断Session是不是新创建的</span></span><br><span class="line">        <span class="keyword">if</span> (session.isNew()) &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;session创建成功, ID: &quot;</span> + id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;session已经在服务器中, ID: &quot;</span> + id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从 Session 中获得</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_02</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 获取Session中存的东西</span></span><br><span class="line">        Person person = (Person) session.getAttribute(<span class="string">&quot;person&quot;</span>);</span><br><span class="line">        System.out.println(person.toString());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注销 Session</p>
+<p>3.1 手动注销</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        session.removeAttribute(<span class="string">&quot;person&quot;</span>);</span><br><span class="line">        <span class="comment">// 手动注销Session</span></span><br><span class="line">        session.invalidate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.2 设置失效时间</p>
+<p>在 web.xml 中</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置Session默认的失效时间 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- x分钟后Session自动失效 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>1<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="5-区别"><a href="#5-区别" class="headerlink" title="5. 区别"></a>5. 区别</h3><ul>
+<li>Cookie 把用户的数据写给用户的浏览器，浏览器保存（可以保存多个）。</li>
+<li>Session 把用户的数据写到用户独占的 Session 中，服务器保存（只保存重要的信息，减少服务器资源的浪费）。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Session</tag>
+        <tag>Cookie</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ServletContext 应用</title>
+    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
+<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
+<ul>
+<li><p>第一个 Servlet</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">&quot;Horsen&quot;</span>;</span><br><span class="line">        context.setAttribute(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>第二个 Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">&quot;用户名: &quot;</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>web.xml</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
+<li><p>web.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">&quot;/gp&quot;</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
+<ul>
+<li><p>db.properties</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">&quot;/WEB-INF/classes/db.properties&quot;</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">&quot;: &quot;</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>Servlet</tag>
       </tags>
   </entry>
   <entry>
@@ -810,316 +1059,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Maven 配置</title>
-    <url>/Maven%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704224930571.png" class>
-
-
-
-<h3 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h3><table>
-<thead>
-<tr>
-<th align="left">变量名</th>
-<th align="left">变量值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">MAVEN_HOME</td>
-<td align="left">D:\Environment\apache-maven-3.6.3</td>
-</tr>
-<tr>
-<td align="left">M2_HOME</td>
-<td align="left">D:\Environment\apache-maven-3.6.3\bin</td>
-</tr>
-<tr>
-<td align="left">Path中添加</td>
-<td align="left">%MAVEN_HOME%\bin</td>
-</tr>
-</tbody></table>
-<h3 id="3-验证安装"><a href="#3-验证安装" class="headerlink" title="3. 验证安装"></a>3. 验证安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h3 id="4-修改镜像源"><a href="#4-修改镜像源" class="headerlink" title="4. 修改镜像源"></a>4. 修改镜像源</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,!jeecg,!jeecg-snapshots<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-建立本地仓库"><a href="#5-建立本地仓库" class="headerlink" title="5. 建立本地仓库"></a>5. 建立本地仓库</h3><ul>
-<li>maven 目录下新建文件夹 maven-repo</li>
-</ul>
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704225515234.png" class>
-
-<ul>
-<li>配置文件 <settings> 标签中添加</settings></li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\Environment\apache-maven-3.6.3\maven-repo<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="6-在-IDEA-中使用"><a href="#6-在-IDEA-中使用" class="headerlink" title="6. 在 IDEA 中使用"></a>6. 在 IDEA 中使用</h3><h4 id="6-1-创建-MavenWeb-项目"><a href="#6-1-创建-MavenWeb-项目" class="headerlink" title="6.1 创建 MavenWeb 项目"></a>6.1 创建 MavenWeb 项目</h4><img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230404473.png" class>
-
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704230944123.png" class>
-
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705003522875.png" class>
-
-
-
-<h4 id="6-2-设置-Maven"><a href="#6-2-设置-Maven" class="headerlink" title="6.2 设置 Maven"></a>6.2 设置 Maven</h4><p><em>每次新建项目都检查一下这部分</em></p>
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705002910260.png" class>
-
-
-
-<h4 id="6-3-补全项目文件"><a href="#6-3-补全项目文件" class="headerlink" title="6.3 补全项目文件"></a>6.3 补全项目文件</h4><ul>
-<li>在 main 文件夹中新建两个文件夹</li>
-</ul>
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233517122.png" class>
-
-<ul>
-<li>标记 java 文件夹</li>
-</ul>
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704233654214.png" class>
-
-
-
-<h4 id="6-4-配置-Tomcat"><a href="#6-4-配置-Tomcat" class="headerlink" title="6.4 配置 Tomcat"></a>6.4 配置 Tomcat</h4><img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234448579.png" class>
-
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200704234427105.png" class>
-
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005555056.png" class>
-
-<img data-src="/Maven%20%E9%85%8D%E7%BD%AE/image-20200705005420950.png" class>
-
-
-
-<h3 id="7-pom-xml"><a href="#7-pom-xml" class="headerlink" title="7. pom.xml"></a>7. pom.xml</h3><ul>
-<li><p>文件详解</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Maven版本和头文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 自己配置的GAV --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.horsen<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Package: 项目的打包方式</span></span><br><span class="line"><span class="comment">    java: Java应用</span></span><br><span class="line"><span class="comment">    war: JavaWeb应用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 项目的默认构建编码 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 编码版本 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 具体依赖的jar包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 项目构建用的东西 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>JavaWeb_01_Maven<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 build 中配置 resources，来防止我们资源导出失败的问题</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Maven</tag>
-        <tag>环境搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ServletContext 应用</title>
-    <url>/ServletContext%20%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>web 容器在启动的时候，它会为每个 web 程序都创建一个对应的 ServletContext 对象，它代表了当前的 web 应用。</p>
-<h3 id="1-共享数据"><a href="#1-共享数据" class="headerlink" title="1. 共享数据"></a>1. 共享数据</h3><p>在一个 Servlet 中保存的数据，可以在另一个 Servlet 中拿到。举例：</p>
-<ul>
-<li><p>第一个 Servlet</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = <span class="string">&quot;Horsen&quot;</span>;</span><br><span class="line">        context.setAttribute(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<a id="more"></a>
-
-<ul>
-<li><p>第二个 Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String username = (String) context.getAttribute(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        resp.getWriter().println(<span class="string">&quot;用户名: &quot;</span> + username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>web.xml</p>
-  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.horsen.servlet.GetServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>getc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/getc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="2-获取初始化参数"><a href="#2-获取初始化参数" class="headerlink" title="2. 获取初始化参数"></a>2. 获取初始化参数</h3><ul>
-<li><p>web.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置一些web应用初始化参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/mybatis<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        String url = context.getInitParameter(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">        resp.getWriter().println(url);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="3-请求转发"><a href="#3-请求转发" class="headerlink" title="3. 请求转发"></a>3. 请求转发</h3><ul>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">        <span class="comment">// getRequestDispatcher 获取请求转发 调用forward实现请求转发</span></span><br><span class="line">        context.getRequestDispatcher(<span class="string">&quot;/gp&quot;</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="4-获取资源文件"><a href="#4-获取资源文件" class="headerlink" title="4. 获取资源文件"></a>4. 获取资源文件</h3><p>在 java 目录下新建 properties 或在 resources 目录下新建 properties，都会被打包到同一个路径 classes 下，俗称这个路径为 classpath</p>
-<ul>
-<li><p>db.properties</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">1234356</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Servlet</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">&quot;/WEB-INF/classes/db.properties&quot;</span>);</span><br><span class="line">        Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">        prop.load(is);</span><br><span class="line">        String user = prop.getProperty(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        String pwd = prop.getProperty(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        resp.getWriter().println(user + <span class="string">&quot;: &quot;</span> + pwd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>Servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Session 和 Cookie</title>
-    <url>/Session%20%E5%92%8C%20Cookie/</url>
-    <content><![CDATA[<h3 id="1-什么是-Session"><a href="#1-什么是-Session" class="headerlink" title="1. 什么是 Session"></a>1. 什么是 Session</h3><ul>
-<li><p><strong>Session（会话）</strong>：用户打开了一个浏览器，点击了很多超链接，访问多个 web 资源，关闭浏览器。</p>
-</li>
-<li><p><strong>有状态会话</strong>：一个同学来过教室，下次再来教室，我们会知道这个同学曾经来过。</p>
-</li>
-</ul>
-<h3 id="2-保存会话的两种技术"><a href="#2-保存会话的两种技术" class="headerlink" title="2. 保存会话的两种技术"></a>2. 保存会话的两种技术</h3><ul>
-<li><strong>Cookie</strong>：客户端技术（响应、请求）</li>
-<li><strong>Session</strong> ：服务器技术。利用这个技术，可以保存用户的会话信息。我们可以把信息或数据放在Session中</li>
-</ul>
-<a id="more"></a>
-
-
-
-<h3 id="3-Cookie"><a href="#3-Cookie" class="headerlink" title="3. Cookie"></a>3. Cookie</h3><ol>
-<li><p>从请求中拿到 Cookie 信息</p>
-</li>
-<li><p>服务器响应给客户端</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 服务器端从客户端获取Cookie</span></span><br><span class="line">Cookie[] cookies = req.getCookies();</span><br><span class="line"><span class="comment">// 获取Cookie的名字</span></span><br><span class="line">cookie.getName();</span><br><span class="line"><span class="comment">// 获取Cookie的值</span></span><br><span class="line">cookie.getValue()</span><br><span class="line"><span class="comment">// 服务器给客户端响应一个Cookie</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;lastLoginTime&quot;</span>, System.currentTimeMillis() + <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">// 设置Cookie有效期为1天</span></span><br><span class="line">cookie.setMaxAge(<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br><span class="line"><span class="comment">// 响应给客户端一个Cookie</span></span><br><span class="line">resp.addCookie(cookie);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>删除 Cookie：设置有效期为0</p>
-</li>
-<li><p>传递中文数据时，为了防止乱码，最好存入时编码，取出时解码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 编码</span></span><br><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">&quot;name&quot;</span>, URLEncoder.encode(<span class="string">&quot;你好&quot;</span>, <span class="string">&quot;utf-8&quot;</span>));</span><br><span class="line"><span class="comment">// 解码</span></span><br><span class="line"> out.println(URLDecoder.decode(cookies[i].getValue(), <span class="string">&quot;utf-8&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h3><ul>
-<li>服务器给每一个用户（浏览器）创建一个 Session 对象</li>
-<li>一个 Session 独占一个浏览器，只要浏览器没有关闭，这个 Session 就存在</li>
-<li>使用场景<ul>
-<li>保存一个用户的登录信息</li>
-<li>购物车信息</li>
-<li>保存在整个网站中经常会使用多个数据</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><p>向 Session 中存</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_01</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 给Session中存东西</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;person&quot;</span>, <span class="keyword">new</span> Person(<span class="string">&quot;刘昊鑫&quot;</span>, <span class="number">100</span>));</span><br><span class="line">        <span class="comment">// 获取Session的ID</span></span><br><span class="line">        String id = session.getId();</span><br><span class="line">        <span class="comment">// 判断Session是不是新创建的</span></span><br><span class="line">        <span class="keyword">if</span> (session.isNew()) &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;session创建成功, ID: &quot;</span> + id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;session已经在服务器中, ID: &quot;</span> + id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从 Session 中获得</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_02</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 解决乱码问题</span></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html; charset=UTF-8&quot;</span>);</span><br><span class="line">        resp.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        <span class="comment">// 获取Session中存的东西</span></span><br><span class="line">        Person person = (Person) session.getAttribute(<span class="string">&quot;person&quot;</span>);</span><br><span class="line">        System.out.println(person.toString());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注销 Session</p>
-<p>3.1 手动注销</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionDemo_03</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 得到Session</span></span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        session.removeAttribute(<span class="string">&quot;person&quot;</span>);</span><br><span class="line">        <span class="comment">// 手动注销Session</span></span><br><span class="line">        session.invalidate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.2 设置失效时间</p>
-<p>在 web.xml 中</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置Session默认的失效时间 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- x分钟后Session自动失效 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>1<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h3 id="5-区别"><a href="#5-区别" class="headerlink" title="5. 区别"></a>5. 区别</h3><ul>
-<li>Cookie 把用户的数据写给用户的浏览器，浏览器保存（可以保存多个）。</li>
-<li>Session 把用户的数据写到用户独占的 Session 中，服务器保存（只保存重要的信息，减少服务器资源的浪费）。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Session</tag>
-        <tag>Cookie</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>事务</title>
-    <url>/%E4%BA%8B%E5%8A%A1/</url>
-    <content><![CDATA[<h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
-<blockquote>
-<p>参考博客：<a href="https://blog.csdn.net/dengjili/article/details/82468576">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
-</blockquote>
-<ul>
-<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
-<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
-<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
-<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
-</ul>
-<p>做不到隔离性所导致的问题：</p>
-<ul>
-<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
-<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
-<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
-</ul>
-<a id="more"></a>
-
-
-
-<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>模拟场景：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;B&#x27;</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>MySQL 学习笔记</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>事务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 配置</title>
-    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
-<img data-src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
-
-
-
-<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>JavaWeb</tag>
-        <tag>环境搭建</tag>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用注解开发</title>
     <url>/%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h3 id="1-面向接口编程"><a href="#1-面向接口编程" class="headerlink" title="1. 面向接口编程"></a>1. 面向接口编程</h3><ul>
@@ -1194,6 +1133,67 @@
       <tags>
         <tag>Mybatis</tag>
         <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>事务</title>
+    <url>/%E4%BA%8B%E5%8A%A1/</url>
+    <content><![CDATA[<h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
+<blockquote>
+<p>参考博客：<a href="https://blog.csdn.net/dengjili/article/details/82468576">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
+</blockquote>
+<ul>
+<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
+<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
+<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
+<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
+</ul>
+<p>做不到隔离性所导致的问题：</p>
+<ul>
+<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
+<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
+<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
+</ul>
+<a id="more"></a>
+
+
+
+<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>模拟场景：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;B&#x27;</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>MySQL 学习笔记</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>事务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 配置</title>
+    <url>/Tomcat%20%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1. 下载压缩包"></a>1. 下载压缩包</h3><p><a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a></p>
+<img data-src="/Tomcat%20%E9%85%8D%E7%BD%AE/image-20200704235009423.png" class>
+
+
+
+<h3 id="2-遇到的问题"><a href="#2-遇到的问题" class="headerlink" title="2. 遇到的问题"></a>2. 遇到的问题</h3><h4 id="2-1-启动时乱码"><a href="#2-1-启动时乱码" class="headerlink" title="2.1 启动时乱码"></a>2.1 启动时乱码</h4><p>修改配置文件 D:\Environment\apache-tomcat-9.0.36\conf\logging.properties</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaWeb</tag>
+        <tag>环境搭建</tag>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -1673,45 +1673,6 @@
       </tags>
   </entry>
   <entry>
-    <title>实现多线程的方法</title>
-    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
-<li>线程类继承 Thread 类</li>
-<li>重写 run() 方法</li>
-<li>声明线程类对象</li>
-<li>对象调用 start() 方法</li>
-</ol>
-<p><em>使用 commons.io 包下载网络图片</em></p>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">&quot;下载文件: &quot;</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili1.png&quot;</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili2.png&quot;</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili3.png&quot;</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
-<li>线程类继承 Runnable 接口</li>
-<li>实现 run() 方法</li>
-<li>声明线程类对象</li>
-<li>创建 Thread 对象，参数传入线程类对象</li>
-<li>调用 start() 方法</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;run方法---&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;主线程---&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">&quot;兔子&quot;</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;兔子睡觉了&quot;</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;--&gt;跑了&quot;</span> + i + <span class="string">&quot;步&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">&quot;Winner is &quot;</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">&quot;兔子&quot;</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">&quot;乌龟&quot;</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>多线程</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>多线程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安装 MySQL</title>
     <url>/%E5%AE%89%E8%A3%85%20MySQL/</url>
     <content><![CDATA[<blockquote>
@@ -1777,6 +1738,45 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实现多线程的方法</title>
+    <url>/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="1-继承-Thread-类"><a href="#1-继承-Thread-类" class="headerlink" title="1. 继承 Thread 类"></a>1. 继承 Thread 类</h3><ol>
+<li>线程类继承 Thread 类</li>
+<li>重写 run() 方法</li>
+<li>声明线程类对象</li>
+<li>对象调用 start() 方法</li>
+</ol>
+<p><em>使用 commons.io 包下载网络图片</em></p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String fileName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, fileName);</span><br><span class="line">        System.out.println(<span class="string">&quot;下载文件: &quot;</span> + fileName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadTest threadTest1</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili1.png&quot;</span>);</span><br><span class="line">        ThreadTest threadTest2</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili2.png&quot;</span>);</span><br><span class="line">        ThreadTest threadTest3</span><br><span class="line">                = <span class="keyword">new</span> ThreadTest(<span class="string">&quot;http://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png&quot;</span>, <span class="string">&quot;bilibili3.png&quot;</span>);</span><br><span class="line">        threadTest1.start();</span><br><span class="line">        threadTest2.start();</span><br><span class="line">        threadTest3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(fileName));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-实现-Runnable-接口（推荐）"><a href="#1-2-实现-Runnable-接口（推荐）" class="headerlink" title="1.2 实现 Runnable 接口（推荐）"></a>1.2 实现 Runnable 接口（推荐）</h4><ol>
+<li>线程类继承 Runnable 接口</li>
+<li>实现 run() 方法</li>
+<li>声明线程类对象</li>
+<li>创建 Thread 对象，参数传入线程类对象</li>
+<li>调用 start() 方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;run方法---&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建Runnable接口的实现类对象</span></span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="comment">// 创建线程对象, 通过线程对象开启线程(代理)</span></span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;主线程---&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-龟兔赛跑"><a href="#2-龟兔赛跑" class="headerlink" title="2. 龟兔赛跑"></a>2. 龟兔赛跑</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Race</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String winner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 模拟兔子休息</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">&quot;兔子&quot;</span>.equals(Thread.currentThread().getName()) &amp;&amp; i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;兔子睡觉了&quot;</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断比赛是否结束</span></span><br><span class="line">            <span class="keyword">boolean</span> flag = gameOver(i);</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;--&gt;跑了&quot;</span> + i + <span class="string">&quot;步&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断比赛是否结束</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> steps 步数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">gameOver</span><span class="params">(<span class="keyword">int</span> steps)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果存在胜利者</span></span><br><span class="line">        <span class="keyword">if</span> (winner != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (steps &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            winner = Thread.currentThread().getName();</span><br><span class="line">            System.out.println(<span class="string">&quot;Winner is &quot;</span> + winner);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Race race = <span class="keyword">new</span> Race();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">&quot;兔子&quot;</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(race, <span class="string">&quot;乌龟&quot;</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>多线程</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
   <entry>
@@ -2157,74 +2157,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简介</title>
-    <url>/%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h3 id="1-什么是-Mybatis"><a href="#1-什么是-Mybatis" class="headerlink" title="1. 什么是 Mybatis"></a>1. 什么是 Mybatis</h3><img data-src="/%E7%AE%80%E4%BB%8B/1569633932712.png" class>
-
-<ul>
-<li>MyBatis 是一款优秀的<strong>持久层框架</strong></li>
-<li>它支持定制化 SQL、存储过程以及高级映射</li>
-<li>MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集</li>
-<li>MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录</li>
-<li>MyBatis 本是<a href="https://baike.baidu.com/item/apache/6265">apache</a>的一个开源项目<a href="https://baike.baidu.com/item/iBatis">iBatis</a>，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis </li>
-<li>2013年11月迁移到Github</li>
-</ul>
-<a id="more"></a>
-
-
-
-<h3 id="2-如何获得-Mybatis"><a href="#2-如何获得-Mybatis" class="headerlink" title="2. 如何获得 Mybatis"></a>2. 如何获得 Mybatis</h3><ul>
-<li><p>maven仓库：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Github ： <a href="https://github.com/mybatis/mybatis-3/releases">https://github.com/mybatis/mybatis-3/releases</a></p>
-</li>
-<li><p>中文文档：<a href="https://mybatis.org/mybatis-3/zh/index.html">https://mybatis.org/mybatis-3/zh/index.html</a></p>
-</li>
-</ul>
-<h3 id="3-数据持久化"><a href="#3-数据持久化" class="headerlink" title="3. 数据持久化"></a>3. 数据持久化</h3><ul>
-<li>持久化就是将程序的数据在持久状态和瞬时状态转化的过程</li>
-<li>内存：<strong>断电即失</strong></li>
-<li>数据库（JDBC），io文件持久化</li>
-<li>生活：冷藏、罐头</li>
-</ul>
-<p><strong>为什么需要持久化？</strong></p>
-<ul>
-<li><p>有一些对象，不能让他丢掉</p>
-</li>
-<li><p>内存太贵了</p>
-</li>
-</ul>
-<h3 id="4-持久层"><a href="#4-持久层" class="headerlink" title="4. 持久层"></a>4. 持久层</h3><p>Dao层，Service层，Controller层….</p>
-<ul>
-<li>完成持久化工作的代码块</li>
-<li>层界限十分明显</li>
-</ul>
-<h3 id="5-为什么需要Mybatis？"><a href="#5-为什么需要Mybatis？" class="headerlink" title="5. 为什么需要Mybatis？"></a>5. 为什么需要Mybatis？</h3><ul>
-<li>帮助程序猿将数据存入到数据库中</li>
-<li>方便</li>
-<li>传统的JDBC代码太复杂了，使用框架简化操作，达到自动化的效果</li>
-<li>优点：<ul>
-<li>简单易学</li>
-<li>灵活</li>
-<li>sql和代码的分离，提高了可维护性。</li>
-<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
-<li>提供对象关系映射标签，支持对象关系组建维护</li>
-<li>提供xml标签，支持编写动态sql</li>
-</ul>
-</li>
-</ul>
-<p><strong>最重要的一点：使用的人多！</strong></p>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Mybatis</category>
-      </categories>
-      <tags>
-        <tag>Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第一个 Mybatis 程序</title>
     <url>/%E7%AC%AC%E4%B8%80%E4%B8%AA%20Mybatis%20%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<h3 id="1-搭建环境"><a href="#1-搭建环境" class="headerlink" title="1. 搭建环境"></a>1. 搭建环境</h3><h4 id="1-1-创建数据库"><a href="#1-1-创建数据库" class="headerlink" title="1.1 创建数据库"></a>1.1 创建数据库</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="string">`mybatis`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">USE</span> <span class="string">`mybatis`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span>(</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">INT</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`pwd`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></span><br><span class="line">)<span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`user`</span>(<span class="string">`id`</span>,<span class="string">`name`</span>,<span class="string">`pwd`</span>) <span class="keyword">VALUES</span> </span><br><span class="line">(<span class="number">1</span>,<span class="string">&#x27;狂神&#x27;</span>,<span class="string">&#x27;123456&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;123456&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;123890&#x27;</span>)</span><br></pre></td></tr></table></figure>
@@ -2439,6 +2371,92 @@
       </tags>
   </entry>
   <entry>
+    <title>简介</title>
+    <url>/%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h3 id="1-什么是-Mybatis"><a href="#1-什么是-Mybatis" class="headerlink" title="1. 什么是 Mybatis"></a>1. 什么是 Mybatis</h3><img data-src="/%E7%AE%80%E4%BB%8B/1569633932712.png" class>
+
+<ul>
+<li>MyBatis 是一款优秀的<strong>持久层框架</strong></li>
+<li>它支持定制化 SQL、存储过程以及高级映射</li>
+<li>MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集</li>
+<li>MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录</li>
+<li>MyBatis 本是<a href="https://baike.baidu.com/item/apache/6265">apache</a>的一个开源项目<a href="https://baike.baidu.com/item/iBatis">iBatis</a>，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis </li>
+<li>2013年11月迁移到Github</li>
+</ul>
+<a id="more"></a>
+
+
+
+<h3 id="2-如何获得-Mybatis"><a href="#2-如何获得-Mybatis" class="headerlink" title="2. 如何获得 Mybatis"></a>2. 如何获得 Mybatis</h3><ul>
+<li><p>maven仓库：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Github ： <a href="https://github.com/mybatis/mybatis-3/releases">https://github.com/mybatis/mybatis-3/releases</a></p>
+</li>
+<li><p>中文文档：<a href="https://mybatis.org/mybatis-3/zh/index.html">https://mybatis.org/mybatis-3/zh/index.html</a></p>
+</li>
+</ul>
+<h3 id="3-数据持久化"><a href="#3-数据持久化" class="headerlink" title="3. 数据持久化"></a>3. 数据持久化</h3><ul>
+<li>持久化就是将程序的数据在持久状态和瞬时状态转化的过程</li>
+<li>内存：<strong>断电即失</strong></li>
+<li>数据库（JDBC），io文件持久化</li>
+<li>生活：冷藏、罐头</li>
+</ul>
+<p><strong>为什么需要持久化？</strong></p>
+<ul>
+<li><p>有一些对象，不能让他丢掉</p>
+</li>
+<li><p>内存太贵了</p>
+</li>
+</ul>
+<h3 id="4-持久层"><a href="#4-持久层" class="headerlink" title="4. 持久层"></a>4. 持久层</h3><p>Dao层，Service层，Controller层….</p>
+<ul>
+<li>完成持久化工作的代码块</li>
+<li>层界限十分明显</li>
+</ul>
+<h3 id="5-为什么需要Mybatis？"><a href="#5-为什么需要Mybatis？" class="headerlink" title="5. 为什么需要Mybatis？"></a>5. 为什么需要Mybatis？</h3><ul>
+<li>帮助程序猿将数据存入到数据库中</li>
+<li>方便</li>
+<li>传统的JDBC代码太复杂了，使用框架简化操作，达到自动化的效果</li>
+<li>优点：<ul>
+<li>简单易学</li>
+<li>灵活</li>
+<li>sql和代码的分离，提高了可维护性。</li>
+<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
+<li>提供对象关系映射标签，支持对象关系组建维护</li>
+<li>提供xml标签，支持编写动态sql</li>
+</ul>
+</li>
+</ul>
+<p><strong>最重要的一点：使用的人多！</strong></p>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Github 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
+<p>添加如下 ip 地址</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线程状态</title>
     <url>/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<h3 id="0-综述"><a href="#0-综述" class="headerlink" title="0. 综述"></a>0. 综述</h3><img data-src="/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/image-20200719163614163.png" class>
@@ -2567,51 +2585,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解决 Github 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Github%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>修改 C:\Windows\System32\drivers\etc\hosts 文件</p>
-<p>添加如下 ip 地址</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决 Hexo 图片不显示问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-修改-config-xml-配置文件"><a href="#2-修改-config-xml-配置文件" class="headerlink" title="2. 修改 _config.xml 配置文件"></a>2. 修改 _config.xml 配置文件</h3><p>修改 post_asset_folder 值为 true</p>
-<a id="more"></a>
-
-
-
-<h3 id="3-新建一篇文章"><a href="#3-新建一篇文章" class="headerlink" title="3. 新建一篇文章"></a>3. 新建一篇文章</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new post title</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-在自动生成的资源文件夹下放入图片"><a href="#4-在自动生成的资源文件夹下放入图片" class="headerlink" title="4. 在自动生成的资源文件夹下放入图片"></a>4. 在自动生成的资源文件夹下放入图片</h3><h3 id="5-修改-md-文档"><a href="#5-修改-md-文档" class="headerlink" title="5. 修改 md 文档"></a>5. 修改 md 文档</h3><p>将图片的 markdown 格式修改为 </p>
-<p><em>详细参照官方文档 <a href="https://hexo.bootcss.com/docs/asset-folders.html">https://hexo.bootcss.com/docs/asset-folders.html</a></em></p>
-<h3 id="6-如果有必要-禁止网页缓存"><a href="#6-如果有必要-禁止网页缓存" class="headerlink" title="6. 如果有必要 禁止网页缓存"></a>6. 如果有必要 禁止网页缓存</h3>]]></content>
-      <categories>
-        <category>Hexo &amp; NexT</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>线程进阶</title>
     <url>/%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h3 id="1-死锁概念"><a href="#1-死锁概念" class="headerlink" title="1. 死锁概念"></a>1. 死锁概念</h3><p>多个线程互相抱着对方需要的资源，然后形成僵持</p>
@@ -2671,6 +2644,33 @@
       </tags>
   </entry>
   <entry>
+    <title>解决 Hexo 图片不显示问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%20Hexo%20%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="1-安装图片插件"><a href="#1-安装图片插件" class="headerlink" title="1. 安装图片插件"></a>1. 安装图片插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-修改-config-xml-配置文件"><a href="#2-修改-config-xml-配置文件" class="headerlink" title="2. 修改 _config.xml 配置文件"></a>2. 修改 _config.xml 配置文件</h3><p>修改 post_asset_folder 值为 true</p>
+<a id="more"></a>
+
+
+
+<h3 id="3-新建一篇文章"><a href="#3-新建一篇文章" class="headerlink" title="3. 新建一篇文章"></a>3. 新建一篇文章</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new post title</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-在自动生成的资源文件夹下放入图片"><a href="#4-在自动生成的资源文件夹下放入图片" class="headerlink" title="4. 在自动生成的资源文件夹下放入图片"></a>4. 在自动生成的资源文件夹下放入图片</h3><h3 id="5-修改-md-文档"><a href="#5-修改-md-文档" class="headerlink" title="5. 修改 md 文档"></a>5. 修改 md 文档</h3><p>将图片的 markdown 格式修改为 </p>
+<p><em>详细参照官方文档 <a href="https://hexo.bootcss.com/docs/asset-folders.html">https://hexo.bootcss.com/docs/asset-folders.html</a></em></p>
+<h3 id="6-如果有必要-禁止网页缓存"><a href="#6-如果有必要-禁止网页缓存" class="headerlink" title="6. 如果有必要 禁止网页缓存"></a>6. 如果有必要 禁止网页缓存</h3>]]></content>
+      <categories>
+        <category>Hexo &amp; NexT</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决 NexT 首页文章预览问题</title>
     <url>/%E8%A7%A3%E5%86%B3%20NexT%20%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>见下图</p>
@@ -2700,51 +2700,6 @@
       <tags>
         <tag>问题</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决属性名和字段名不一致的问题</title>
-    <url>/%E8%A7%A3%E5%86%B3%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><ul>
-<li><p>属性名 password</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字段名 pwd</p>
-<img data-src="/%E8%A7%A3%E5%86%B3%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/image-20200727195842355.png" class>
-
-</li>
-</ul>
-<p>测试结果：</p>
-<p><code>User&#123;id=1, name=&#39;刘昊鑫&#39;, pwd=&#39;null&#39;&#125;</code></p>
-<p>解决方法：</p>
-<ol>
-<li><p>起别名</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    select id, name, pwd as password</span><br><span class="line">    from mybatis.user</span><br><span class="line">    where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 resultMap</p>
-</li>
-</ol>
-<a id="more"></a>
-
-
-
-<h3 id="2-结果集映射-resultMap"><a href="#2-结果集映射-resultMap" class="headerlink" title="2. 结果集映射 resultMap"></a>2. 结果集映射 resultMap</h3><p>用 <code>resultMap</code> 代替 <code>resultType</code>，编写 <code>resultMap</code> 使属性名和字段名形成映射</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 结果集映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;UserMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- column数据库中的字段，property实体类中的属性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;pwd&quot;</span> <span class="attr">property</span>=<span class="string">&quot;password&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserMap&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from mybatis.user</span><br><span class="line">    where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>resultMap</code> 元素是 MyBatis 中最重要最强大的元素</li>
-<li>ResultMap 的设计思想是，对于简单的语句根本不需要配置显式的结果映射，而对于复杂一点的语句只需要描述它们的关系就行了。</li>
-<li>ResultMap 最优秀的地方在于，虽然你已经对它相当了解了，但是根本就不需要显式地用到他们。</li>
-<li>如果世界总是这么简单就好了</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java 学习笔记</category>
-        <category>Mybatis</category>
-      </categories>
-      <tags>
-        <tag>Mybatis</tag>
-        <tag>ResultMap</tag>
       </tags>
   </entry>
   <entry>
@@ -2917,6 +2872,51 @@
       <tags>
         <tag>Mybatis</tag>
         <tag>环境搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决属性名和字段名不一致的问题</title>
+    <url>/%E8%A7%A3%E5%86%B3%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><ul>
+<li><p>属性名 password</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字段名 pwd</p>
+<img data-src="/%E8%A7%A3%E5%86%B3%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/image-20200727195842355.png" class>
+
+</li>
+</ul>
+<p>测试结果：</p>
+<p><code>User&#123;id=1, name=&#39;刘昊鑫&#39;, pwd=&#39;null&#39;&#125;</code></p>
+<p>解决方法：</p>
+<ol>
+<li><p>起别名</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    select id, name, pwd as password</span><br><span class="line">    from mybatis.user</span><br><span class="line">    where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 resultMap</p>
+</li>
+</ol>
+<a id="more"></a>
+
+
+
+<h3 id="2-结果集映射-resultMap"><a href="#2-结果集映射-resultMap" class="headerlink" title="2. 结果集映射 resultMap"></a>2. 结果集映射 resultMap</h3><p>用 <code>resultMap</code> 代替 <code>resultType</code>，编写 <code>resultMap</code> 使属性名和字段名形成映射</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 结果集映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;UserMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- column数据库中的字段，property实体类中的属性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;pwd&quot;</span> <span class="attr">property</span>=<span class="string">&quot;password&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserMap&quot;</span>&gt;</span></span><br><span class="line">    select *</span><br><span class="line">    from mybatis.user</span><br><span class="line">    where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>resultMap</code> 元素是 MyBatis 中最重要最强大的元素</li>
+<li>ResultMap 的设计思想是，对于简单的语句根本不需要配置显式的结果映射，而对于复杂一点的语句只需要描述它们的关系就行了。</li>
+<li>ResultMap 最优秀的地方在于，虽然你已经对它相当了解了，但是根本就不需要显式地用到他们。</li>
+<li>如果世界总是这么简单就好了</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java 学习笔记</category>
+        <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>ResultMap</tag>
       </tags>
   </entry>
 </search>
