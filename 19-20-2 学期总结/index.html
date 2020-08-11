@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. 控制器 Controller 控制器负责提供访问应用程序的行为，通常通过接口定义或注解定义两种方法实现。 控制器负责解析用户的请求并将其转换为一个模型。 在 Spring MVC 中一个控制器类可以包含多个方法。 在 Spring MVC 中，对于 Controller 的配置方式有很多种。  2. 实现 Controller 接口详见上一篇博客 而且太老了，不用了。 3. 使用注解@Con">
+  <meta name="description" content="3月5日之前3月5日是学校线上授课开始的日子，在此之前一直过着疫情期间的生活，每天就是在网上抢口罩、消毒液，由于小区封闭，也不方便出去买菜，日子过得很不舒服，也没怎么学习。 3月5日 ~ 4月22日线上授课开始之后，才有了一点好好学习的动力，虽然4月22日之前只有两门网课，十分轻松，所以有很多时间可以学自己想学的东西。 每天的节奏就是把这两门网课（水课）的视频看了，课后题做了，把题目整理保存在文档">
 <meta property="og:type" content="article">
-<meta property="og:title" content="04_Controller 和 RESTful 风格">
-<meta property="og:url" content="http://horsenliu.gitee.io/Spring%20MVC/04_Controller%20%E5%92%8C%20RESTful%20%E9%A3%8E%E6%A0%BC/index.html">
+<meta property="og:title" content="19-20-2 学期总结">
+<meta property="og:url" content="http://horsenliu.gitee.io/19-20-2%20%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="霍森的笔记本">
-<meta property="og:description" content="1. 控制器 Controller 控制器负责提供访问应用程序的行为，通常通过接口定义或注解定义两种方法实现。 控制器负责解析用户的请求并将其转换为一个模型。 在 Spring MVC 中一个控制器类可以包含多个方法。 在 Spring MVC 中，对于 Controller 的配置方式有很多种。  2. 实现 Controller 接口详见上一篇博客 而且太老了，不用了。 3. 使用注解@Con">
+<meta property="og:description" content="3月5日之前3月5日是学校线上授课开始的日子，在此之前一直过着疫情期间的生活，每天就是在网上抢口罩、消毒液，由于小区封闭，也不方便出去买菜，日子过得很不舒服，也没怎么学习。 3月5日 ~ 4月22日线上授课开始之后，才有了一点好好学习的动力，虽然4月22日之前只有两门网课，十分轻松，所以有很多时间可以学自己想学的东西。 每天的节奏就是把这两门网课（水课）的视频看了，课后题做了，把题目整理保存在文档">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-06T05:14:00.000Z">
-<meta property="article:modified_time" content="2020-08-10T12:41:30.215Z">
+<meta property="article:published_time" content="2020-07-03T12:35:00.000Z">
+<meta property="article:modified_time" content="2020-08-11T06:06:37.658Z">
 <meta property="article:author" content="Horsen Liu">
-<meta property="article:tag" content="Spring MVC">
-<meta property="article:tag" content="RESTful">
+<meta property="article:tag" content="学期总结">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://horsenliu.gitee.io/Spring%20MVC/04_Controller%20%E5%92%8C%20RESTful%20%E9%A3%8E%E6%A0%BC/">
+<link rel="canonical" href="http://horsenliu.gitee.io/19-20-2%20%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>04_Controller 和 RESTful 风格 | 霍森的笔记本</title>
+  <title>19-20-2 学期总结 | 霍森的笔记本</title>
   
 
 
@@ -194,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/Spring%20MVC/04_Controller%20%E5%92%8C%20RESTful%20%E9%A3%8E%E6%A0%BC/">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/19-20-2%20%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -207,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          04_Controller 和 RESTful 风格
+          19-20-2 学期总结
         </h1>
 
         <div class="post-meta">
@@ -217,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-06 13:14:00" itemprop="dateCreated datePublished" datetime="2020-08-06T13:14:00+08:00">2020-08-06</time>
+              <time title="创建时间：2020-07-03 20:35:00" itemprop="dateCreated datePublished" datetime="2020-07-03T20:35:00+08:00">2020-07-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,11 +224,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-MVC/" itemprop="url" rel="index"><span itemprop="name">Spring MVC</span></a>
+                  <a href="/categories/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学期总结</span></a>
                 </span>
             </span>
 
@@ -246,7 +241,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -265,74 +260,120 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-控制器-Controller"><a href="#1-控制器-Controller" class="headerlink" title="1. 控制器 Controller"></a>1. 控制器 Controller</h3><ul>
-<li>控制器负责提供访问应用程序的行为，通常通过接口定义或注解定义两种方法实现。</li>
-<li>控制器负责解析用户的请求并将其转换为一个模型。</li>
-<li>在 Spring MVC 中一个控制器类可以包含多个方法。</li>
-<li>在 Spring MVC 中，对于 Controller 的配置方式有很多种。</li>
-</ul>
-<h3 id="2-实现-Controller-接口"><a href="#2-实现-Controller-接口" class="headerlink" title="2. 实现 Controller 接口"></a>2. 实现 Controller 接口</h3><p><em>详见上一篇博客</em></p>
-<p>而且太老了，不用了。</p>
-<h3 id="3-使用注解-Controller"><a href="#3-使用注解-Controller" class="headerlink" title="3. 使用注解@Controller"></a>3. 使用注解<code>@Controller</code></h3><p><em>详见上一篇博客</em></p>
+        <h3 id="3月5日之前"><a href="#3月5日之前" class="headerlink" title="3月5日之前"></a>3月5日之前</h3><p>3月5日是学校线上授课开始的日子，在此之前一直过着疫情期间的生活，每天就是在网上抢口罩、消毒液，由于小区封闭，也不方便出去买菜，日子过得很不舒服，也没怎么学习。</p>
+<h3 id="3月5日-4月22日"><a href="#3月5日-4月22日" class="headerlink" title="3月5日 ~ 4月22日"></a>3月5日 ~ 4月22日</h3><p>线上授课开始之后，才有了一点好好学习的动力，虽然4月22日之前只有两门网课，十分轻松，所以有很多时间可以学自己想学的东西。</p>
+<p>每天的节奏就是把这两门网课（水课）的视频看了，课后题做了，把题目整理保存在文档中，因为当时我有预感这学期无法开学，到最后就是网络考试，题库就是课后习题。</p>
+<p>剩下的时间就学习 Html5 和 Android 开发，这两门课是上个学期的任选课，同时我也比较感兴趣，所以提前了解了一下。</p>
 <a id="more"></a>
 
 
 
-<h3 id="4-RESTful-风格"><a href="#4-RESTful-风格" class="headerlink" title="4. RESTful 风格"></a>4. RESTful 风格</h3><h4 id="4-1-概念"><a href="#4-1-概念" class="headerlink" title="4.1 概念"></a>4.1 概念</h4><p>RESTful 就是一个资源定位及资源操作的风格。不是标准也不是协议，只是一种风格。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。</p>
-<h4 id="4-2-功能"><a href="#4-2-功能" class="headerlink" title="4.2 功能"></a>4.2 功能</h4><p>资源：互联网所有的事物都可以被抽象为资源</p>
-<p>资源操作：使用 POST、DELETE、PUT、GET，使用不同方法对资源进行操作。</p>
-<p>分别对应添加、 删除、修改、查询。</p>
-<h4 id="4-3-传统方式操作资源"><a href="#4-3-传统方式操作资源" class="headerlink" title="4.3 传统方式操作资源"></a>4.3 传统方式操作资源</h4><p> 通过不同的参数（post 和 get）来实现不同的效果，方法单一</p>
+<h3 id="4月22日之后"><a href="#4月22日之后" class="headerlink" title="4月22日之后"></a>4月22日之后</h3><p>事实证明预习确实能提高学习效率。</p>
+<p>不过 Android 任选课的学习内容，着实落后，学到最后也没有 JetPack，没有 Kotlin，学了一学期全是基础中的基础，还没有我提前预习的知识密度大…</p>
+<p>除了这两门实践课，还有3门理论课。理论课真是地狱，学了后面忘前面，而且感觉十分难于应用。现在我已经什么都不记得了。</p>
+<p>我把大部分的精力都放在了 Html5 和 Android 上面。不得不说，收获还是很多的，也很有成就感，我比较认真，有的时候会死磕一个东西，所以花了很多时间在这上面。不过代码敲多了就游刃有余了，期末的大作业我就很有信心了。</p>
+<h3 id="期末"><a href="#期末" class="headerlink" title="期末"></a>期末</h3><p>不出意外的，所有科目都是大作业。</p>
+<p>Html5 和 Android 是做应用，这对于我来说只要多花点功夫就好了，网上也有开发文档和很多博客。我觉得老师的要求太低了，就算再严格一倍，也达不到“可以及格”的标准，可能是为了照顾吸收消化慢的同学吧。所以我按照自己的标准来做的作业，做到我自己满意为止。</p>
+<p>理论课是写文档，虽然相关的知识没有怎么进脑子，但是好在要求不是很高，借着发达的互联网，还是可以写出不错的作业的。我自认为还可以，虽然肚子里没货，写不出干货，但文档排版什么的还是得心应手的，至少可以满足老师的要求。</p>
+<h3 id="成绩"><a href="#成绩" class="headerlink" title="成绩"></a>成绩</h3><table>
+<thead>
+<tr>
+<th>科目</th>
+<th>成绩</th>
+<th>绩点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>软件质量保证与测试</td>
+<td>92</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>软件系统分析与设计技术</td>
+<td>84</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>软件项目管理</td>
+<td>85</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>Android应用开发</td>
+<td>92</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>HTML5移动应用开发</td>
+<td>100</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>大学生职业发展与就业指导Ⅱ</td>
+<td>91</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>形式与政策</td>
+<td>98</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td><strong>平均</strong></td>
+<td><strong>91.71</strong></td>
+<td><strong>4.43</strong></td>
+</tr>
+</tbody></table>
+<p>同时还把 GPA 提高到到了 <code>3.91</code>，这个是我没想到的。总的来说，这学期的成绩我还是很满意的，感觉自己的努力得到了应有的回报。但是又感觉是不是给自己的要求太低了，没有更努力一点。</p>
+<h3 id="假期计划"><a href="#假期计划" class="headerlink" title="假期计划"></a>假期计划</h3><p>下学期就大四了，感觉一下就紧迫了起来，想想自己啥都不会，根本没有面试的能力，所以决定假期的时候针对 Java 开发再学两个月，争取能上一个台阶。同时把之前学过的技术巩固一下，查漏补缺，多积累开发经验。</p>
+<p>先按照这个路线学下去</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/queryItem.action?id=1">http://127.0.0.1/item/queryItem.action?id=1</a> 查询 GET</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/saveItem.action">http://127.0.0.1/item/saveItem.action</a> 新增 POST</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/updateItem.action">http://127.0.0.1/item/updateItem.action</a> 更新 POST</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/deleteItem.action?id=1">http://127.0.0.1/item/deleteItem.action?id=1</a> 删除 GET或POST</p>
-</li>
+<li>搭建属于自己的博客</li>
+<li>复习 MarkDown 语法，把 Typora 用熟练</li>
+<li>复习 Java 基础</li>
+<li>复习多线程</li>
+<li>学习注解和反射</li>
+<li>复习 MySQL</li>
+<li>复习 Java Web</li>
+<li>学习 Mybatis</li>
+<li>学习 Spring5</li>
+<li>学习 Spring MVC</li>
+<li>复习 JavaScript</li>
+<li>学习 Vue</li>
+<li>学习 Spring Boot</li>
+<li>学习 Swagger</li>
+<li>学习 Spring Cloud</li>
+<li>如果还有时间，跟着老师做一个项目（我觉得够呛）</li>
 </ul>
-<h4 id="4-4-使用RESTful操作资源"><a href="#4-4-使用RESTful操作资源" class="headerlink" title="4.4 使用RESTful操作资源"></a>4.4 使用RESTful操作资源</h4><p>可以通过不同的请求方式来实现不同的效果</p>
-<p>如下：请求地址一样，但是功能可以不同</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/1">http://127.0.0.1/item/1</a> 查询 GET</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item">http://127.0.0.1/item</a> 新增 POST</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item">http://127.0.0.1/item</a> 更新 PUT</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://127.0.0.1/item/1">http://127.0.0.1/item/1</a> 删除 DELETE</p>
-</li>
-</ul>
-<h4 id="4-5-测试"><a href="#4-5-测试" class="headerlink" title="4.5 测试"></a>4.5 测试</h4><ol>
-<li><p>传统方式操作资源</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/result&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, Model model)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = a + b;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;结果为: &quot;</span> + res);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>地址栏中 url 是这样的：<code>http://localhost:8080/result?a=1&amp;b=2</code></p>
-</li>
-<li><p>使用RESTful操作资源</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/rest/&#123;a&#125;/&#123;b&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">restfulTest</span><span class="params">(<span class="meta">@PathVariable</span> <span class="keyword">int</span> a, <span class="meta">@PathVariable</span> <span class="keyword">int</span> b, Model model)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = a + b;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;结果为: &quot;</span> + res);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>地址栏中 url 是这样的：<code>http://localhost:8080/rest/1/2</code></p>
-</li>
-<li><p>使用 method 属性指定请求类型（<strong>默认为 GET</strong>）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/rest/&#123;a&#125;/&#123;b&#125;&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">restfulTest</span><span class="params">(<span class="meta">@PathVariable</span> <span class="keyword">int</span> a, <span class="meta">@PathVariable</span> <span class="keyword">int</span> b, Model model)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = a + b;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;结果为: &quot;</span> + res);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或者使用组合注解</p>
-<ul>
-<li><code>@GetMapping</code></li>
-<li><code>@PostMapping</code></li>
-<li><code>@PutMapping</code></li>
-<li><code>@DeleteMapping</code></li>
-<li><code>@PatchMapping</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/rest/&#123;a&#125;/&#123;b&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">restfulTest</span><span class="params">(<span class="meta">@PathVariable</span> <span class="keyword">int</span> a, <span class="meta">@PathVariable</span> <span class="keyword">int</span> b, Model model)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = a + b;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;结果为: &quot;</span> + res);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
+<p>总结不会就此结束，等到开学之前，我再把这两个月的学习情况总结一下，加在下面。</p>
+<h3 id="假期总结"><a href="#假期总结" class="headerlink" title="假期总结"></a>假期总结</h3><p>现在是7月8日，我把博客搭好了。</p>
+<p>上面那些是我把博客搭建好之后重新写的，因为决定把学期总结也写到博客里，所以把排版重新优化了一下。</p>
+<p>之所以要自己搭博客，是因为主流的博客网站要么是功能不全，要么是广告太多，想起来以前朋友安利我的 Hexo + NexT，我就花了几天搭建、美化了一下。这是我的博客地址，因为没有钱买域名，所以只好用免费的静态网站的服务了，一共建了三个仓库，东西都是一样的。</p>
+<table>
+<thead>
+<tr>
+<th>网址</th>
+<th>描述</th>
+<th>平台</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://horsenliu.github.io/">https://horsenliu.github.io/</a></td>
+<td>速度慢，可能需要梯子</td>
+<td>Github</td>
+</tr>
+<tr>
+<td><a href="http://horsenliu.gitee.io/">http://horsenliu.gitee.io/</a></td>
+<td>速度一般，图片资源加载慢</td>
+<td>码云 Gitee</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://8juh82.coding-pages.com/">https://8juh82.coding-pages.com/</a></td>
+<td>速度快，首选推荐</td>
+<td>Coding</td>
+</tr>
+</tbody></table>
+<p>以后的学习痕迹都在博客里了，等到开学之前再简单总结一下吧。</p>
 
     </div>
 
@@ -348,7 +389,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://horsenliu.gitee.io/Spring%20MVC/04_Controller%20%E5%92%8C%20RESTful%20%E9%A3%8E%E6%A0%BC/" title="04_Controller 和 RESTful 风格">http://horsenliu.gitee.io/Spring MVC/04_Controller 和 RESTful 风格/</a>
+    <a href="http://horsenliu.gitee.io/19-20-2%20%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" title="19-20-2 学期总结">http://horsenliu.gitee.io/19-20-2 学期总结/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -360,8 +401,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Spring-MVC/" rel="tag"><i class="fa fa-tag"></i> Spring MVC</a>
-              <a href="/tags/RESTful/" rel="tag"><i class="fa fa-tag"></i> RESTful</a>
+              <a href="/tags/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" rel="tag"><i class="fa fa-tag"></i> 学期总结</a>
           </div>
 
         
@@ -369,13 +409,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/Spring%20MVC/03_%E7%AC%AC%E4%B8%80%E4%B8%AA%20Spring%20MVC%20%E7%A8%8B%E5%BA%8F/" rel="prev" title="03_第一个 Spring MVC 程序">
-      <i class="fa fa-chevron-left"></i> 03_第一个 Spring MVC 程序
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/Spring%20MVC/05_%E7%BB%93%E6%9E%9C%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F/" rel="next" title="05_结果跳转方式">
-      05_结果跳转方式 <i class="fa fa-chevron-right"></i>
+    <a href="/Java%20Web/01_Maven%20%E9%85%8D%E7%BD%AE/" rel="next" title="01_Maven 配置">
+      01_Maven 配置 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -435,7 +472,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8E%A7%E5%88%B6%E5%99%A8-Controller"><span class="nav-text">1. 控制器 Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%9E%E7%8E%B0-Controller-%E6%8E%A5%E5%8F%A3"><span class="nav-text">2. 实现 Controller 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3-Controller"><span class="nav-text">3. 使用注解@Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-RESTful-%E9%A3%8E%E6%A0%BC"><span class="nav-text">4. RESTful 风格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">4.1 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%8A%9F%E8%83%BD"><span class="nav-text">4.2 功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E6%93%8D%E4%BD%9C%E8%B5%84%E6%BA%90"><span class="nav-text">4.3 传统方式操作资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E4%BD%BF%E7%94%A8RESTful%E6%93%8D%E4%BD%9C%E8%B5%84%E6%BA%90"><span class="nav-text">4.4 使用RESTful操作资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E6%B5%8B%E8%AF%95"><span class="nav-text">4.5 测试</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%885%E6%97%A5%E4%B9%8B%E5%89%8D"><span class="nav-text">3月5日之前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E6%9C%885%E6%97%A5-4%E6%9C%8822%E6%97%A5"><span class="nav-text">3月5日 ~ 4月22日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E6%9C%8822%E6%97%A5%E4%B9%8B%E5%90%8E"><span class="nav-text">4月22日之后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%9F%E6%9C%AB"><span class="nav-text">期末</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%90%E7%BB%A9"><span class="nav-text">成绩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E6%9C%9F%E8%AE%A1%E5%88%92"><span class="nav-text">假期计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E6%9C%9F%E6%80%BB%E7%BB%93"><span class="nav-text">假期总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
