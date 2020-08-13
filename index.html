@@ -117,7 +117,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -127,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -183,6 +183,114 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/11_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/11_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/" class="post-title-link" itemprop="url">11_文件上传下载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-13 17:09:00" itemprop="dateCreated datePublished" datetime="2020-08-13T17:09:00+08:00">2020-08-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-MVC/" itemprop="url" rel="index"><span itemprop="name">Spring MVC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><p>文件上传是项目开发中最常见的功能之一，Spring MVC 可以很好的支持文件上传，但是Spring MVC 上下文中默认没有装配<code>MultipartResolver</code>，因此默认情况下其不能处理文件上传工作。如果想使用 Spring 的文件上传功能，则需要在上下文中配置<code> MultipartResolver</code>。</p>
+<p>前端表单要求：为了能上传文件，必须将表单的<code>method</code>设置为<code>post</code>，并将<code>enctype</code>设置为<code>multipart/form-data</code>。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器；</p>
+<p><strong>对表单中的<code>enctype</code>属性做个详细的说明：</strong></p>
+<ul>
+<li><code>application/x-www=form-urlencoded</code>：默认方式，只处理表单域中的 value 属性值，采用这种编码方式的表单会将表单域中的值处理成 URL 编码方式。</li>
+<li><code>multipart/form-data</code>：这种编码方式会以二进制流的方式来处理表单数据，这种编码方式会把文件域指定文件的内容也封装到请求参数中，不会对字符编码。</li>
+<li><code>text/plain</code>：除了把空格转换为<code>+</code>外，其他字符都不做编码处理，这种方式适用直接通过表单发送邮件。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一旦设置了<code>enctype</code>为<code>multipart/form-data</code>，浏览器即会采用<strong>二进制流</strong>的方式来处理表单数据，而对于文件上传的处理则涉及在服务器端解析原始的 HTTP 响应。</p>
+<ul>
+<li>Servlet3.0 规范已经提供方法来处理文件上传，但这种上传需要在 Servlet 中完成。</li>
+<li>而 Spring MVC 则提供了更简单的封装。</li>
+<li>Spring MVC 为文件上传提供了直接的支持，这种支持是用即插即用的<code>MultipartResolver</code>实现的。</li>
+<li>Spring MVC使用<code>Apache Commons FileUpload</code>技术实现了一个<code>MultipartResolver</code>实现类<code>CommonsMultipartResolver</code>。因此，Spring MVC 的文件上传还需要依赖<code>Apache Commons FileUpload</code>的组件。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/11_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -257,6 +365,111 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/%E8%A7%A3%E5%86%B3%201099%20%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/10_%E6%8B%A6%E6%88%AA%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/10_%E6%8B%A6%E6%88%AA%E5%99%A8/" class="post-title-link" itemprop="url">10_拦截器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-12 18:51:00" itemprop="dateCreated datePublished" datetime="2020-08-12T18:51:00+08:00">2020-08-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-MVC/" itemprop="url" rel="index"><span itemprop="name">Spring MVC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>Spring MVC 的处理器拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。开发者可以自己定义一些拦截器来实现特定的功能。</p>
+<p>==拦截器是 AOP 思想的具体应用==</p>
+<p><strong>过滤器</strong></p>
+<ul>
+<li>是 Servlet 规范中的一部分，任何 Java Web 工程都可以使用</li>
+<li>在<code>url-pattern</code>中配置了过滤器之后，可以对所有要访问的资源进行拦截</li>
+</ul>
+<p><strong>拦截器</strong></p>
+<ul>
+<li><p>是 Spring MVC 框架自己的，只有使用了 Spring MVC 框架的工程才能使用</p>
+</li>
+<li><p>拦截器只会拦截访问的控制器方法， 如果访问的是 jsp/html/css/image/js 是不会进行拦截的</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Java%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring%20MVC/10_%E6%8B%A6%E6%88%AA%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -472,203 +685,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/06_%E6%93%8D%E4%BD%9C%20DOM%20%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/06_%E6%93%8D%E4%BD%9C%20DOM%20%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">06_操作 DOM 对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-12 11:11:00" itemprop="dateCreated datePublished" datetime="2020-08-12T11:11:00+08:00">2020-08-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">前端学习笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>整个浏览器网页就是一个 DOM 树形结构</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title_1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;p1&quot;</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;p2&quot;</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> h1 = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;h1&#x27;</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> p1 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;p1&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> p2 = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&#x27;p2&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> father = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;father&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> children = father.children;</span></span><br><span class="line">    father.firstChild</span><br><span class="line">    father.lastChild</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1-更新节点"><a href="#1-更新节点" class="headerlink" title="1. 更新节点"></a>1. 更新节点</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span></span><br><span class="line">    111</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> id1 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;id1&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 设置文本</span></span></span><br><span class="line"><span class="javascript">    id1.innerText=<span class="string">&#x27;123&#x27;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 设置html代码</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    id1.innerHTML = &#x27;<span class="tag">&lt;<span class="name">strong</span>&gt;</span>456<span class="tag">&lt;/<span class="name">strong</span>&gt;</span>&#x27;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 设置css</span></span></span><br><span class="line"><span class="javascript">    id1.style.color=<span class="string">&#x27;red&#x27;</span></span></span><br><span class="line"><span class="javascript">    id1.style.background=<span class="string">&#x27;blue&#x27;</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">// 注意 属性名为驼峰命名, 属性是字符串</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/06_%E6%93%8D%E4%BD%9C%20DOM%20%E5%AF%B9%E8%B1%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/05_%E6%93%8D%E4%BD%9C%20BOM%20%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/05_%E6%93%8D%E4%BD%9C%20BOM%20%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">05_操作 BOM 对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-12 09:43:00" itemprop="dateCreated datePublished" datetime="2020-08-12T09:43:00+08:00">2020-08-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">前端学习笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>579</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-window"><a href="#1-window" class="headerlink" title="1. window"></a>1. <code>window</code></h3><p>代表浏览器窗口</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取外部高度</span></span><br><span class="line"><span class="built_in">window</span>.innerHeight</span><br><span class="line"><span class="comment">// 获取外部宽度</span></span><br><span class="line"><span class="built_in">window</span>.innerWidth</span><br><span class="line"><span class="comment">// 获取内部高度</span></span><br><span class="line"><span class="built_in">window</span>.outerHeight</span><br><span class="line"><span class="comment">// 获取内部宽度</span></span><br><span class="line"><span class="built_in">window</span>.outerWidth</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-naigator"><a href="#2-naigator" class="headerlink" title="2. naigator"></a>2. <code>naigator</code></h3><p>封装了浏览器的信息</p>
-<p>一般不会使用，因为会被人为修改</p>
-<h3 id="3-screen"><a href="#3-screen" class="headerlink" title="3. screen"></a>3. <code>screen</code></h3><p>代表屏幕</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">screen.width</span><br><span class="line">screen.height</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/05_%E6%93%8D%E4%BD%9C%20BOM%20%E5%AF%B9%E8%B1%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -740,7 +756,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -753,7 +769,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -801,13 +817,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">205k</span>
+    <span title="站点总字数">212k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:06</span>
+    <span title="站点阅读时长">3:13</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
