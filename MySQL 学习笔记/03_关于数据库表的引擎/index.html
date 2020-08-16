@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"horsenliu.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="1. 对比    MYISAM INNODB    事务支持 🙅‍♂️ 👌   数据行锁定 🙅‍♂️ 👌   外键约束 🙅‍♂️ 👌   全文索引 👌 🙅‍♂️   表空间的大小 👎较小 👍较大 ，约2倍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_关于数据库表的引擎">
-<meta property="og:url" content="http://horsenliu.gitee.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:url" content="http://horsenliu.github.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/index.html">
 <meta property="og:site_name" content="霍森的笔记本">
 <meta property="og:description" content="1. 对比    MYISAM INNODB    事务支持 🙅‍♂️ 👌   数据行锁定 🙅‍♂️ 👌   外键约束 🙅‍♂️ 👌   全文索引 👌 🙅‍♂️   表空间的大小 👎较小 👍较大 ，约2倍">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="数据库引擎">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://horsenliu.gitee.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/">
+<link rel="canonical" href="http://horsenliu.github.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/">
 
 
 <script id="page-configurations">
@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.github.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -333,7 +333,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://horsenliu.gitee.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/" title="03_关于数据库表的引擎">http://horsenliu.gitee.io/MySQL 学习笔记/03_关于数据库表的引擎/</a>
+    <a href="http://horsenliu.github.io/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/03_%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%9A%84%E5%BC%95%E6%93%8E/" title="03_关于数据库表的引擎">http://horsenliu.github.io/MySQL 学习笔记/03_关于数据库表的引擎/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
