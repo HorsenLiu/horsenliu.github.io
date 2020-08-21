@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. 面向接口编程 大家之前都学过面向对象编程，也学习过接口，但在真正的开发中，很多时候我们会选择面向接口编程。 根本原因 :  &#x3D;&#x3D;解耦&#x3D;&#x3D; ，可拓展 ，提高复用 。分层开发中 ，上层不用管具体的实现 ，大家都遵守共同的标准 ，使得开发变得容易，规范性更好。 在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的，对系统设计人员来讲就不">
+  <meta name="description" content="1. 引入 AOP 的包在 Spring4 之后，想要使用注解形式，必须得要引入 AOP 的包   在配置文件当中，还需要引入一个 context 约束 12345678910&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="08_使用注解">
+<meta property="og:title" content="08_使用注解开发">
 <meta property="og:url" content="http://horsenliu.gitee.io/posts/53af2c28.html">
 <meta property="og:site_name" content="霍森的笔记本">
-<meta property="og:description" content="1. 面向接口编程 大家之前都学过面向对象编程，也学习过接口，但在真正的开发中，很多时候我们会选择面向接口编程。 根本原因 :  &#x3D;&#x3D;解耦&#x3D;&#x3D; ，可拓展 ，提高复用 。分层开发中 ，上层不用管具体的实现 ，大家都遵守共同的标准 ，使得开发变得容易，规范性更好。 在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的，对系统设计人员来讲就不">
+<meta property="og:description" content="1. 引入 AOP 的包在 Spring4 之后，想要使用注解形式，必须得要引入 AOP 的包   在配置文件当中，还需要引入一个 context 约束 12345678910&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://horsenliu.gitee.io/posts/53af2c28/image-20200731222352481.png">
-<meta property="article:published_time" content="2020-07-28T05:26:00.000Z">
-<meta property="article:modified_time" content="2020-08-21T03:13:51.147Z">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/53af2c28/image-20200731191506807.png">
+<meta property="article:published_time" content="2020-07-31T10:53:00.000Z">
+<meta property="article:modified_time" content="2020-08-21T03:18:34.464Z">
 <meta property="article:author" content="Horsen Liu">
-<meta property="article:tag" content="Mybatis">
+<meta property="article:tag" content="Spring">
 <meta property="article:tag" content="注解">
+<meta property="article:tag" content="JavaConfig">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/53af2c28/image-20200731222352481.png">
+<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/53af2c28/image-20200731191506807.png">
 
 <link rel="canonical" href="http://horsenliu.gitee.io/posts/53af2c28.html">
 
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>08_使用注解 | 霍森的笔记本</title>
+  <title>08_使用注解开发 | 霍森的笔记本</title>
   
 
 
@@ -214,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          08_使用注解
+          08_使用注解开发
         </h1>
 
         <div class="post-meta">
@@ -224,7 +225,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-28 13:26:00" itemprop="dateCreated datePublished" datetime="2020-07-28T13:26:00+08:00">2020-07-28</time>
+              <time title="创建时间：2020-07-31 18:53:00" itemprop="dateCreated datePublished" datetime="2020-07-31T18:53:00+08:00">2020-07-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,7 +237,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
                 </span>
             </span>
 
@@ -253,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -272,70 +273,105 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-面向接口编程"><a href="#1-面向接口编程" class="headerlink" title="1. 面向接口编程"></a>1. 面向接口编程</h3><ul>
-<li>大家之前都学过面向对象编程，也学习过接口，但在真正的开发中，很多时候我们会选择面向接口编程。</li>
-<li>根本原因 :  ==解耦== ，可拓展 ，提高复用 。分层开发中 ，上层不用管具体的实现 ，大家都遵守共同的标准 ，使得开发变得容易，规范性更好。</li>
-<li>在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的，对系统设计人员来讲就不那么重要了。</li>
-<li>而各个对象之间的协作关系则成为系统设计的关键。小到不同类之间的通信，大到各模块之间的交互，在系统设计之初都是要着重考虑的，这也是系统设计的主要工作内容。面向接口编程就是指按照这种思想来编程。</li>
-</ul>
+        <h3 id="1-引入-AOP-的包"><a href="#1-引入-AOP-的包" class="headerlink" title="1. 引入 AOP 的包"></a>1. 引入 AOP 的包</h3><p>在 Spring4 之后，想要使用注解形式，必须得要引入 AOP 的包</p>
+<img src="/posts/53af2c28/image-20200731191506807.png" class>
+
+<p>在配置文件当中，还需要引入一个 context 约束</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd&quot;</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<hr>
-<p><strong>关于接口的理解</strong></p>
-<ul>
-<li>接口从更深层次的理解，应是定义（规范，约束）与实现（名实分离的原则）的分离</li>
-<li>接口的本身反映了系统设计人员对系统的抽象理解</li>
-<li>接口应有两类：<ul>
-<li>第一类是对一个个体的抽象，它可对应为一个抽象体（abstract class）</li>
-<li>第二类是对一个个体某一方面的抽象，即形成一个抽象面（interface）</li>
-</ul>
-</li>
-<li>一个体有可能有多个抽象面。抽象体与抽象面是有区别的。</li>
-</ul>
-<hr>
-<p><strong>三个面向区别</strong></p>
-<ul>
-<li>面向对象是指，我们考虑问题时，以对象为单位，考虑它的属性及方法</li>
-<li>面向过程是指，我们考虑问题时，以一个具体的流程（事务过程）为单位，考虑它的实现 </li>
-<li>接口设计与非接口设计是针对复用技术而言的，与面向对象（过程）不是一个问题。更多的体现就是对系统整体的架构</li>
-</ul>
-<h3 id="2-使用注解开发"><a href="#2-使用注解开发" class="headerlink" title="2. 使用注解开发"></a>2. 使用注解开发</h3><ul>
-<li><p>本质是通过反射机制实现</p>
-</li>
-<li><p>底层是动态代理</p>
-</li>
-</ul>
+
+
+<h3 id="2-Bean-的实现"><a href="#2-Bean-的实现" class="headerlink" title="2. Bean 的实现"></a>2. Bean 的实现</h3><p>之前都是使用<code>&lt;bean&gt;</code>标签进行 bean 注入，但是实际开发中，一般都会使用注解</p>
 <ol>
-<li><p>注解在接口上实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取全部用户</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Select(&quot;select * from user&quot;)</span></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<li><p>配置文件增加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 指定注解扫描包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.horsen.model&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在核心配置文件中绑定接口</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 绑定接口 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;com.horsen.mapper.UserMapper&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>实体类中使用<code>@Component(&quot;user&quot;)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name=<span class="string">&quot;lhx&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相当于<code>&lt;bean id=&quot;user&quot; class=&quot;com.horsen.model.User&quot;/&gt;</code></p>
 </li>
 <li><p>测试</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    List&lt;User&gt; users = mapper.getUsers();</span><br><span class="line">    <span class="keyword">for</span> (User user : users) &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">    User user = context.getBean(<span class="string">&quot;user&quot;</span>, User.class);</span><br><span class="line">    System.out.println(user.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ol>
-<h3 id="3-Mybatis-详细的执行流程"><a href="#3-Mybatis-详细的执行流程" class="headerlink" title="3. Mybatis 详细的执行流程"></a>3. Mybatis 详细的执行流程</h3><img src="/posts/53af2c28/image-20200731222352481.png" class>
+<h3 id="3-属性注入"><a href="#3-属性注入" class="headerlink" title="3. 属性注入"></a>3. 属性注入</h3><ol>
+<li><p>如果没有 setter 方法，在属性名上加<code>@Value(&quot;xxx&quot;)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;liuhaoxin&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有 setter 方法，在setter 方法上加<code>@Value(&quot;xxx&quot;)</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(&quot;user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;liuhaoxin&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
-<h3 id="4-CRUD"><a href="#4-CRUD" class="headerlink" title="4. CRUD"></a>4. CRUD</h3><p>可以在工具类创建的时候实现自动提交事务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession  <span class="title">getSqlSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编写接口，增加注释</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from user&quot;)</span></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法存在多个参数，所有的参数前面必须加上 @Param(&quot;id&quot;)注解</span></span><br><span class="line"><span class="meta">@Select(&quot;select * from user where id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">User <span class="title">getUserByID</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> <span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Insert(&quot;insert into user(id,name,pwd) values (#&#123;id&#125;,#&#123;name&#125;,#&#123;password&#125;)&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Update(&quot;update user set name=#&#123;name&#125;,pwd=#&#123;password&#125; where id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Delete(&quot;delete from user where id = #&#123;uid&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteUser</span><span class="params">(<span class="meta">@Param(&quot;uid&quot;)</span> <span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p><strong>关于@Param() 注解</strong></p>
+</li>
+</ol>
+<p>相当于<code>&lt;property name=&quot;name&quot; value=&quot;liuhaoxin&quot;/&gt;</code></p>
+<h3 id="4-衍生注解"><a href="#4-衍生注解" class="headerlink" title="4. 衍生注解"></a>4. 衍生注解</h3><p><strong>@Component 三个衍生注解</strong></p>
+<p>为了更好的进行分层，Spring 可以使用其它三个注解，功能一样，目前使用哪一个功能都一样</p>
 <ul>
-<li>基本类型的参数或 String 类型，需要加上</li>
-<li>引用类型不需要加</li>
-<li>如果只有一个基本类型的话，可以忽略，但是建议加上</li>
-<li>在SQL中引用的就是这里的 @Param() 中设定的属性名</li>
+<li><code>@Controller</code>：web 层</li>
+<li><code>@Service</code>：service 层</li>
+<li><code>@Repository</code>：dao 层</li>
 </ul>
+<h3 id="5-自动装配注解"><a href="#5-自动装配注解" class="headerlink" title="5. 自动装配注解"></a>5. 自动装配注解</h3><p>前面说过了</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://horsenliu.github.io/posts/8da2424e.html">https://horsenliu.github.io/posts/8da2424e.html</a></p>
+</blockquote>
+<h3 id="6-作用域"><a href="#6-作用域" class="headerlink" title="6. 作用域"></a>6. 作用域</h3><p><code>@scope</code></p>
+<ul>
+<li>singleton：默认的，Spring 会采用单例模式创建这个对象。关闭工厂 ，所有的对象都会销毁</li>
+<li>prototype：多例模式。关闭工厂，所有的对象不会销毁。内部的垃圾回收机制会回收</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller(&quot;user&quot;)</span></span><br><span class="line"><span class="meta">@Scope(&quot;prototype&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;liuhaoxin&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-小结"><a href="#7-小结" class="headerlink" title="7. 小结"></a>7. 小结</h3><p><strong>XML 与注解比较</strong></p>
+<ul>
+<li>XML可以适用任何场景，结构清晰，维护方便</li>
+<li>注解不是自己提供的类使用不了，开发简单方便</li>
+</ul>
+<hr>
+<p><strong>推荐最佳实践：XML 与注解整合开发</strong> </p>
+<ul>
+<li>XML 管理 Bean</li>
+<li>注解完成属性注入</li>
+<li>使用过程中， 可以不用扫描，扫描是为了类上的注解</li>
+</ul>
+<h3 id="8-新特性：JavaConfig"><a href="#8-新特性：JavaConfig" class="headerlink" title="8. 新特性：JavaConfig"></a>8. 新特性：JavaConfig</h3><p><strong>就是基于 Java 类进行配置，完全不需要 xml 文件</strong></p>
+<p>JavaConfig 原来是 Spring 的一个子项目，它通过 Java 类的方式提供 Bean 的定义信息，在 Spring4 的版本， JavaConfig 已正式成为 Spring4 的核心功能 。</p>
+<ol>
+<li><p>实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name=<span class="string">&quot;lhx&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个 config 配置包，编写一个 MyConfig 配置类</p>
+<p>使用<code>@Configuration</code>和<code>@Bean</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试（注意第一句话和以前不一样了）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(MyConfig.class);</span><br><span class="line">    User user = context.getBean(<span class="string">&quot;user&quot;</span>, User.class);</span><br><span class="line">    System.out.println(user.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<p><strong>如何导入其他配置？</strong></p>
+<ol>
+<li><p>再写一个配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfig2</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在之前的配置类中选择导入这个配置类</p>
+<p>使用<code>@Import()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import(MyConfig2.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<p>关于这种 Java 类的配置方式，在之后的 Spring Boot 和 Spring Cloud 中还会大量看到。</p>
 
     </div>
 
@@ -351,7 +387,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://horsenliu.gitee.io/posts/53af2c28.html" title="08_使用注解">http://horsenliu.gitee.io/posts/53af2c28.html</a>
+    <a href="http://horsenliu.gitee.io/posts/53af2c28.html" title="08_使用注解开发">http://horsenliu.gitee.io/posts/53af2c28.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -363,8 +399,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Mybatis/" rel="tag"><i class="fa fa-tag"></i> Mybatis</a>
+              <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
               <a href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag"><i class="fa fa-tag"></i> 注解</a>
+              <a href="/tags/JavaConfig/" rel="tag"><i class="fa fa-tag"></i> JavaConfig</a>
           </div>
 
         
@@ -373,12 +410,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/37a4ae47.html" rel="prev" title="07_分页">
-      <i class="fa fa-chevron-left"></i> 07_分页
+    <a href="/posts/8da2424e.html" rel="prev" title="07_Bean 的自动装配">
+      <i class="fa fa-chevron-left"></i> 07_Bean 的自动装配
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/68207400.html" rel="next" title="Lombok">
-      Lombok <i class="fa fa-chevron-right"></i>
+    <a href="/posts/308a33f9.html" rel="next" title="09_代理模式">
+      09_代理模式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -438,7 +475,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E7%BC%96%E7%A8%8B"><span class="nav-text">1. 面向接口编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="nav-text">2. 使用注解开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Mybatis-%E8%AF%A6%E7%BB%86%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-text">3. Mybatis 详细的执行流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CRUD"><span class="nav-text">4. CRUD</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BC%95%E5%85%A5-AOP-%E7%9A%84%E5%8C%85"><span class="nav-text">1. 引入 AOP 的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Bean-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">2. Bean 的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="nav-text">3. 属性注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A1%8D%E7%94%9F%E6%B3%A8%E8%A7%A3"><span class="nav-text">4. 衍生注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E6%B3%A8%E8%A7%A3"><span class="nav-text">5. 自动装配注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">6. 作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B0%8F%E7%BB%93"><span class="nav-text">7. 小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9AJavaConfig"><span class="nav-text">8. 新特性：JavaConfig</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
