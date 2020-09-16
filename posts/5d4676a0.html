@@ -28,7 +28,7 @@
 <meta property="og:description" content="CRUD 操作都在 Mapper.xml 中编写，即 Mapper 接口的实现类（通过配置文件实现） 注意：增删改操作需要提交事务 sqlSession.commit(); 1. namespacenamespace 中的包名要和 mapper 接口的包名一致">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-27T03:36:00.000Z">
-<meta property="article:modified_time" content="2020-08-20T03:27:02.212Z">
+<meta property="article:modified_time" content="2020-09-06T13:16:08.646Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="CRUD">
 <meta property="article:tag" content="Mybatis">
@@ -128,17 +128,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">88</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -276,13 +276,14 @@
 <h3 id="1-namespace"><a href="#1-namespace" class="headerlink" title="1. namespace"></a>1. namespace</h3><p>namespace 中的包名要和 mapper 接口的包名一致</p>
 <a id="more"></a>
 
-
-
 <h3 id="2-Select"><a href="#2-Select" class="headerlink" title="2. Select"></a>2. Select</h3><p>选择，查询语句</p>
 <ul>
-<li>id : 就是对应的 namespace 中的方法名</li>
-<li>resultType：Sql 语句执行的返回值</li>
-<li>parameterType ： 参数类型</li>
+<li><p>id : 就是对应的 namespace 中的方法名</p>
+</li>
+<li><p>resultType：Sql 语句执行的返回值</p>
+</li>
+<li><p>parameterType ： 参数类型</p>
+</li>
 </ul>
 <ol>
 <li><p>编写接口</p>
@@ -293,8 +294,6 @@
 </li>
 <li><p>编写测试类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserById</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    User user = mapper.getUserById(<span class="number">1</span>);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 </li>
 </ol>
@@ -308,8 +307,6 @@
 <li><p>编写测试类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 增删改需要提交事务</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    <span class="keyword">int</span> res = mapper.addUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;haha&quot;</span>, <span class="string">&quot;123123&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> (res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;插入成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ol>
 <h3 id="4-Update"><a href="#4-Update" class="headerlink" title="4. Update"></a>4. Update</h3><ol>
@@ -322,8 +319,6 @@
 <li><p>编写测试类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.updateUser(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;heihei&quot;</span>, <span class="string">&quot;999999&quot;</span>));</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ol>
 <h3 id="5-Delete"><a href="#5-Delete" class="headerlink" title="5. Delete"></a>5. Delete</h3><ol>
@@ -335,8 +330,6 @@
 </li>
 <li><p>编写测试类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    SqlSession sqlSession = MybatisUtils.getSqlSession();</span><br><span class="line">    UserMapper mapper = sqlSession.getMapper(UserMapper.class);</span><br><span class="line">    mapper.deleteUser(<span class="number">4</span>);</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 </li>
 </ol>
@@ -362,9 +355,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; userList = mapper.getUserLike(<span class="string">&quot;%李%&quot;</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>方式二：在 sql 语句中添加通配符%</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mybatis.user <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">&quot;%&quot;</span><span class="comment">#&#123;value&#125;&quot;%&quot;</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mybatis.user <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">&quot;%&quot;</span><span class="comment">#&#123;value&#125;&quot;%&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
     </div>
@@ -484,20 +475,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -545,13 +536,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">425k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:15</span>
+    <span title="站点阅读时长">6:26</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>

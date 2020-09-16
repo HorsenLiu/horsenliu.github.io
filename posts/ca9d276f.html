@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 数据类型和运算符 number JavaScript 不区分小数和整数  NaN不是数字 Infinity无限大   字符串  ‘abc’ &quot;abc&quot;   布尔值  逻辑运算符  &amp;&amp; || !   比较运算符  &#x3D;&#x3D;     类型不一样，值一样，为 true &#x3D;&#x3D;&#x3D;   类型一样，值一样，为 true">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-10T14:03:00.000Z">
-<meta property="article:modified_time" content="2020-08-20T03:27:02.278Z">
+<meta property="article:modified_time" content="2020-09-06T13:17:05.167Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -127,17 +127,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">88</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -314,8 +314,6 @@
 <li><p>对象</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">&quot;horsen&quot;</span>,</span><br><span class="line">    age: <span class="number">3</span>,</span><br><span class="line">    tags: [<span class="string">&#x27;JavaScript&#x27;</span>,<span class="string">&#x27;java&#x27;</span>,<span class="string">&#x27;web&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ol>
 <h3 id="2-变量"><a href="#2-变量" class="headerlink" title="2. 变量"></a>2. 变量</h3><ol>
@@ -326,8 +324,6 @@
 </ol>
 <h3 id="3-严格检查模式"><a href="#3-严格检查模式" class="headerlink" title="3. 严格检查模式"></a>3. 严格检查模式</h3><p>IDEA 需要设置支持 ES6 语法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;user strict&#x27;</span>;<span class="comment">// 必须写在第一行</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br></pre></td></tr></table></figure>
-
-
 
 <h3 id="4-数据类型详解"><a href="#4-数据类型详解" class="headerlink" title="4. 数据类型详解"></a>4. 数据类型详解</h3><h4 id="4-1-字符串"><a href="#4-1-字符串" class="headerlink" title="4.1 字符串"></a>4.1 字符串</h4><ol>
 <li><p>转义字符</p>
@@ -340,9 +336,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;horsen&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> msg = <span class="string">`你好啊, <span class="subst">$&#123;name&#125;</span>`</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>常用方法</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student = <span class="string">&quot;student&quot;</span>;</span><br><span class="line"><span class="comment">// 字符串长度</span></span><br><span class="line">student.length</span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line">student.toUpperCase()</span><br><span class="line">student.toLowerCase()</span><br><span class="line"><span class="comment">// 返回下标</span></span><br><span class="line">student.indexOf(<span class="string">&#x27;t&#x27;</span>)</span><br><span class="line"><span class="comment">// 截取字符串</span></span><br><span class="line">student.substring(<span class="number">1</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student = <span class="string">&quot;student&quot;</span>;</span><br><span class="line"><span class="comment">// 字符串长度</span></span><br><span class="line">student.length</span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line">student.toUpperCase()</span><br><span class="line">student.toLowerCase()</span><br><span class="line"><span class="comment">// 返回下标</span></span><br><span class="line">student.indexOf(<span class="string">&#x27;t&#x27;</span>)</span><br><span class="line"><span class="comment">// 截取字符串</span></span><br><span class="line">student.substring(<span class="number">1</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -353,31 +347,29 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr.length = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length);<span class="comment">// 结果是10</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>下标索引</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.indexOf(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.indexOf(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>slice()</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.slice(<span class="number">3</span>)<span class="comment">// 从第3个开始截取</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.slice(<span class="number">3</span>)<span class="comment">// 从第3个开始截取</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>push() 和 pop()</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.push(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>)<span class="comment">// 添加在末尾</span></span><br><span class="line">arr.pop()<span class="comment">// 弹出尾部元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.push(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>)<span class="comment">// 添加在末尾</span></span><br><span class="line">arr.pop()<span class="comment">// 弹出尾部元素</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>unshift() 和 shift()</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.unshift(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>)<span class="comment">// 添加在头部</span></span><br><span class="line">arr.shift()<span class="comment">// 弹出头部元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.unshift(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>)<span class="comment">// 添加在头部</span></span><br><span class="line">arr.shift()<span class="comment">// 弹出头部元素</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>排序 sort()</p>
 </li>
 <li><p>元素反转 reverse()</p>
 </li>
 <li><p>拼接 concat() （并不会修改数组，会返回一个新的数组）</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用特定的字符串连接 join()</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.join(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line"><span class="comment">// 结果 “1-2-3”</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.join(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line"><span class="comment">// 结果 “1-2-3”</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>多维数组</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]];</span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">1</span>][<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
-
-
 
 </li>
 </ol>
@@ -396,8 +388,6 @@
 <li><p>判断一个属性是否是这个对象自身拥有的</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.hasOwnProperty(<span class="string">&#x27;age&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ol>
 <h3 id="5-循环遍历"><a href="#5-循环遍历" class="headerlink" title="5. 循环遍历"></a>5. 循环遍历</h3><ol>
@@ -409,8 +399,6 @@
 </li>
 <li><p>for…of</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> num <span class="keyword">of</span> age)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
 </li>
 </ol>
@@ -538,20 +526,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -599,13 +587,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">425k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:15</span>
+    <span title="站点阅读时长">6:26</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="官网：https:&#x2F;&#x2F;dev.mysql.com&#x2F;doc&#x2F;refman&#x2F;5.7&#x2F;en&#x2F;function-reference.html  1. 常用函数1.1 数学运算   名称 描述 示例    ABS() 返回绝对值 select ABS(-8)   CEILING() 向上取整 select CEILING(9.4)   FLOOR() 向下取整 select FLOOR(9.4)   RA">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-26T02:03:52.000Z">
-<meta property="article:modified_time" content="2020-08-20T03:27:02.195Z">
+<meta property="article:modified_time" content="2020-09-06T13:17:00.864Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="select 查询语句">
@@ -129,17 +129,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">88</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -306,8 +306,6 @@
 </tbody></table>
 <a id="more"></a>
 
-
-
 <h4 id="1-2-字符串函数"><a href="#1-2-字符串函数" class="headerlink" title="1.2 字符串函数"></a>1.2 字符串函数</h4><table>
 <thead>
 <tr>
@@ -363,8 +361,6 @@
 </tr>
 </tbody></table>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询姓周的同学，改为邹</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">replace</span>(studentName, <span class="string">&#x27;周&#x27;</span>, <span class="string">&#x27;邹&#x27;</span>) <span class="keyword">from</span> student</span><br><span class="line"><span class="keyword">where</span> studentName <span class="keyword">like</span> <span class="string">&#x27;周%&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
 
 <h4 id="1-3-时间和日期函数（记住）"><a href="#1-3-时间和日期函数（记住）" class="headerlink" title="1.3 时间和日期函数（记住）"></a>1.3 时间和日期函数（记住）</h4><table>
 <thead>
@@ -482,10 +478,7 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询不同课程的平均分 最高分 最低分 平均分大于80</span></span><br><span class="line"><span class="keyword">select</span> subjectName,<span class="keyword">avg</span>(StudentResult) <span class="keyword">as</span> 平均分,<span class="keyword">max</span>(StudentResult) <span class="keyword">as</span> 最高分,<span class="keyword">min</span>(StudentResult) <span class="keyword">as</span> 最低分</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">result</span> r</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> subject sub</span><br><span class="line"><span class="keyword">on</span> r.subjectNo = sub.subjectNo</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> r.subjectNo</span><br><span class="line"><span class="keyword">having</span> 平均分&gt;<span class="number">80</span></span><br></pre></td></tr></table></figure>
 
-
-
 <h3 id="4-数据库级别的-MD5-加密"><a href="#4-数据库级别的-MD5-加密" class="headerlink" title="4. 数据库级别的 MD5 加密"></a>4. 数据库级别的 MD5 加密</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 加密全部的密码</span></span><br><span class="line"><span class="keyword">update</span> testmd5 <span class="keyword">set</span> pwd = <span class="keyword">md5</span>(pwd)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入的时候加密</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testmd5 <span class="keyword">values</span>(<span class="number">4</span>,<span class="string">&#x27;lhx&#x27;</span>,<span class="keyword">md5</span>(<span class="string">&#x27;123456&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 校验用户传递进来的密码</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> testmd5 <span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">&#x27;lhx&#x27;</span> <span class="keyword">and</span> pwd=<span class="keyword">md5</span>(<span class="string">&#x27;123456&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -605,20 +598,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -666,13 +659,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">425k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:15</span>
+    <span title="站点阅读时长">6:26</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="结合上一篇博客，如果想要删除一个组件，需要在组件中添加删除按钮，但组件相关的数据项在 Vue 实例中，为了实现点击组件，对应地删除 Vue 实例中的数据，需要用到参数传递和事件分发。 自定义事件的公式如下：this.$emit(&#39;自定义事件名&#39;, &#39;参数&#39;)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-15T03:26:00.000Z">
-<meta property="article:modified_time" content="2020-08-20T03:27:02.294Z">
+<meta property="article:modified_time" content="2020-09-06T13:17:11.593Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="自定义事件">
@@ -128,17 +128,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">88</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -284,14 +284,9 @@
 <li><p>修改 HTML，使用<code>v-on</code>将前端页面的自定义事件<code>remove</code>和删除 Vue 实例中 item 的方法绑定起来（注意传参）。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">todo-items</span> <span class="attr">slot</span>=<span class="string">&quot;todo-items&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(item,index) in todoItems&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">:index</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">            @<span class="attr">remove</span>=<span class="string">&quot;removeItems(index)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-items</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ol>
 <h3 id="2-逻辑理解"><a href="#2-逻辑理解" class="headerlink" title="2. 逻辑理解"></a>2. 逻辑理解</h3><p>组件无法直接使用 Vue 实例中的方法，组件只能调用自身的方法。所以要通过组件调用自身方法绑定自定义事件的名称，在将自定义事件绑定 Vue 实例用的方法。</p>
-
-
-
 
 
     </div>
@@ -411,20 +406,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">135</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-count">99</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -472,13 +467,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">347k</span>
+    <span title="站点总字数">425k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:15</span>
+    <span title="站点阅读时长">6:26</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
