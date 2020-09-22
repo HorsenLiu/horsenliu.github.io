@@ -122,17 +122,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">99</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">101</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">21</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">135</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">141</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/70431d06.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/41f149cf.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/70431d06.html" class="post-title-link" itemprop="url">14_Webpack</a>
+            <a href="/posts/41f149cf.html" class="post-title-link" itemprop="url">01_JVM 探究</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 19:29:00" itemprop="dateCreated datePublished" datetime="2020-09-11T19:29:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-09-21 08:18:00" itemprop="dateCreated datePublished" datetime="2020-09-21T08:18:00+08:00">2020-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,7 +224,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JVM/" itemprop="url" rel="index"><span itemprop="name">JVM</span></a>
                 </span>
             </span>
 
@@ -234,14 +238,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>98</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -253,14 +257,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Webpack 是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按 照指定的规则生成对应的静态资源。 </p>
-<p>从图中我们可以看出，Webpack 可以将多种静态资源 js、css、less 转换成一个静态文件，减少了页面的请求。 </p>
-<img src="/posts/70431d06/image-20200911193010054.png" class>
+          <h3 id="1-JVM-的位置"><a href="#1-JVM-的位置" class="headerlink" title="1. JVM 的位置"></a>1. JVM 的位置</h3><p>JVM 是运行在操作系统之上的，它与硬件没有直接的交互</p>
+<img src="/posts/41f149cf/image-20200921084310282.png" class>
 
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g webpack webpack-cli</span><br><span class="line">webpack -v</span><br></pre></td></tr></table></figure>
+<h3 id="2-JVM-体系结构图"><a href="#2-JVM-体系结构图" class="headerlink" title="2. JVM 体系结构图"></a>2. JVM 体系结构图</h3><p>只有方法区和堆中会存在垃圾，所谓 JVM 调优，其实就是在调方法区和堆，而 99% 的情况下都在调堆。</p>
+<img src="/posts/41f149cf/image-20200921084557808.png" class>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/70431d06.html#more" rel="contents">
+              <a class="btn" href="/posts/41f149cf.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -284,7 +288,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/b26dd3ae.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/77fd642e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -298,7 +302,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/b26dd3ae.html" class="post-title-link" itemprop="url">13_模块化</a>
+            <a href="/posts/77fd642e.html" class="post-title-link" itemprop="url">19_讲师_管理表单组件</a>
         </h2>
 
         <div class="post-meta">
@@ -308,7 +312,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 15:10:00" itemprop="dateCreated datePublished" datetime="2020-09-11T15:10:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-09-14 19:41:00" itemprop="dateCreated datePublished" datetime="2020-09-14T19:41:00+08:00">2020-09-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -326,14 +330,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -345,217 +349,158 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-CommonJS-模块化规范"><a href="#1-CommonJS-模块化规范" class="headerlink" title="1. CommonJS 模块化规范"></a>1. CommonJS 模块化规范</h3><p><strong>CommonJS 使用<code>exports</code>和<code>require</code>来导出、导入模块</strong></p>
-<ol>
-<li><p>导出模块</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建js方法</span></span><br><span class="line"><span class="comment">// 定义成员</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) + <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> subtract = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) - <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> multiply = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) * <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> divide = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) / <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 导出成员</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    sum,</span><br><span class="line">    subtract,</span><br><span class="line">    multiply,</span><br><span class="line">    divide</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h3 id="1-新增"><a href="#1-新增" class="headerlink" title="1. 新增"></a>1. 新增</h3><ol>
+<li><p>定义 api</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新增讲师</span></span><br><span class="line">save(teacher) &#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: api_name,</span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    data: teacher</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>导入模块</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用01.js中的方法</span></span><br><span class="line"><span class="comment">// 引入01.js</span></span><br><span class="line"><span class="keyword">const</span> m = <span class="built_in">require</span>(<span class="string">&quot;./01.js&quot;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(m)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result1 = m.sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">const</span> result2 = m.subtract(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(result1, result2)</span><br></pre></td></tr></table></figure>
+<li><p>初始化组件，设计表单</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app-container&quot;</span>&gt;</span></span><br><span class="line">    讲师表单</span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">label-width</span>=<span class="string">&quot;120px&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;讲师名称&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;teacher.name&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;讲师排序&quot;</span>&gt;</span></span><br><span class="line">        &lt;&lt;el-input-number</span><br><span class="line">          v-model=&quot;teacher.sort&quot;</span><br><span class="line">          controls-position=&quot;right&quot;</span><br><span class="line">          min=&quot;0&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;讲师头衔&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-select</span></span></span><br><span class="line"><span class="tag">          <span class="attr">v-model</span>=<span class="string">&quot;teacher.level&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">clearable</span></span></span><br><span class="line"><span class="tag">          <span class="attr">placeholder</span>=<span class="string">&quot;请选择&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            数据类型一定要和取出的json中的一致, 否则没法回填</span></span><br><span class="line"><span class="comment">            因此, 这里value使用动态绑定的值, 保证其数据类型是number</span></span><br><span class="line"><span class="comment">          --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-option</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:value</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">label</span>=<span class="string">&quot;高级讲师&quot;</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-option</span></span></span><br><span class="line"><span class="tag">            <span class="attr">:value</span>=<span class="string">&quot;2&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">label</span>=<span class="string">&quot;首席讲师&quot;</span></span></span><br><span class="line"><span class="tag">          /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;讲师资历&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;teacher.career&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;讲师介绍&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span></span></span><br><span class="line"><span class="tag">          <span class="attr">v-model</span>=<span class="string">&quot;teacher.intro&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">type</span>=<span class="string">&quot;textarea&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">:rows</span>=<span class="string">&quot;10&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 讲师头像: TODO --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">          <span class="attr">:disable</span>=<span class="string">&quot;saveBtnDisabled&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span></span></span><br><span class="line"><span class="tag">          @<span class="attr">click</span>=<span class="string">&quot;saveOrUpdate&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span>保存<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写 axios</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      teacher: &#123;</span><br><span class="line"><span class="javascript">        name: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line">        sort: 0,</span><br><span class="line">        level: 1,</span><br><span class="line"><span class="javascript">        career: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        intro: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        avatar: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="javascript">      saveBtnDisabled: <span class="literal">false</span> <span class="comment">// 保存按钮是否禁用</span></span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    saveOrUpdate() &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.saveBtnDisabled = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.saveData();</span></span><br><span class="line">    &#125;,</span><br><span class="line">    saveData() &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">saveData() &#123;</span><br><span class="line">  teacher</span><br><span class="line">    .save(<span class="built_in">this</span>.teacher)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">        type: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">        message: <span class="string">&#x27;保存成功&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 保存成功跳转到表格页面</span></span><br><span class="line">      <span class="built_in">this</span>.$router.push(&#123; <span class="attr">path</span>: <span class="string">&#x27;/edu/teacher&#x27;</span> &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">        type: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">        message: <span class="string">&#x27;保存失败&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 </li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/b26dd3ae.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/aca7959.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/aca7959.html" class="post-title-link" itemprop="url">12_Node.js、NPM 和 Babel</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 10:48:00" itemprop="dateCreated datePublished" datetime="2020-09-11T10:48:00+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-Node-js-简介"><a href="#1-Node-js-简介" class="headerlink" title="1. Node.js 简介"></a>1. Node.js 简介</h3><p><strong>什么是 Node.js</strong></p>
-<p>简单的说 Node.js 就是运行在服务端的 JavaScript。 Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度 非常快，性能非常好。</p>
-<p><strong>Node.js 有什么用</strong></p>
-<p>如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。 Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。 当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择。</p>
-<h3 id="2-NPM-简介"><a href="#2-NPM-简介" class="headerlink" title="2. NPM 简介"></a>2. NPM 简介</h3><p><strong>什么是 NPM</strong></p>
-<p>NPM 全称 Node Package Manager，是 Node.js 包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的，也是 Node.js 的包管理工具，相当于前端的 Maven。</p>
-<p><strong>npm 工具的安装位置</strong></p>
-<p>我们通过 npm 可以很方便地下载 js 库，管理前端工程。 </p>
-<p>Node.js 默认安装的 npm 包和工具的位置：Node.js目录\node_modules </p>
-<p>在这个目录下可以看见 npm目录，npm 本身就是被 NPM 包管理器管理的一个工具，说明 Node.js 已经集成了npm 工具</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/aca7959.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/8ecad9eb.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/8ecad9eb.html" class="post-title-link" itemprop="url">10_Axios 入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-11 08:44:00" itemprop="dateCreated datePublished" datetime="2020-09-11T08:44:00+08:00">2020-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>axios 是独立于 vue 的一个项目，基于promise 用于浏览器和 node.js 的 http 客户端</p>
+<p><strong>遇到一个坑：</strong></p>
+<p>因为我用了 RESTful 风格设计请求，所以增加讲师的请求</p>
 <ul>
-<li>在浏览器中可以帮助我们完成 ajax 请求的发送</li>
-<li>在 node.js 中可以向远程接口发送请求</li>
+<li>在 Controller 中为<code>@PostMapping(&quot;/&quot;)</code></li>
+<li>地址为<code>http://localhost:8080/edu/teachers/</code></li>
+<li>而 api 中的常量是<code>const api_name = &#39;/edu/teachers&#39;;</code></li>
 </ul>
-<h3 id="1-获取数据"><a href="#1-获取数据" class="headerlink" title="1. 获取数据"></a>1. 获取数据</h3><ol>
-<li><p>编写 data.json</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">20000</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;成功&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;items&quot;</span>: [</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Lucy&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">20</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Marry&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">30</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Jack&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">40</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于最后少了一个<code>/</code>，导致 swagger 测试时没问题，但前端请求会有 404 问题。</p>
+<h3 id="2-回显"><a href="#2-回显" class="headerlink" title="2. 回显"></a>2. 回显</h3><ol>
+<li><p>添加一个修改按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#x27;/edu/teacher/edit/&#x27;+scope.row.id&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">      <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">size</span>=<span class="string">&quot;mini&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">icon</span>=<span class="string">&quot;el-icon-edit&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">round</span></span></span><br><span class="line"><span class="tag">    &gt;</span>修改<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">&quot;danger&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">size</span>=<span class="string">&quot;mini&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">icon</span>=<span class="string">&quot;el-icon-delete&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">round</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">click</span>=<span class="string">&quot;removeDataById(scope.row.id)&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span>删除<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>引入 axios，编写 html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 固定的结构</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 在data定义变量和初始值</span></span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 定义变量 值空数组</span></span></span><br><span class="line">                userList: [],</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 页面渲染之前执行</span></span></span><br><span class="line">            created() &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 调用定义的方法</span></span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.getUseList();</span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 编写具体的方法</span></span></span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 查询所有用户</span></span></span><br><span class="line">                getUseList() &#123;</span><br><span class="line"><span class="javascript">                    <span class="comment">// 使用axios发送ajax请求</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// 模板: axios.提交方式(&quot;请求接口路径&quot;).then(箭头函数).catch(箭头函数)</span></span></span><br><span class="line">                    axios</span><br><span class="line"><span class="javascript">                        .get(<span class="string">&quot;data.json&quot;</span>)</span></span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求成功执行then方法</span></span></span><br><span class="line"><span class="javascript">                        .then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(response);</span></span><br><span class="line">                        &#125;)</span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求失败执行catch方法</span></span></span><br><span class="line"><span class="javascript">                        .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(error);</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>定义 api</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过id获取讲师</span></span><br><span class="line">getById(id) &#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">`<span class="subst">$&#123;api_name&#125;</span>/<span class="subst">$&#123;id&#125;</span>`</span>,</span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组件中调用 api</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过id获取讲师</span></span><br><span class="line">fetchDataById(id) &#123;</span><br><span class="line">  teacher</span><br><span class="line">    .getById(id)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.teacher = response.data.teacher;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">        type: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">        message: <span class="string">&#x27;获取数据失败&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>页面渲染前调用方法</p>
+<p><strong>注意：</strong>是<code>$route</code>而不是<code>$router</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">  <span class="comment">// params表示路由中的参数, 指 path: &#x27;edit/:id&#x27; 中类似:id的参数</span></span><br><span class="line">  <span class="comment">// 注意是route不是router</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.$route.params &amp;&amp; <span class="built_in">this</span>.$route.params.id) &#123;</span><br><span class="line">    <span class="keyword">const</span> id = <span class="built_in">this</span>.$route.params.id;</span><br><span class="line">    <span class="built_in">this</span>.fetchDataById(id);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
+<h3 id="3-更新"><a href="#3-更新" class="headerlink" title="3. 更新"></a>3. 更新</h3><ol>
+<li><p>定义 api</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改讲师</span></span><br><span class="line">update(teacher) &#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">`<span class="subst">$&#123;api_name&#125;</span>/<span class="subst">$&#123;teacher.id&#125;</span>`</span>,</span><br><span class="line">    method: <span class="string">&#x27;put&#x27;</span>,</span><br><span class="line">    data: teacher</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组件中调用 api</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">updateData() &#123;</span><br><span class="line">  <span class="built_in">this</span>.saveBtnDisabled = <span class="literal">true</span>;</span><br><span class="line">  teacher</span><br><span class="line">    .update(<span class="built_in">this</span>.teacher)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">        type: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">        message: <span class="string">&#x27;修改成功&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$router.push(&#123; <span class="attr">path</span>: <span class="string">&#x27;/edu/teacher&#x27;</span> &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$message(&#123;</span><br><span class="line">        type: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">        message: <span class="string">&#x27;保存失败&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>完善 saveOrUpdate() 方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">saveOrUpdate() &#123;</span><br><span class="line">  <span class="built_in">this</span>.saveBtnDisabled = <span class="literal">true</span>;</span><br><span class="line">  <span class="comment">// 如果teacher对象中有id, 说明是修改, 因为创建不需要输入id</span></span><br><span class="line">  <span class="comment">// 这个teacher对象是后端返回给前端的, 不是data中的</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.teacher.id) &#123;</span><br><span class="line">    <span class="built_in">this</span>.updateData();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.saveData();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="4-存在问题"><a href="#4-存在问题" class="headerlink" title="4. 存在问题"></a>4. 存在问题</h3><p>vue-router 导航切换 时，如果两个路由都渲染同个组件，组件会重用, 组件的生命周期钩子（created）不会再被调用，使得组件的一些数据无法根据 path 的改变得到更新。</p>
+<p>因此可以：</p>
+<ul>
+<li>在 watch 中监听路由的变化，当路由变化时，重新调用 created中的内容 </li>
+<li>在 init 方法中判断路由的变化，如果是修改路由，则从 api 获取表单数据， 如果是新增路由，则重新初始化表单数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultForm = &#123;</span><br><span class="line">  name: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  sort: <span class="number">0</span>,</span><br><span class="line">  level: <span class="number">1</span>,</span><br><span class="line">  career: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  intro: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  avatar: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    ......</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 监听</span></span><br><span class="line">  watch: &#123;</span><br><span class="line">    <span class="comment">// 当路由发生变化, 方法执行</span></span><br><span class="line">    $route(to, <span class="keyword">from</span>) &#123;</span><br><span class="line">      <span class="built_in">this</span>.init();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    <span class="built_in">this</span>.init();</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    init() &#123;</span><br><span class="line">      <span class="comment">// params表示路由中的参数, 指 path: &#x27;edit/:id&#x27; 中类似:id的参数</span></span><br><span class="line">      <span class="comment">// 注意是route不是router</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.$route.params &amp;&amp; <span class="built_in">this</span>.$route.params.id) &#123;</span><br><span class="line">        <span class="keyword">const</span> id = <span class="built_in">this</span>.$route.params.id;</span><br><span class="line">        <span class="built_in">this</span>.fetchDataById(id);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则新增一条记录后, defaultForm就变成了之前新增的teacher的值</span></span><br><span class="line">        <span class="comment">// 使用对象拓展运算符, 拷贝对象, 而不是引用</span></span><br><span class="line">        <span class="built_in">this</span>.teacher = &#123; ...defaultForm &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ......</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/75d542ba.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/75d542ba.html" class="post-title-link" itemprop="url">18_讲师_管理列表组件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-13 15:39:00" itemprop="dateCreated datePublished" datetime="2020-09-13T15:39:00+08:00">2020-09-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-分页列表"><a href="#1-分页列表" class="headerlink" title="1. 分页列表"></a>1. 分页列表</h3><ol>
+<li><p>定义 api</p>
+<p>创建文件 src/api/edu/teacher.js</p>
+<p><strong>注意：</strong>api_name 的末尾必须有一个<code>/</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> api_name = <span class="string">&#x27;/edu/teachers/&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  getPageList(page, limit, searchObj) &#123;</span><br><span class="line">    <span class="keyword">return</span> request(&#123;</span><br><span class="line">      url: <span class="string">`<span class="subst">$&#123;api_name&#125;</span>/<span class="subst">$&#123;page&#125;</span>/<span class="subst">$&#123;limit&#125;</span>`</span>,</span><br><span class="line">      method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">      data: searchObj</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 vue 组件</p>
+<p>修改 src/views/edu/teacher/list.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import teacher from &#39;@&#x2F;api&#x2F;edu&#x2F;teacher&#39;;</span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 定义数据</span><br><span class="line">  data() &#123;&#125;,</span><br><span class="line">  &#x2F;&#x2F; 当前页面加载时获取数据</span><br><span class="line">  created() &#123;</span><br><span class="line">    this.fetchData();</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 调用api层获取数据库中的数据</span><br><span class="line">  methods: &#123;</span><br><span class="line">    fetchData() &#123;</span><br><span class="line">      console.log(&#39;加载列表&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure></li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/8ecad9eb.html#more" rel="contents">
+              <a class="btn" href="/posts/75d542ba.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -579,7 +524,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/76780ad4.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a0437db0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -593,7 +538,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/76780ad4.html" class="post-title-link" itemprop="url">10_Vue 入门</a>
+            <a href="/posts/a0437db0.html" class="post-title-link" itemprop="url">17_讲师_添加相关路由</a>
         </h2>
 
         <div class="post-meta">
@@ -603,7 +548,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-10 15:33:00" itemprop="dateCreated datePublished" datetime="2020-09-10T15:33:00+08:00">2020-09-10</time>
+              <time title="创建时间：2020-09-12 17:06:00" itemprop="dateCreated datePublished" datetime="2020-09-12T17:06:00+08:00">2020-09-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -621,14 +566,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.8k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -640,22 +585,109 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-初识-vue-js"><a href="#1-初识-vue-js" class="headerlink" title="1. 初识 vue.js"></a>1. 初识 vue.js</h3><ol>
-<li><p>新建文件</p>
+          <h3 id="1-复制-icon-图标"><a href="#1-复制-icon-图标" class="headerlink" title="1. 复制 icon 图标"></a>1. 复制 icon 图标</h3><p>将 vue-element-admin-master/src/icons/svg 中的图标复制到 guli-admin项目中</p>
+<h3 id="2-修改路由"><a href="#2-修改路由" class="headerlink" title="2. 修改路由"></a>2. 修改路由</h3><p>修改 src/router/index.js 文件，重新定义 constantRouterMap</p>
+<p><strong>注意：每个路由的 name 不能相同</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> constantRouterMap = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/login&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/login/index&#x27;</span>), <span class="attr">hidden</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/404&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/404&#x27;</span>), <span class="attr">hidden</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="comment">// 首页</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/dashboard&#x27;</span>,</span><br><span class="line">    name: <span class="string">&#x27;Dashboard&#x27;</span>,</span><br><span class="line">    hidden: <span class="literal">true</span>,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: <span class="string">&#x27;dashboard&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/dashboard/index&#x27;</span>),</span><br><span class="line">      meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;谷粒学院后台首页&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;dashboard&#x27;</span> &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 讲师管理</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/edu/teacher&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/edu/teacher/list&#x27;</span>,</span><br><span class="line">    name: <span class="string">&#x27;Teacher&#x27;</span>,</span><br><span class="line">    meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师管理&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;peoples&#x27;</span> &#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;list&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherList&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/list&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师列表&#x27;</span> &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;create&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherCreate&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/form&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;添加讲师&#x27;</span> &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;edit/:id&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherEdit&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/form&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;编辑讲师&#x27;</span>, <span class="attr">noCache</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">        hidden: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 404</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    redirect: <span class="string">&#x27;/404&#x27;</span>,</span><br><span class="line">    hidden: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/a0437db0.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/6258c8f5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/6258c8f5.html" class="post-title-link" itemprop="url">16_处理登录请求</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-12 15:41:00" itemprop="dateCreated datePublished" datetime="2020-09-12T15:41:00+08:00">2020-09-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-修改前端"><a href="#1-修改前端" class="headerlink" title="1. 修改前端"></a>1. 修改前端</h3><ol>
+<li><p>修改 config/dev.env.js，修改请求地址</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> prodEnv = <span class="built_in">require</span>(<span class="string">&#x27;./prod.env&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">&#x27;&quot;development&quot;&#x27;</span>,</span><br><span class="line">  <span class="comment">//BASE_API: &#x27;&quot;https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin&quot;&#x27;,</span></span><br><span class="line">  BASE_API: <span class="string">&#x27;&quot;http://localhost:8001&quot;&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>vscode 快捷键<code>!</code>生成 html 代码</p>
-</li>
-<li><p>引入 vue.mix.js</p>
-</li>
-<li><p>开始写代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &#123;&#123;&#125;&#125; 插值表达式，绑定vue中的data数据 --&gt;</span></span><br><span class="line">            &#123;&#123; message &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 绑定vue作用的范围</span></span></span><br><span class="line"><span class="javascript">                el: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 定义页面中显示的模型数据</span></span></span><br><span class="line">                data: &#123;</span><br><span class="line"><span class="javascript">                    message: <span class="string">&quot;Hello, vue.&quot;</span>,</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>修改 src/login.js，修改请求 url</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">username, password</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/edu/user/login&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      username,</span><br><span class="line">      password</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params">token</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/edu/user/info&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    params: &#123; token &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">logout</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/user/logout&#x27;</span>,</span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<p>这就是<strong>声明式渲染</strong>：Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统，这里的核心思想就是没有繁琐的 DOM 操作，例如 jQuery 中，我们需要先找到div 节点，获取到 DOM 对象，然后进行一系列的节点操作。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/76780ad4.html#more" rel="contents">
+              <a class="btn" href="/posts/6258c8f5.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -678,7 +710,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -746,20 +778,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -807,13 +839,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">425k</span>
+    <span title="站点总字数">433k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:26</span>
+    <span title="站点阅读时长">6:33</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
