@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/aca7959.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/4bba9942.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/aca7959.html" class="post-title-link" itemprop="url">12_Node.js、NPM 和 Babel</a>
+            <a href="/posts/4bba9942.html" class="post-title-link" itemprop="url">02_环境配置和基本理论</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 10:48:00" itemprop="dateCreated datePublished" datetime="2020-09-11T10:48:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-08-30 22:44:00" itemprop="dateCreated datePublished" datetime="2020-08-30T22:44:00+08:00">2020-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,7 +224,472 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Git 学习笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1. 环境配置"></a>1. 环境配置</h3><h4 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h4><ol>
+<li><p>下载软件</p>
+<blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a></p>
+<p>镜像：<a target="_blank" rel="noopener" href="http://npm.taobao.org/mirrors/git-for-windows/">http://npm.taobao.org/mirrors/git-for-windows/</a></p>
+</blockquote>
+</li>
+<li><p>如果安装时没有设置文本编辑器，可以使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --replace-all core.editor &quot;&#x27;D:\Installed\Microsoft VS Code\Code.exe&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="1-2-常用的-Linux-命令"><a href="#1-2-常用的-Linux-命令" class="headerlink" title="1.2 常用的 Linux 命令"></a>1.2 常用的 Linux 命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cd</code></td>
+<td>改变目录</td>
+</tr>
+<tr>
+<td><code>cd..</code></td>
+<td>回退到上一个目录，直接<code>cd</code>进入默认目录</td>
+</tr>
+<tr>
+<td><code>pwd</code></td>
+<td>显示当前所在的目录路径</td>
+</tr>
+<tr>
+<td><code>ls</code>或<code>ll</code></td>
+<td>列出当前目录中的所有文件</td>
+</tr>
+<tr>
+<td><code>touch</code></td>
+<td>新建一个文件</td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td>删除一个文件</td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td>新建一个目录（文件夹）</td>
+</tr>
+<tr>
+<td><code>rm -r</code></td>
+<td>删除一个文件夹</td>
+</tr>
+<tr>
+<td><code>mv</code></td>
+<td>移动文件</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>重新初始化终端/清屏</td>
+</tr>
+<tr>
+<td><code>clear</code></td>
+<td>清屏</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>查看命令历史</td>
+</tr>
+<tr>
+<td><code>help</code></td>
+<td>帮助</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/4bba9942.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/172a6c9c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/172a6c9c.html" class="post-title-link" itemprop="url">01_版本控制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-30 21:16:00" itemprop="dateCreated datePublished" datetime="2020-08-30T21:16:00+08:00">2020-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Git 学习笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>版本控制（Revision control）是一种在开发的过程中用于管理对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p>
+<ul>
+<li>实现跨区域多人协同开发</li>
+<li>追踪和记载一个或者多个文件的历史记录</li>
+<li>组织和保护你的源代码和文档</li>
+<li>统计工作量</li>
+<li>并行开发、提高开发效率</li>
+<li>跟踪记录整个软件的开发过程</li>
+<li>减轻开发人员的负担，节省时间，同时降低人为错误</li>
+</ul>
+<p>简单说就是用于管理多人协同开发项目的技术。</p>
+<p>没有进行版本控制或者版本控制本身缺乏正确的流程管理，在软件开发过程中将会引入很多问题，如软件代码的一致性、软件内容的冗余、软件过程的事物性、软件开发过程中的并发性、软件源代码的安全性，以及软件的整合等问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/172a6c9c.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/595a495b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/595a495b.html" class="post-title-link" itemprop="url">08_Zuul 路由</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-30 15:52:00" itemprop="dateCreated datePublished" datetime="2020-08-30T15:52:00+08:00">2020-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Zuul 包含了对请求的<strong>路由</strong>和<strong>过滤</strong>两个最主要的功能：</p>
+<ul>
+<li>其中路由功能负责将外部请求转发到具体的微服务实例上，是实现外部访问统一入口的基础。</li>
+<li>而过滤器功能则负责对请求的处理过程进行干预，是实现请求校验，服务聚合等功能的基础。</li>
+</ul>
+<p>Zuul 和 Eureka 进行整合，将 Zuul 自身注册为 Eureka 服务治理下的应用，同时从 Eureka 中获得其他微服务的消息，也即以后的访问微服务都是通过 Zuul 跳转后获得。<strong>Zuul 服务最终还是会注册进 Eureka。</strong></p>
+<blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://github.com/Netflix/zuul">https://github.com/Netflix/zuul</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/595a495b.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/cde0a133.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/cde0a133.html" class="post-title-link" itemprop="url">07_Hystrix 断路器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-27 14:53:00" itemprop="dateCreated datePublished" datetime="2020-08-27T14:53:00+08:00">2020-08-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-简述"><a href="#1-简述" class="headerlink" title="1. 简述"></a>1. 简述</h3><p><strong>分布式系统面临的问题</strong></p>
+<p>复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免的失败。</p>
+<hr>
+<p><strong>服务雪崩</strong></p>
+<p>多个微服务之间调用的时候，假设<code>微服务A</code>调用<code>微服务B</code>和<code>微服务C</code>，<code>微服务B</code>和<code>微服务C</code>又调用<code>其他的微服务</code>，这就是所谓的“扇出”。</p>
+<img src="/posts/cde0a133/1.png" class>
+
+<p>如果扇出的链路上某个微服务的调用响应时间过长或者不可用，对<code>微服A</code>的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的 “雪崩效应”。</p>
+<img src="/posts/cde0a133/2.png" class>
+
+<p>对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几秒中内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障，这些都表示需要对故障和延迟进行隔离和管理，以便单个依赖关系 的失败，不能取消整个应用程序或系统。</p>
+<img src="/posts/cde0a133/3.png" class>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/cde0a133.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/b61ae779.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/b61ae779.html" class="post-title-link" itemprop="url">06_Feign 负载均衡</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-26 17:13:00" itemprop="dateCreated datePublished" datetime="2020-08-26T17:13:00+08:00">2020-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
                 </span>
             </span>
 
@@ -253,19 +718,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-Node-js-简介"><a href="#1-Node-js-简介" class="headerlink" title="1. Node.js 简介"></a>1. Node.js 简介</h3><p><strong>什么是 Node.js</strong></p>
-<p>简单的说 Node.js 就是运行在服务端的 JavaScript。 Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度 非常快，性能非常好。</p>
-<p><strong>Node.js 有什么用</strong></p>
-<p>如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。 Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。 当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择。</p>
-<h3 id="2-NPM-简介"><a href="#2-NPM-简介" class="headerlink" title="2. NPM 简介"></a>2. NPM 简介</h3><p><strong>什么是 NPM</strong></p>
-<p>NPM 全称 Node Package Manager，是 Node.js 包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的，也是 Node.js 的包管理工具，相当于前端的 Maven。</p>
-<p><strong>npm 工具的安装位置</strong></p>
-<p>我们通过 npm 可以很方便地下载 js 库，管理前端工程。 </p>
-<p>Node.js 默认安装的 npm 包和工具的位置：Node.js目录\node_modules </p>
-<p>在这个目录下可以看见 npm目录，npm 本身就是被 NPM 包管理器管理的一个工具，说明 Node.js 已经集成了npm 工具</p>
+          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Feign 是声明式的 Web Service 客户端，它让微服务之间的调用变得更简单了，类似 Controller 调用 Service 。</p>
+<p>Spring Cloud 集成了 Ribbon 和 Eureka，可在使用 Feign 时提供负载均衡的 http 客户端。 只需要创建一个接口，然后添加注解。</p>
+<p><strong>调用微服务访问两种方法</strong></p>
+<ol>
+<li>微服务名字 –&gt; Ribbon</li>
+<li>接口和注解 –&gt; Feign</li>
+</ol>
+<hr>
+<p><strong>Feign 能做什么</strong></p>
+<ul>
+<li>Feign旨在使编写 Java Http 客户端变得更容易</li>
+<li>在使用 Ribbon + RestTemplate 时，利用 RestTemplate 对 Http 请求的封装处理，形成了一套模板化的调用方法。但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。</li>
+<li>Feign 在此基础上做了进一步封装，由它来帮助我们定义和实现依赖服务接口的定义，在Feign 的实现下，只需要创建一个接口并使用注解的方式来配置它（类似于以前 Dao 接口上标注 Mapper 注解，现在是一个微服务接口上面标注一个 Feign 注解）即可完成对服务提供方的接口绑定，简化了使用 Spring Cloud Ribbon 时，自动封装服务调用客户端的开发量。</li>
+<li>Ribbon维护了 spring-cloud -dept 的服务列表信息，并且通过轮询实现了客户端的负载均衡， 而与 Ribbon 不同的是，通过 Feign 只需要定义服务绑定接口且以声明式的方法，优雅而且简单地实现了服务调用。</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/aca7959.html#more" rel="contents">
+              <a class="btn" href="/posts/b61ae779.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -289,7 +759,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/8ecad9eb.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/d16c64a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -303,7 +773,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/8ecad9eb.html" class="post-title-link" itemprop="url">10_Axios 入门</a>
+            <a href="/posts/d16c64a.html" class="post-title-link" itemprop="url">05_Ribbon 负载均衡</a>
         </h2>
 
         <div class="post-meta">
@@ -313,7 +783,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 08:44:00" itemprop="dateCreated datePublished" datetime="2020-09-11T08:44:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-08-25 22:10:00" itemprop="dateCreated datePublished" datetime="2020-08-25T22:10:00+08:00">2020-08-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -321,7 +791,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
                 </span>
             </span>
 
@@ -331,14 +805,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -350,23 +824,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>axios 是独立于 vue 的一个项目，基于promise 用于浏览器和 node.js 的 http 客户端</p>
+          <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p><strong>Ribbon 是什么</strong></p>
+<p>Spring Cloud Ribbon 是基于 Netflix Ribbon 实现的一套<strong>客户端负载均衡的工具</strong>。</p>
+<p>简单的说，Ribbon 是 Netflix 发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将 NetFlix 的中间层服务连接在一起。Ribbon 的客户端组件提供一系列完整的配置项如：连接超时、重试等等。简单地说，就是在配置文件中列出 LoadBalancer（简称LB：负载均衡）后面所有的机器，Ribbon 会自动的帮助你基于某种规则（如简单轮询，随机连接等等）去连接这些机器。我们也很容易使用 Ribbon 实现自定义的负载均衡算法。</p>
+<hr>
+<p><strong>Ribbon 能做什么</strong></p>
+<p>LB，即负载均衡（Load Balance），在微服务或分布式集群中经常用的一种应用。 </p>
+<p>负载均衡简单地说就是将用户的请求平摊的分配到多个服务上，从而达到系统的 HA（高可用）。 常见的负载均衡软件有 Nginx，Lvs 等等。Dubbo、Spring Cloud 中均提供了负载均衡，Spring Cloud 的负载均衡算法可以自定义负载均衡简单分类： </p>
 <ul>
-<li>在浏览器中可以帮助我们完成 ajax 请求的发送</li>
-<li>在 node.js 中可以向远程接口发送请求</li>
+<li><p>集中式 LB</p>
+<ul>
+<li>即在服务的消费方和提供方之间使用独立的 LB 设施</li>
+<li>如之前学习的 Nginx，由该设施负责把访问请求通过某种策略转发至服务的提供方</li>
 </ul>
-<h3 id="1-获取数据"><a href="#1-获取数据" class="headerlink" title="1. 获取数据"></a>1. 获取数据</h3><ol>
-<li><p>编写 data.json</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">20000</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;成功&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;items&quot;</span>: [</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Lucy&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">20</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Marry&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">30</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Jack&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">40</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>引入 axios，编写 html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 固定的结构</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 在data定义变量和初始值</span></span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 定义变量 值空数组</span></span></span><br><span class="line">                userList: [],</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 页面渲染之前执行</span></span></span><br><span class="line">            created() &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 调用定义的方法</span></span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.getUseList();</span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 编写具体的方法</span></span></span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 查询所有用户</span></span></span><br><span class="line">                getUseList() &#123;</span><br><span class="line"><span class="javascript">                    <span class="comment">// 使用axios发送ajax请求</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// 模板: axios.提交方式(&quot;请求接口路径&quot;).then(箭头函数).catch(箭头函数)</span></span></span><br><span class="line">                    axios</span><br><span class="line"><span class="javascript">                        .get(<span class="string">&quot;data.json&quot;</span>)</span></span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求成功执行then方法</span></span></span><br><span class="line"><span class="javascript">                        .then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(response);</span></span><br><span class="line">                        &#125;)</span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求失败执行catch方法</span></span></span><br><span class="line"><span class="javascript">                        .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(error);</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<li><p>进程式 LB </p>
+<ul>
+<li>将 LB 逻辑集成到消费方，消费方从服务注册中心获知有哪些地址可用，然后自己再从这些地址中选出一个合适的服务器。 </li>
+<li><strong>Ribbon 就属于进程内 LB</strong>，它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址。</li>
+</ul>
 </li>
-</ol>
+</ul>
+<blockquote>
+<p>Github 地址 ： <a target="_blank" rel="noopener" href="https://github.com/NetFlix/ribbon">https://github.com/NetFlix/ribbon</a></p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/8ecad9eb.html#more" rel="contents">
+              <a class="btn" href="/posts/d16c64a.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -390,7 +874,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/76780ad4.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/9471b386.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -404,7 +888,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/76780ad4.html" class="post-title-link" itemprop="url">10_Vue 入门</a>
+            <a href="/posts/9471b386.html" class="post-title-link" itemprop="url">04_Eureka 服务注册与发现</a>
         </h2>
 
         <div class="post-meta">
@@ -414,7 +898,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-10 15:33:00" itemprop="dateCreated datePublished" datetime="2020-09-10T15:33:00+08:00">2020-09-10</time>
+              <time title="创建时间：2020-08-25 08:54:00" itemprop="dateCreated datePublished" datetime="2020-08-25T08:54:00+08:00">2020-08-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -422,7 +906,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
                 </span>
             </span>
 
@@ -432,7 +920,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.8k</span>
+              <span>8.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -451,119 +939,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-初识-vue-js"><a href="#1-初识-vue-js" class="headerlink" title="1. 初识 vue.js"></a>1. 初识 vue.js</h3><ol>
-<li><p>新建文件</p>
-</li>
-<li><p>vscode 快捷键<code>!</code>生成 html 代码</p>
-</li>
-<li><p>引入 vue.mix.js</p>
-</li>
-<li><p>开始写代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &#123;&#123;&#125;&#125; 插值表达式，绑定vue中的data数据 --&gt;</span></span><br><span class="line">            &#123;&#123; message &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 绑定vue作用的范围</span></span></span><br><span class="line"><span class="javascript">                el: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 定义页面中显示的模型数据</span></span></span><br><span class="line">                data: &#123;</span><br><span class="line"><span class="javascript">                    message: <span class="string">&quot;Hello, vue.&quot;</span>,</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>这就是<strong>声明式渲染</strong>：Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统，这里的核心思想就是没有繁琐的 DOM 操作，例如 jQuery 中，我们需要先找到div 节点，获取到 DOM 对象，然后进行一系列的节点操作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/76780ad4.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/d09cdc27.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/d09cdc27.html" class="post-title-link" itemprop="url">09_ES6 入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-08 21:16:00" itemprop="dateCreated datePublished" datetime="2020-09-08T21:16:00+08:00">2020-09-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-ECMAScript-6-简介"><a href="#1-ECMAScript-6-简介" class="headerlink" title="1. ECMAScript 6 简介"></a>1. ECMAScript 6 简介</h3><p>ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目 标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
-<p><strong>ECMAScript 和 JavaScript 的关系</strong></p>
-<p>要讲清楚这个问题，需要回顾历史。1996 年 11 月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提 交给标准化组织 ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布 262 号标准文件（ECMA-262） 的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是 1.0 版。 </p>
-<p>因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）</p>
+          <h3 id="1-什么是-Eureka"><a href="#1-什么是-Eureka" class="headerlink" title="1. 什么是 Eureka"></a>1. 什么是 Eureka</h3><p>Netflix 在设计Eureka 时，遵循 CAP 原则</p>
+<p>CA P原则又称 CAP 定理，指的是在一个分布式系统中</p>
+<ul>
+<li>一致性（Consistency）</li>
+<li>可用性（Availability）</li>
+<li>分区容错性（Partition tolerance）</li>
+</ul>
+<p>CAP 原则指的是，这三个要素最多<strong>只能同时实现两点</strong>，不可能三者兼顾。</p>
 <hr>
-<p><strong>ES6 与 ECMAScript 2015 的关系</strong></p>
-<p>2011 年，ECMAScript 5.1 版发布后，就开始制定 6.0 版了。因此，ES6 这个词的原意，就是指 JavaScript 语言 的下一个版本。 </p>
-<p>ES6 的第一个版本，在 2015 年 6 月发布，正式名称是《ECMAScript 2015 标准》（简称 ES2015）。 </p>
-<p>2016 年 6 月，小幅修订的《ECMAScript 2016 标准》（简称 ES2016）如期发布，这个版本可以看作是 ES6.1 版，因为两者的差异非常小，基本上是同一个标准。根据计划，2017 年 6 月发布 ES2017 标准。 </p>
-<p>因此，ES6 既是一个历史名词，也<strong>是一个泛指</strong>，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”。</p>
+<p>Eureka 是 Netflix 的一个子模块，也是核心模块之一。Eureka 是一个基于 REST 的服务，用于定位服务， 以实现云端中间层服务发现和故障转移，服务注册与发现对于微服务来说是非常重要的，有了服务发现与注册，只需要使用服务的标识符，就可以访问到服务，而不需要修改服务调用的配置文件了，功能类似于 Dubbo 的注册中心，比如 Zookeeper。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/d09cdc27.html#more" rel="contents">
+              <a class="btn" href="/posts/9471b386.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -587,7 +975,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/45ca0965.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/bd3a908a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -601,7 +989,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/45ca0965.html" class="post-title-link" itemprop="url">08_统一日志处理</a>
+            <a href="/posts/bd3a908a.html" class="post-title-link" itemprop="url">03_Rest 微服务构建</a>
         </h2>
 
         <div class="post-meta">
@@ -611,7 +999,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-08 08:56:00" itemprop="dateCreated datePublished" datetime="2020-09-08T08:56:00+08:00">2020-09-08</time>
+              <time title="创建时间：2020-08-24 13:45:00" itemprop="dateCreated datePublished" datetime="2020-08-24T13:45:00+08:00">2020-08-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -619,7 +1007,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
                 </span>
             </span>
 
@@ -629,14 +1021,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.9k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>12 分钟</span>
             </span>
 
         </div>
@@ -648,18 +1040,210 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-配置日志级别"><a href="#1-配置日志级别" class="headerlink" title="1. 配置日志级别"></a>1. 配置日志级别</h3><p>日志记录器（Logger）的行为是分等级的，分为 OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL</p>
-<p>默认情况加，Spring Boot 从控制台打印出来的日志级别只有 INFO 及以上级别，可以已配置日志级别</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置日志级别</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">info</span></span><br></pre></td></tr></table></figure>
-
-<p>这种方式只能打印在控制台上</p>
-<h3 id="2-Logback-日志"><a href="#2-Logback-日志" class="headerlink" title="2. Logback 日志"></a>2. Logback 日志</h3><p>Spring Boot 内部使用 Logback 作为日志实现的框架，Logback 和 log4j 非常相似</p>
-<blockquote>
-<p>Logback 相对于 log4j 的优点：<a target="_blank" rel="noopener" href="https://blog.csdn.net/caisini_vc/article/details/48551287">https://blog.csdn.net/caisini_vc/article/details/48551287</a></p>
-</blockquote>
+          <h3 id="1-创建父工程"><a href="#1-创建父工程" class="headerlink" title="1. 创建父工程"></a>1. 创建父工程</h3><ol>
+<li><p>新建普通 maven 项目，<strong>采用 pom 的打包方式</strong>，为了将子模块公用的 jar 包统一管理</p>
+</li>
+<li><p>编写 pom.xml<strong>（注意打包方式、版本管理和<code>&lt;dependencyManagement&gt;</code>标签）</strong></p></li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/45ca0965.html#more" rel="contents">
+              <a class="btn" href="/posts/bd3a908a.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/941ea014.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/941ea014.html" class="post-title-link" itemprop="url">02_Spring Cloud 入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 12:52:00" itemprop="dateCreated datePublished" datetime="2020-08-24T12:52:00+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-简述"><a href="#1-简述" class="headerlink" title="1. 简述"></a>1. 简述</h3><blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io/</a></p>
+</blockquote>
+<img src="/posts/941ea014/cloud-diagram.png" class>
+
+<p>Spring Cloud 基于 Spring Boot 提供了一套微服务解决方案，<strong>包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等</strong>组件，除了基于 NetFlix 的开源组件做高度抽象封装之外，还有一些选型中立的开源组件。</p>
+<p>Spring Cloud 利用 Spring Boot 的开发便利性，巧妙地简化了分布式系统基础设施的开发，Spring Cloud 为开发人员提供了快速构建分布式系统的一些工具，<strong>包括配置管理，服务发现，断路器，路由，微代理，事件总线，全局锁，决策竞选，分布式会话等等</strong>，它们都可以用 Spring Boot 的开发风格做到一键启动和部署。</p>
+<p>Spring Boot 并没有重复造轮子，它只是将目前各家公司开发的比较成熟，经得起实际考研的服务框架组 合起来，通过 Spring Boot 风格进行再封装，屏蔽掉了复杂的配置和实现原理，<strong>最终给开发者留出了一套简单易懂，易部署和易维护的分布式系统开发工具包</strong>。</p>
+<p>Spring Cloud 是分布式微服务架构下的一站式解决方案，是各个微服务架构落地技术的集合体，俗称微服务全家桶。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/941ea014.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/9ad4dd14.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/9ad4dd14.html" class="post-title-link" itemprop="url">01_微服务概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 12:31:00" itemprop="dateCreated datePublished" datetime="2020-08-24T12:31:00+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Spring-Cloud-Netflix/" itemprop="url" rel="index"><span itemprop="name">Spring Cloud Netflix</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-什么是微服务"><a href="#1-什么是微服务" class="headerlink" title="1. 什么是微服务"></a>1. 什么是微服务</h3><p>微服务（Microservice Architecture）是近几年流行的一种架构思想，关于它的概念很难一言以蔽之。</p>
+<blockquote>
+<p>就目前而言，对于微服务，业界并没有一个统一的，标准的定义</p>
+<p>但通常而言，微服务架构是一种架构模式，或者说是一种架构风格， 它提倡将单一的应用程序划分成一 组小的服务，每个服务运行在其独立的自己的进程内，服务之间互相协调，互相配置，为用户提供最终 价值。服务之间采用轻量级的通信机制互相沟通，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言，工具对其进行构建，可以有一个非常轻量级的集中式管理来 协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。</p>
+</blockquote>
+<p>从技术维度来理解下：微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底地去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/9ad4dd14.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -682,7 +1266,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -771,6 +1355,12 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>

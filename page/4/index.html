@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a0437db0.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a257dbd6.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/a0437db0.html" class="post-title-link" itemprop="url">17_讲师_添加相关路由</a>
+            <a href="/posts/a257dbd6.html" class="post-title-link" itemprop="url">02_讲师_管理模块</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-12 17:06:00" itemprop="dateCreated datePublished" datetime="2020-09-12T17:06:00+08:00">2020-09-12</time>
+              <time title="创建时间：2020-09-06 10:14:00" itemprop="dateCreated datePublished" datetime="2020-09-06T10:14:00+08:00">2020-09-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,14 +234,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -253,13 +253,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-复制-icon-图标"><a href="#1-复制-icon-图标" class="headerlink" title="1. 复制 icon 图标"></a>1. 复制 icon 图标</h3><p>将 vue-element-admin-master/src/icons/svg 中的图标复制到 guli-admin项目中</p>
-<h3 id="2-修改路由"><a href="#2-修改路由" class="headerlink" title="2. 修改路由"></a>2. 修改路由</h3><p>修改 src/router/index.js 文件，重新定义 constantRouterMap</p>
-<p><strong>注意：每个路由的 name 不能相同</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> constantRouterMap = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/login&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/login/index&#x27;</span>), <span class="attr">hidden</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/404&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/404&#x27;</span>), <span class="attr">hidden</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="comment">// 首页</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/dashboard&#x27;</span>,</span><br><span class="line">    name: <span class="string">&#x27;Dashboard&#x27;</span>,</span><br><span class="line">    hidden: <span class="literal">true</span>,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: <span class="string">&#x27;dashboard&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/dashboard/index&#x27;</span>),</span><br><span class="line">      meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;谷粒学院后台首页&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;dashboard&#x27;</span> &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 讲师管理</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/edu/teacher&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/edu/teacher/list&#x27;</span>,</span><br><span class="line">    name: <span class="string">&#x27;Teacher&#x27;</span>,</span><br><span class="line">    meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师管理&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;peoples&#x27;</span> &#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;list&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherList&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/list&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;讲师列表&#x27;</span> &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;create&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherCreate&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/form&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;添加讲师&#x27;</span> &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: <span class="string">&#x27;edit/:id&#x27;</span>,</span><br><span class="line">        name: <span class="string">&#x27;EduTeacherEdit&#x27;</span>,</span><br><span class="line">        component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/edu/teacher/form&#x27;</span>),</span><br><span class="line">        meta: &#123; <span class="attr">title</span>: <span class="string">&#x27;编辑讲师&#x27;</span>, <span class="attr">noCache</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">        hidden: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 404</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    redirect: <span class="string">&#x27;/404&#x27;</span>,</span><br><span class="line">    hidden: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+          <h3 id="1-配置文件"><a href="#1-配置文件" class="headerlink" title="1. 配置文件"></a>1. 配置文件</h3><ol>
+<li><p>service 模块下新建 子模块 service_edu</p>
+<table>
+<thead>
+<tr>
+<th>项目类型</th>
+<th>项目名</th>
+<th>包名</th>
+<th>父模块</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Maven</td>
+<td><code>service_edu</code></td>
+<td><code>com.horsen.serviceedu</code></td>
+<td><code>service</code></td>
+</tr>
+</tbody></table></li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/a0437db0.html#more" rel="contents">
+              <a class="btn" href="/posts/a257dbd6.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -283,7 +297,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/6258c8f5.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/82e4d4f9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -297,7 +311,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/6258c8f5.html" class="post-title-link" itemprop="url">16_处理登录请求</a>
+            <a href="/posts/82e4d4f9.html" class="post-title-link" itemprop="url">01_项目搭建</a>
         </h2>
 
         <div class="post-meta">
@@ -307,7 +321,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-12 15:41:00" itemprop="dateCreated datePublished" datetime="2020-09-12T15:41:00+08:00">2020-09-12</time>
+              <time title="创建时间：2020-09-06 09:40:00" itemprop="dateCreated datePublished" datetime="2020-09-06T09:40:00+08:00">2020-09-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,7 +339,304 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-父工程"><a href="#1-父工程" class="headerlink" title="1. 父工程"></a>1. 父工程</h3><table>
+<thead>
+<tr>
+<th>项目类型</th>
+<th>项目名</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring Boot</td>
+<td><code>guli_parent</code></td>
+<td>2.2.1</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/82e4d4f9.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/766c47c2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/766c47c2.html" class="post-title-link" itemprop="url">06_代码自动生成器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-04 09:37:00" itemprop="dateCreated datePublished" datetime="2020-09-04T09:37:00+08:00">2020-09-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、 Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
+<blockquote>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://baomidou.com/guide/generator.html">https://baomidou.com/guide/generator.html</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/766c47c2.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a0afe8d9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/a0afe8d9.html" class="post-title-link" itemprop="url">05_条件构建器 Wrapper</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-04 08:28:00" itemprop="dateCreated datePublished" datetime="2020-09-04T08:28:00+08:00">2020-09-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>使用方法：<a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html">https://baomidou.com/guide/wrapper.html</a></p>
+</blockquote>
+<ol>
+<li><p>查询用户名不为空且邮箱不为空的用户, 年龄 &gt;= 12</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelect1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    wrapper.isNotNull(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">            .isNotNull(<span class="string">&quot;email&quot;</span>)</span><br><span class="line">            .ge(<span class="string">&quot;age&quot;</span>, <span class="number">12</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(wrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/a0afe8d9.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a687917b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/a687917b.html" class="post-title-link" itemprop="url">04_性能分析插件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-04 07:56:00" itemprop="dateCreated datePublished" datetime="2020-09-04T07:56:00+08:00">2020-09-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>558</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -344,18 +655,110 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-修改前端"><a href="#1-修改前端" class="headerlink" title="1. 修改前端"></a>1. 修改前端</h3><ol>
-<li><p>修改 config/dev.env.js，修改请求地址</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> prodEnv = <span class="built_in">require</span>(<span class="string">&#x27;./prod.env&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">&#x27;&quot;development&quot;&#x27;</span>,</span><br><span class="line">  <span class="comment">//BASE_API: &#x27;&quot;https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin&quot;&#x27;,</span></span><br><span class="line">  BASE_API: <span class="string">&#x27;&quot;http://localhost:8001&quot;&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+          <ol>
+<li><p>设置运行环境</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改 src/login.js，修改请求 url</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">username, password</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/edu/user/login&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      username,</span><br><span class="line">      password</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params">token</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/edu/user/info&#x27;</span>,<span class="comment">// 修改</span></span><br><span class="line">    method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">    params: &#123; token &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">logout</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/user/logout&#x27;</span>,</span><br><span class="line">    method: <span class="string">&#x27;post&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>注入插件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * SQL执行效率插件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Profile(&#123;&quot;dev&quot;,&quot;test&quot;&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> PerformanceInterceptor <span class="title">performanceInterceptor</span><span class="params">()</span></span>&#123;</span><br><span class="line">    PerformanceInterceptor performanceInterceptor = <span class="keyword">new</span> PerformanceInterceptor();</span><br><span class="line">    <span class="comment">// 设置SQL的最大执行时间, 超过时间就不执行</span></span><br><span class="line">    performanceInterceptor.setMaxTime(<span class="number">100</span>);</span><br><span class="line">    <span class="comment">// 开启SQL语句格式化</span></span><br><span class="line">    performanceInterceptor.setFormat(<span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">return</span> performanceInterceptor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试查询</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 参数是一个Wrapper 条件构造器</span></span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(<span class="keyword">null</span>);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
+<img src="/posts/a687917b/image-20200904082443079.png" class>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/b8cf374c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/b8cf374c.html" class="post-title-link" itemprop="url">03_CRUD 扩展</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-03 09:31:00" itemprop="dateCreated datePublished" datetime="2020-09-03T09:31:00+08:00">2020-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-插入操作"><a href="#1-插入操作" class="headerlink" title="1. 插入操作"></a>1. 插入操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">&quot;Horsen&quot;</span>).setAge(<span class="number">3</span>).setEmail(<span class="string">&quot;horsenliu@qq.com&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.insert(user);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>数据库插入的 id 的默认值为全局唯一的 id</p>
+<img src="/posts/b8cf374c/image-20200903094356315.png" class>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/6258c8f5.html#more" rel="contents">
+              <a class="btn" href="/posts/b8cf374c.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -379,7 +782,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/2b6caa56.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/ebe1fb83.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -393,7 +796,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/2b6caa56.html" class="post-title-link" itemprop="url">15_后台系统前端项目创建</a>
+            <a href="/posts/ebe1fb83.html" class="post-title-link" itemprop="url">02_快速入门</a>
         </h2>
 
         <div class="post-meta">
@@ -403,7 +806,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-12 11:53:00" itemprop="dateCreated datePublished" datetime="2020-09-12T11:53:00+08:00">2020-09-12</time>
+              <time title="创建时间：2020-09-02 21:39:00" itemprop="dateCreated datePublished" datetime="2020-09-02T21:39:00+08:00">2020-09-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -411,7 +814,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
                 </span>
             </span>
 
@@ -421,7 +828,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -440,16 +847,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-vue-element-admin"><a href="#1-vue-element-admin" class="headerlink" title="1. vue-element-admin"></a>1. vue-element-admin</h3><h4 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h4><p>vue-element-admin 是基于 element-ui 的一套后台管理系统集成方案</p>
-<blockquote>
-<p>功能：https:#panjiachen.github.io/vue-element-admin-site/zh/guide/</p>
-<p>GitHub地址：https:#github.com/PanJiaChen/vue-element-admin</p>
-<p>项目在线预览：https:#panjiachen.gitee.io/vue-element-admin</p>
+          <blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://baomidou.com/guide/quick-start.html">https://baomidou.com/guide/quick-start.html</a></p>
 </blockquote>
-<h4 id="1-2-安装"><a href="#1-2-安装" class="headerlink" title="1.2 安装"></a>1.2 安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压压缩包 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入目录 </span></span><br><span class="line">cd vue-element-admin-master </span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装依赖 </span></span><br><span class="line">npm install </span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 执行后，浏览器自动弹出并访问 http:<span class="comment">#localhost:9527/ </span></span></span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h3 id="1-快速开始"><a href="#1-快速开始" class="headerlink" title="1. 快速开始"></a>1. 快速开始</h3><ol>
+<li><p>创建数据库 mybatis_plus</p>
+</li>
+<li><p>创建数据库表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="keyword">USER</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">USER</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">id</span> <span class="built_in">BIGINT</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;主键ID&#x27;</span>,</span><br><span class="line">    <span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">    age <span class="built_in">INT</span>(<span class="number">11</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">    email <span class="built_in">VARCHAR</span>(<span class="number">50</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">USER</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">USER</span> (<span class="keyword">id</span>, <span class="keyword">NAME</span>, age, email) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">&#x27;Jone&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;test1@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">&#x27;Jack&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;test2@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">&#x27;Tom&#x27;</span>, <span class="number">28</span>, <span class="string">&#x27;test3@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="string">&#x27;Sandy&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;test4@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">&#x27;Billie&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;test5@baomidou.com&#x27;</span>);</span><br></pre></td></tr></table></figure></li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/2b6caa56.html#more" rel="contents">
+              <a class="btn" href="/posts/ebe1fb83.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -473,7 +881,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/70431d06.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a471f418.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -487,7 +895,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/70431d06.html" class="post-title-link" itemprop="url">14_Webpack</a>
+            <a href="/posts/a471f418.html" class="post-title-link" itemprop="url">01_Mybatis-Plus 概述</a>
         </h2>
 
         <div class="post-meta">
@@ -497,7 +905,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 19:29:00" itemprop="dateCreated datePublished" datetime="2020-09-11T19:29:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-09-02 21:30:00" itemprop="dateCreated datePublished" datetime="2020-09-02T21:30:00+08:00">2020-09-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -505,7 +913,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java 学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
                 </span>
             </span>
 
@@ -515,14 +927,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>867</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -534,19 +946,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>Webpack 是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按 照指定的规则生成对应的静态资源。 </p>
-<p>从图中我们可以看出，Webpack 可以将多种静态资源 js、css、less 转换成一个静态文件，减少了页面的请求。 </p>
-<img src="/posts/70431d06/image-20200911193010054.png" class>
+          <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>用来简化 JDBC 操作</p>
+<blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></p>
+<p>MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+</blockquote>
+<ul>
+<li><p>润物无声</p>
+<p>只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。</p>
+</li>
+<li><p>效率至上</p>
+<p>只需简单配置，即可快速进行单表 CRUD 操作，从而节省大量时间。</p>
+</li>
+<li><p>丰富功能</p>
+<p>代码生成、物理分页、性能分析等功能一应俱全。</p>
+</li>
+</ul>
+<h3 id="2-特性"><a href="#2-特性" class="headerlink" title="2. 特性"></a>2. 特性</h3><ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CRUD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
 
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g webpack webpack-cli</span><br><span class="line">webpack -v</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/70431d06.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -565,7 +995,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/b26dd3ae.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/8a33cd0b.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -579,7 +1009,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/b26dd3ae.html" class="post-title-link" itemprop="url">13_模块化</a>
+            <a href="/posts/8a33cd0b.html" class="post-title-link" itemprop="url">04_实战运用</a>
         </h2>
 
         <div class="post-meta">
@@ -589,7 +1019,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-11 15:10:00" itemprop="dateCreated datePublished" datetime="2020-09-11T15:10:00+08:00">2020-09-11</time>
+              <time title="创建时间：2020-08-31 15:56:00" itemprop="dateCreated datePublished" datetime="2020-08-31T15:56:00+08:00">2020-08-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -597,7 +1027,92 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                  <a href="/categories/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Git 学习笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>382</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>关于如何在 IDEA 中运用 VCS 进行版本控制，并且推送到远程仓库，详见另一个宝藏老师 longway777 的视频：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eT4y1u7g7">https://www.bilibili.com/video/BV1eT4y1u7g7</a></p>
+</blockquote>
+<h3 id="关于分支的常用命令"><a href="#关于分支的常用命令" class="headerlink" title="关于分支的常用命令"></a>关于分支的常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 列出所有本地分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 列出所有远程分支</span></span><br><span class="line">git branch -r</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建一个分支, 但依然停留在当前分支</span></span><br><span class="line">git branch [brach-name]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建一个分支, 并切换到该分支</span></span><br><span class="line">git checkout -b [brach-name]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 合并指定分支到当前分支 </span></span><br><span class="line">git merge [branch]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除分支 </span></span><br><span class="line">git branch -d [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除远程分支 </span></span><br><span class="line">git push origin --delete [branch-name]</span><br><span class="line">git branch -dr [remote/branch]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/3bd90bb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/3bd90bb.html" class="post-title-link" itemprop="url">03_项目搭建和文件操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-31 14:00:00" itemprop="dateCreated datePublished" datetime="2020-08-31T14:00:00+08:00">2020-08-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Git 学习笔记</span></a>
                 </span>
             </span>
 
@@ -626,19 +1141,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-CommonJS-模块化规范"><a href="#1-CommonJS-模块化规范" class="headerlink" title="1. CommonJS 模块化规范"></a>1. CommonJS 模块化规范</h3><p><strong>CommonJS 使用<code>exports</code>和<code>require</code>来导出、导入模块</strong></p>
-<ol>
-<li><p>导出模块</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建js方法</span></span><br><span class="line"><span class="comment">// 定义成员</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) + <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> subtract = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) - <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> multiply = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) * <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> divide = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(a) / <span class="built_in">parseInt</span>(b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 导出成员</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    sum,</span><br><span class="line">    subtract,</span><br><span class="line">    multiply,</span><br><span class="line">    divide</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <blockquote>
+<p>常用的 6 个命令</p>
+</blockquote>
+<img src="/posts/3bd90bb/image-20200831142834179.png" class>
+
+<h3 id="1-创建工作目录"><a href="#1-创建工作目录" class="headerlink" title="1. 创建工作目录"></a>1. 创建工作目录</h3><ol>
+<li><p>创建全新仓库，新建文件夹，右键 Git bash here</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>导入模块</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用01.js中的方法</span></span><br><span class="line"><span class="comment">// 引入01.js</span></span><br><span class="line"><span class="keyword">const</span> m = <span class="built_in">require</span>(<span class="string">&quot;./01.js&quot;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(m)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result1 = m.sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">const</span> result2 = m.subtract(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(result1, result2)</span><br></pre></td></tr></table></figure>
+<li><p>克隆远程仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone [url]</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
+<h3 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="2. 文件操作"></a>2. 文件操作</h3><h4 id="2-1-文件-4-种状态"><a href="#2-1-文件-4-种状态" class="headerlink" title="2.1 文件 4 种状态"></a>2.1 文件 4 种状态</h4><p>版本控制就是对文件的版本控制，要对文件进行修改、提交等操作，首先要知道文件当前在什么状态， 不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。 </p>
+<ul>
+<li><p><strong>Untracked</strong>：未跟踪</p>
+<p>此文件在文件夹中, 但并没有加入到 git 库, 不参与版本控制。通过<code>git add</code>状态变为<code>Staged</code></p>
+</li>
+<li><p><strong>Unmodify</strong>: 文件已经入库, 未修改</p>
+<p>即版本库中的文件快照内容与文件夹中完全一致。这种类型的文件有两种去处，如果它被修改，而变为<code>Modified</code>，如果使用<code>git rm</code>移出版本库，则成为<code>Untracked</code>文件</p>
+</li>
+<li><p><strong>Modified</strong>：文件已修改</p>
+<p>仅仅是修改，并没有进行其他的操作。这个文件也有两个去处，通过<code>git add</code>可进入暂存<code>Staged</code>状态，使用<code>git checkout</code>则丢弃修改过，返回到<code>Unmodify</code>状态，这个<code>git checkout</code>即从库中取出文件，覆盖当前修改</p>
+</li>
+<li><p><strong>Staged</strong>：暂存状态</p>
+<p>执行<code>git commit</code>则将修改同步到库中，这时库中的文件和本地文件又变为一 致，文件为<code>Unmodify</code>状态。执行<code>git reset HEAD filename</code>取消暂存，文件状态为<code>Modified</code></p>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/b26dd3ae.html#more" rel="contents">
+              <a class="btn" href="/posts/3bd90bb.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -661,7 +1195,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -750,6 +1284,12 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
