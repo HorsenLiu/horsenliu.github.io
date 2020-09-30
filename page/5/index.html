@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">101</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">104</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">141</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">148</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/caf9e75e.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/aca7959.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/caf9e75e.html" class="post-title-link" itemprop="url">05_讲师_分页和条件查询</a>
+            <a href="/posts/aca7959.html" class="post-title-link" itemprop="url">12_Node.js、NPM 和 Babel</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 16:46:00" itemprop="dateCreated datePublished" datetime="2020-09-06T16:46:00+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-11 10:48:00" itemprop="dateCreated datePublished" datetime="2020-09-11T10:48:00+08:00">2020-09-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,103 +234,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-分页"><a href="#1-分页" class="headerlink" title="1. 分页"></a>1. 分页</h3><ol>
-<li><p>注入插件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分页插件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> PaginationInterceptor <span class="title">paginationInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PaginationInterceptor();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Controller 中添加方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(&quot;分页显示讲师列表&quot;)</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/findAll/&#123;page&#125;/&#123;limit&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">pageList</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="meta">@ApiParam(name = &quot;page&quot;, value = &quot;当前页码&quot;, required = true)</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="meta">@PathVariable(&quot;page&quot;)</span> Long page,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="meta">@ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;, required = true)</span></span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="meta">@PathVariable(&quot;limit&quot;)</span> Long limit)</span> </span>&#123;</span><br><span class="line">    Page&lt;Teacher&gt; pageParam = <span class="keyword">new</span> Page&lt;&gt;(page, limit);</span><br><span class="line">    teacherService.page(pageParam, <span class="keyword">null</span>);</span><br><span class="line">    List&lt;Teacher&gt; records = pageParam.getRecords();</span><br><span class="line">    <span class="keyword">long</span> total = pageParam.getTotal();</span><br><span class="line">    <span class="keyword">return</span> R.success().setData(<span class="string">&quot;total&quot;</span>, total).setData(<span class="string">&quot;rows&quot;</span>, records);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/caf9e75e.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a77139ed.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Horsen Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="霍森的笔记本">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/a77139ed.html" class="post-title-link" itemprop="url">04_统一返回数据格式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-06 13:36:00" itemprop="dateCreated datePublished" datetime="2020-09-06T13:36:00+08:00">2020-09-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -349,27 +253,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li><p>common 模块下新建模块 common_utils</p>
-<table>
-<thead>
-<tr>
-<th>项目类型</th>
-<th align="left">项目名</th>
-<th>包名</th>
-<th>父模块</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Maven</td>
-<td align="left"><code>common_utils</code></td>
-<td><code>com.horsen.commonutils</code></td>
-<td><code>common</code></td>
-</tr>
-</tbody></table></li></ol>
+          <h3 id="1-Node-js-简介"><a href="#1-Node-js-简介" class="headerlink" title="1. Node.js 简介"></a>1. Node.js 简介</h3><p><strong>什么是 Node.js</strong></p>
+<p>简单的说 Node.js 就是运行在服务端的 JavaScript。 Node.js 是一个事件驱动 I/O 服务端 JavaScript 环境，基于 Google 的 V8 引擎，V8 引擎执行 Javascript 的速度 非常快，性能非常好。</p>
+<p><strong>Node.js 有什么用</strong></p>
+<p>如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。 Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。 当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择。</p>
+<h3 id="2-NPM-简介"><a href="#2-NPM-简介" class="headerlink" title="2. NPM 简介"></a>2. NPM 简介</h3><p><strong>什么是 NPM</strong></p>
+<p>NPM 全称 Node Package Manager，是 Node.js 包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的，也是 Node.js 的包管理工具，相当于前端的 Maven。</p>
+<p><strong>npm 工具的安装位置</strong></p>
+<p>我们通过 npm 可以很方便地下载 js 库，管理前端工程。 </p>
+<p>Node.js 默认安装的 npm 包和工具的位置：Node.js目录\node_modules </p>
+<p>在这个目录下可以看见 npm目录，npm 本身就是被 NPM 包管理器管理的一个工具，说明 Node.js 已经集成了npm 工具</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/a77139ed.html#more" rel="contents">
+              <a class="btn" href="/posts/aca7959.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -393,7 +289,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/5dbf6bc3.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/8ecad9eb.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -407,7 +303,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/5dbf6bc3.html" class="post-title-link" itemprop="url">03_配置 Swagger</a>
+            <a href="/posts/8ecad9eb.html" class="post-title-link" itemprop="url">10_Axios 入门</a>
         </h2>
 
         <div class="post-meta">
@@ -417,7 +313,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 13:26:00" itemprop="dateCreated datePublished" datetime="2020-09-06T13:26:00+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-11 08:44:00" itemprop="dateCreated datePublished" datetime="2020-09-11T08:44:00+08:00">2020-09-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -435,14 +331,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -454,25 +350,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li><p>gui_parent 工程下创建模块 common</p>
-<table>
-<thead>
-<tr>
-<th>项目类型</th>
-<th align="left">项目名</th>
-<th>父工程</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Maven</td>
-<td align="left"><code>common</code></td>
-<td><code>gui_parent</code></td>
-</tr>
-</tbody></table></li></ol>
+          <p>axios 是独立于 vue 的一个项目，基于promise 用于浏览器和 node.js 的 http 客户端</p>
+<ul>
+<li>在浏览器中可以帮助我们完成 ajax 请求的发送</li>
+<li>在 node.js 中可以向远程接口发送请求</li>
+</ul>
+<h3 id="1-获取数据"><a href="#1-获取数据" class="headerlink" title="1. 获取数据"></a>1. 获取数据</h3><ol>
+<li><p>编写 data.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">20000</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;成功&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;items&quot;</span>: [</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Lucy&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">20</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Marry&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">30</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Jack&quot;</span>, <span class="attr">&quot;age&quot;</span>: <span class="number">40</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入 axios，编写 html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 固定的结构</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 在data定义变量和初始值</span></span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 定义变量 值空数组</span></span></span><br><span class="line">                userList: [],</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 页面渲染之前执行</span></span></span><br><span class="line">            created() &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 调用定义的方法</span></span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.getUseList();</span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="comment">// 编写具体的方法</span></span></span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="javascript">                <span class="comment">// 查询所有用户</span></span></span><br><span class="line">                getUseList() &#123;</span><br><span class="line"><span class="javascript">                    <span class="comment">// 使用axios发送ajax请求</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// 模板: axios.提交方式(&quot;请求接口路径&quot;).then(箭头函数).catch(箭头函数)</span></span></span><br><span class="line">                    axios</span><br><span class="line"><span class="javascript">                        .get(<span class="string">&quot;data.json&quot;</span>)</span></span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求成功执行then方法</span></span></span><br><span class="line"><span class="javascript">                        .then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(response);</span></span><br><span class="line">                        &#125;)</span><br><span class="line"><span class="javascript">                        <span class="comment">// 请求失败执行catch方法</span></span></span><br><span class="line"><span class="javascript">                        .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">console</span>.log(error);</span></span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/5dbf6bc3.html#more" rel="contents">
+              <a class="btn" href="/posts/8ecad9eb.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -496,7 +390,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/a257dbd6.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/76780ad4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -510,7 +404,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/a257dbd6.html" class="post-title-link" itemprop="url">02_讲师_管理模块</a>
+            <a href="/posts/76780ad4.html" class="post-title-link" itemprop="url">10_Vue 入门</a>
         </h2>
 
         <div class="post-meta">
@@ -520,7 +414,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 10:14:00" itemprop="dateCreated datePublished" datetime="2020-09-06T10:14:00+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-10 15:33:00" itemprop="dateCreated datePublished" datetime="2020-09-10T15:33:00+08:00">2020-09-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -538,14 +432,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
+              <span>8.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -557,27 +451,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-配置文件"><a href="#1-配置文件" class="headerlink" title="1. 配置文件"></a>1. 配置文件</h3><ol>
-<li><p>service 模块下新建 子模块 service_edu</p>
-<table>
-<thead>
-<tr>
-<th>项目类型</th>
-<th>项目名</th>
-<th>包名</th>
-<th>父模块</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Maven</td>
-<td><code>service_edu</code></td>
-<td><code>com.horsen.serviceedu</code></td>
-<td><code>service</code></td>
-</tr>
-</tbody></table></li></ol>
+          <h3 id="1-初识-vue-js"><a href="#1-初识-vue-js" class="headerlink" title="1. 初识 vue.js"></a>1. 初识 vue.js</h3><ol>
+<li><p>新建文件</p>
+</li>
+<li><p>vscode 快捷键<code>!</code>生成 html 代码</p>
+</li>
+<li><p>引入 vue.mix.js</p>
+</li>
+<li><p>开始写代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &#123;&#123;&#125;&#125; 插值表达式，绑定vue中的data数据 --&gt;</span></span><br><span class="line">            &#123;&#123; message &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vue.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 绑定vue作用的范围</span></span></span><br><span class="line"><span class="javascript">                el: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 定义页面中显示的模型数据</span></span></span><br><span class="line">                data: &#123;</span><br><span class="line"><span class="javascript">                    message: <span class="string">&quot;Hello, vue.&quot;</span>,</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>这就是<strong>声明式渲染</strong>：Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统，这里的核心思想就是没有繁琐的 DOM 操作，例如 jQuery 中，我们需要先找到div 节点，获取到 DOM 对象，然后进行一系列的节点操作。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/a257dbd6.html#more" rel="contents">
+              <a class="btn" href="/posts/76780ad4.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -601,7 +490,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/82e4d4f9.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/d09cdc27.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -615,7 +504,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/posts/82e4d4f9.html" class="post-title-link" itemprop="url">01_项目搭建</a>
+            <a href="/posts/d09cdc27.html" class="post-title-link" itemprop="url">09_ES6 入门</a>
         </h2>
 
         <div class="post-meta">
@@ -625,7 +514,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-06 09:40:00" itemprop="dateCreated datePublished" datetime="2020-09-06T09:40:00+08:00">2020-09-06</time>
+              <time title="创建时间：2020-09-08 21:16:00" itemprop="dateCreated datePublished" datetime="2020-09-08T21:16:00+08:00">2020-09-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -643,14 +532,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -662,23 +551,115 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-父工程"><a href="#1-父工程" class="headerlink" title="1. 父工程"></a>1. 父工程</h3><table>
-<thead>
-<tr>
-<th>项目类型</th>
-<th>项目名</th>
-<th>版本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Spring Boot</td>
-<td><code>guli_parent</code></td>
-<td>2.2.1</td>
-</tr>
-</tbody></table>
+          <h3 id="1-ECMAScript-6-简介"><a href="#1-ECMAScript-6-简介" class="headerlink" title="1. ECMAScript 6 简介"></a>1. ECMAScript 6 简介</h3><p>ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目 标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+<p><strong>ECMAScript 和 JavaScript 的关系</strong></p>
+<p>要讲清楚这个问题，需要回顾历史。1996 年 11 月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提 交给标准化组织 ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布 262 号标准文件（ECMA-262） 的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是 1.0 版。 </p>
+<p>因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）</p>
+<hr>
+<p><strong>ES6 与 ECMAScript 2015 的关系</strong></p>
+<p>2011 年，ECMAScript 5.1 版发布后，就开始制定 6.0 版了。因此，ES6 这个词的原意，就是指 JavaScript 语言 的下一个版本。 </p>
+<p>ES6 的第一个版本，在 2015 年 6 月发布，正式名称是《ECMAScript 2015 标准》（简称 ES2015）。 </p>
+<p>2016 年 6 月，小幅修订的《ECMAScript 2016 标准》（简称 ES2016）如期发布，这个版本可以看作是 ES6.1 版，因为两者的差异非常小，基本上是同一个标准。根据计划，2017 年 6 月发布 ES2017 标准。 </p>
+<p>因此，ES6 既是一个历史名词，也<strong>是一个泛指</strong>，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/82e4d4f9.html#more" rel="contents">
+              <a class="btn" href="/posts/d09cdc27.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/45ca0965.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/45ca0965.html" class="post-title-link" itemprop="url">08_统一日志处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-08 08:56:00" itemprop="dateCreated datePublished" datetime="2020-09-08T08:56:00+08:00">2020-09-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B0%B7%E7%B2%92%E5%AD%A6%E9%99%A2/" itemprop="url" rel="index"><span itemprop="name">谷粒学院</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-配置日志级别"><a href="#1-配置日志级别" class="headerlink" title="1. 配置日志级别"></a>1. 配置日志级别</h3><p>日志记录器（Logger）的行为是分等级的，分为 OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL</p>
+<p>默认情况加，Spring Boot 从控制台打印出来的日志级别只有 INFO 及以上级别，可以已配置日志级别</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置日志级别</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">info</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方式只能打印在控制台上</p>
+<h3 id="2-Logback-日志"><a href="#2-Logback-日志" class="headerlink" title="2. Logback 日志"></a>2. Logback 日志</h3><p>Spring Boot 内部使用 Logback 作为日志实现的框架，Logback 和 log4j 非常相似</p>
+<blockquote>
+<p>Logback 相对于 log4j 的优点：<a target="_blank" rel="noopener" href="https://blog.csdn.net/caisini_vc/article/details/48551287">https://blog.csdn.net/caisini_vc/article/details/48551287</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/45ca0965.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -701,7 +682,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -769,7 +750,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -782,7 +763,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-count">104</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -830,13 +811,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">450k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">6:49</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
