@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://horsenliu.gitee.io/posts/5c68b0b8/image-20200922090752833.png">
 <meta property="og:image" content="http://horsenliu.gitee.io/posts/5c68b0b8/image-20200922091120493.png">
 <meta property="article:published_time" content="2020-09-21T14:15:00.000Z">
-<meta property="article:modified_time" content="2020-09-22T01:34:30.526Z">
+<meta property="article:modified_time" content="2020-10-12T00:36:33.078Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="JVM">
 <meta property="article:tag" content="GC">
@@ -295,14 +295,14 @@
 
 <h3 id="2-GC-四大算法"><a href="#2-GC-四大算法" class="headerlink" title="2. GC 四大算法"></a>2. GC 四大算法</h3><h4 id="2-1-引用计数法"><a href="#2-1-引用计数法" class="headerlink" title="2.1 引用计数法"></a>2.1 引用计数法</h4><img src="/posts/5c68b0b8/image-20200922083137251.png" class>
 
-<p>每个对象有一个引用计数器，当对象被引用一次则计数器加 1，当对象引用失效一次，则计数器减 1，计数器为 0 的对象意味着是垃圾对象，可以被GC回收。</p>
-<p>目前虚拟机基本都是采用<strong>可达性算法</strong>，从 GC Roots 作为起点开始搜索，那么整个连通图中的对象边都是活对象，对于 GC Roots 无法到达的对象变成了垃圾回收对象，随时可被GC回收。</p>
+<p>每个对象有一个引用计数器，当对象被引用一次则计数器加 1，当对象引用失效一次，则计数器减 1，计数器为 0 的对象意味着是垃圾对象，可以被 GC 回收。</p>
+<p>目前虚拟机基本都是采用<strong>可达性算法</strong>，从 GC Roots 作为起点开始搜索，那么整个连通图中的对象边都是活对象，对于 GC Roots 无法到达的对象变成了垃圾回收对象，随时可被 GC 回收。</p>
 <p>缺点：</p>
 <ul>
 <li>每次对对象赋值时均要维护引用计数器，且计数器本身也有一定的消耗。</li>
 <li>较难处理循环引用</li>
 </ul>
-<p><strong>JVM 的实现一半不采用这种方式</strong></p>
+<p><strong>JVM 的实现一般不采用这种方式</strong></p>
 <h4 id="2-2-复制算法-Copying"><a href="#2-2-复制算法-Copying" class="headerlink" title="2.2 复制算法 Copying"></a>2.2 复制算法 Copying</h4><p><strong>年轻代中使用的 Minor GC，采用的就是复制算法（Copying）</strong></p>
 <p>Minor GC 会把 Eden 中的所有活的对象都移到 Survivor 区域中，如果 Survivor 区中放不下，那么剩下的活的对象就被移动到 Old Generation 中，也就是说，<strong>一旦收集后，Eden 就是变成空的了。</strong></p>
 <p>当对象在 Eden（包括一个 Survivor 区域，这里假设是 From 区域）出生，在经过一次 Minor GC 后，如果对象还存活，并且能够被另外一块 Survivor 区域所容纳 （To 区域 ，即 To 区域有足够的内存空间来存储 Eden 和 From 区域中存活的对象），则使用复制算法将这些仍然还活着的对象复**制到另外一块 **Survivor 区域（To 区域）中，然后清理所使用过的 Eden 以及 Survivor 区域（Form 区域），并且将这些对象的年龄设置为 1。</p>
@@ -335,7 +335,7 @@
 </ul>
 <p>缺点：</p>
 <ol>
-<li>效率比较低（递归与全堆对象遍历），而且在进行GC的时候，需要停止应用程序，这会导致用户体验非常差劲；</li>
+<li>效率比较低（递归与全堆对象遍历），而且在进行 GC 的时候，需要停止应用程序，这会导致用户体验非常差劲；</li>
 <li>这种方式清理出来的空闲内存是不连续的。这点不难理解，我们的死亡对象都是随机的出现在内存的各个角落，现在把他们清除之后，内存的布局自然乱七八糟，而为了应付 这一点，JVM 就不得不维持一个内存空间的空闲列表，这又是一种开销。而且在分配数组对象的时候，寻找连续的内存空间会不太好找。</li>
 </ol>
 <h4 id="2-3-标记压缩法-Mark-Compact"><a href="#2-3-标记压缩法-Mark-Compact" class="headerlink" title="2.3 标记压缩法 Mark-Compact"></a>2.3 标记压缩法 Mark-Compact</h4><p>在整理压缩阶段，不再对标记的对象作回收，而是通过所有存活对象都像一端移动，然后直接清除边界以外的内存。</p>
@@ -355,7 +355,7 @@
 <p>老年代的特点是区域较大，对象存活率高。</p>
 <p>这种情况，存在大量存活率高的对象，复制算法明显变得不合适。一般是由标记清除或者是标记清除与标记整理的混合实现。</p>
 <p>Mark 阶段的开销与存活对象的数量成正比，这点来说，对于老年代，标记清除或者标记整理有一些不符，但可以通过多核多线程利用，对并发，并行的形式提标记效率。</p>
-<p>Sweep 阶段的开销与所管理里区域的大小相关，但Sweep“就地处决”的 特点，回收的过程没有对象的移动。使其相对 其他有对象移动步骤的回收算法，仍然是是效率最好的，但是需要解决内存碎片的问题。</p>
+<p>Sweep 阶段的开销与所管理里区域的大小相关，但 Sweep “就地处决”的 特点，回收的过程没有对象的移动。使其相对 其他有对象移动步骤的回收算法，仍然是是效率最好的，但是需要解决内存碎片的问题。</p>
 
     </div>
 
