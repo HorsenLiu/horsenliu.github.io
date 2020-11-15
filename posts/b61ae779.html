@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 简介Feign 是声明式的 Web Service 客户端，它让微服务之间的调用变得更简单了，类似 Controller 调用 Service 。 Spring Cloud 集成了 Ribbon 和 Eureka，可在使用 Feign 时提供负载均衡的 http 客户端。 只需要创建一个接口，然后添加注解。 调用微服务访问两种方法  微服务名字 –&gt; Ribbon 接口和注解 –&amp;gt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-26T09:13:00.000Z">
-<meta property="article:modified_time" content="2020-09-06T13:16:37.840Z">
+<meta property="article:modified_time" content="2020-11-15T08:09:27.107Z">
 <meta property="article:author" content="Horsen Liu">
 <meta property="article:tag" content="Spring Cloud">
 <meta property="article:tag" content="Feign">
@@ -282,8 +282,8 @@
 <ul>
 <li>Feign旨在使编写 Java Http 客户端变得更容易</li>
 <li>在使用 Ribbon + RestTemplate 时，利用 RestTemplate 对 Http 请求的封装处理，形成了一套模板化的调用方法。但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。</li>
-<li>Feign 在此基础上做了进一步封装，由它来帮助我们定义和实现依赖服务接口的定义，在Feign 的实现下，只需要创建一个接口并使用注解的方式来配置它（类似于以前 Dao 接口上标注 Mapper 注解，现在是一个微服务接口上面标注一个 Feign 注解）即可完成对服务提供方的接口绑定，简化了使用 Spring Cloud Ribbon 时，自动封装服务调用客户端的开发量。</li>
-<li>Ribbon维护了 spring-cloud -dept 的服务列表信息，并且通过轮询实现了客户端的负载均衡， 而与 Ribbon 不同的是，通过 Feign 只需要定义服务绑定接口且以声明式的方法，优雅而且简单地实现了服务调用。</li>
+<li>Feign 在此基础上做了进一步封装，由它来帮助我们定义和实现依赖服务接口的定义，在 Feign 的实现下，只需要创建一个接口并使用注解的方式来配置它（类似于以前 Dao 接口上标注 Mapper 注解，现在是一个微服务接口上面标注一个 Feign 注解）即可完成对服务提供方的接口绑定，简化了使用 Spring Cloud Ribbon 时，自动封装服务调用客户端的开发量。</li>
+<li>Ribbon 维护了 spring-cloud -dept 的服务列表信息，并且通过轮询实现了客户端的负载均衡， 而与 Ribbon 不同的是，通过 Feign 只需要定义服务绑定接口且以声明式的方法，优雅而且简单地实现了服务调用。</li>
 </ul>
 <a id="more"></a>
 
