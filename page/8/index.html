@@ -839,7 +839,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><p>文件上传是项目开发中最常见的功能之一，Spring MVC 可以很好的支持文件上传，但是Spring MVC 上下文中默认没有装配<code>MultipartResolver</code>，因此默认情况下其不能处理文件上传工作。如果想使用 Spring 的文件上传功能，则需要在上下文中配置<code> MultipartResolver</code>。</p>
+          <h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><p>文件上传是项目开发中最常见的功能之一，Spring MVC 可以很好的支持文件上传，但是Spring MVC 上下文中默认没有装配<code>MultipartResolver</code>，因此默认情况下其不能处理文件上传工作。如果想使用 Spring 的文件上传功能，则需要在上下文中配置<code>MultipartResolver</code>。</p>
 <p>前端表单要求：为了能上传文件，必须将表单的<code>method</code>设置为<code>post</code>，并将<code>enctype</code>设置为<code>multipart/form-data</code>。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器；</p>
 <p><strong>对表单中的<code>enctype</code>属性做个详细的说明：</strong></p>
 <ul>
