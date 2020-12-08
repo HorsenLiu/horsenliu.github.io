@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/5.13.0/css/all.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Redis 是内存数据库，如果不将内存中的数据库状态保存到磁盘，一旦服务器进程退出，服务器中的数据库状态也会消失，所以 Redis 提供了 2 种方式的持久化功能。 1. RDB (Redis DataBase)1.1 什么是 RDB在指定的时间间隔内将内存中的数据集快照写入磁盘，也就是 Snapshot 快照。它恢复时是将快照文件直接读到内存里。 Redis 会单独创建 (Fork) 一个子进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09_Redis 持久化">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/7f6bc1c2.html">
+<meta property="og:site_name" content="霍森的笔记本">
+<meta property="og:description" content="Redis 是内存数据库，如果不将内存中的数据库状态保存到磁盘，一旦服务器进程退出，服务器中的数据库状态也会消失，所以 Redis 提供了 2 种方式的持久化功能。 1. RDB (Redis DataBase)1.1 什么是 RDB在指定的时间间隔内将内存中的数据集快照写入磁盘，也就是 Snapshot 快照。它恢复时是将快照文件直接读到内存里。 Redis 会单独创建 (Fork) 一个子进程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/7f6bc1c2/image-20201207144631251.png">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/7f6bc1c2/image-20201207225036589.png">
+<meta property="article:published_time" content="2020-12-07T01:35:00.000Z">
+<meta property="article:modified_time" content="2020-12-08T00:37:15.743Z">
+<meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Redis 持久化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/7f6bc1c2/image-20201207144631251.png">
+
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/7f6bc1c2.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>09_Redis 持久化 | 霍森的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">霍森的笔记本</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一学就会 一写就废</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">112</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">165</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/horsenliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/7f6bc1c2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          09_Redis 持久化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 09:35:00" itemprop="dateCreated datePublished" datetime="2020-12-07T09:35:00+08:00">2020-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Redis 学习笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Redis 是内存数据库，如果不将内存中的数据库状态保存到磁盘，一旦服务器进程退出，服务器中的数据库状态也会消失，所以 Redis 提供了 2 种方式的持久化功能。</p>
+<h3 id="1-RDB-Redis-DataBase"><a href="#1-RDB-Redis-DataBase" class="headerlink" title="1. RDB (Redis DataBase)"></a>1. RDB (Redis DataBase)</h3><h4 id="1-1-什么是-RDB"><a href="#1-1-什么是-RDB" class="headerlink" title="1.1 什么是 RDB"></a>1.1 什么是 RDB</h4><p>在指定的时间间隔内将内存中的数据集快照写入磁盘，也就是 Snapshot 快照。它恢复时是将快照文件直接读到内存里。</p>
+<p>Redis 会单独创建 (Fork) 一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何 IO 操作的，这就确保了极高的性能。</p>
+<p>如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那 RDB 方式要比 AOF 方式更加的高效。</p>
+<p>RDB 的缺点是最后一次持久化后的数据可能丢失。</p>
+<h4 id="1-2-Fork"><a href="#1-2-Fork" class="headerlink" title="1.2 Fork"></a>1.2 Fork</h4><p>Fork 的作用是复制一个与当前进程一样的进程。新进程的所有数据（变量，环境变量，程序计数器等）都和原进程一致，但是是一个全新的进程，并作为原进程的子进程。</p>
+<p><strong>RDB 保存的是 dump.rdb 文件</strong></p>
+<img src="/posts/7f6bc1c2/image-20201207144631251.png" class>
+
+<a id="more"></a>
+
+<h4 id="1-3-测试"><a href="#1-3-测试" class="headerlink" title="1.3 测试"></a>1.3 测试</h4><ol>
+<li><p>修改一下配置文件中的相关参数</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#save 900 1</span></span><br><span class="line"><span class="comment">#save 300 10</span></span><br><span class="line"><span class="comment">#save 60 10000</span></span><br><span class="line">save 60 5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想禁用 RDB 持久化的策略，只要不设置任何 save 指令，或者给 save 传入一个空字符串参数。若要修改完毕需要立马生效，可以手动使用 save 命令。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; save</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试一下，在 1 分钟之内执行 5 条命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3 </span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k5 v5</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后把这个线程关掉，再看看是不是关掉了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; shutdown</span><br><span class="line">not connected&gt; <span class="built_in">exit</span></span><br><span class="line">[root@centos01 ~]<span class="comment"># ps -ef|grep redis</span></span><br><span class="line">root      82639  82212  0 01:58 pts/1    00:00:00 grep --color=auto redis</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新打开，尝试读取 k1，发现它还在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   [root@centos01 ~]<span class="comment"># redis-server /usr/local/bin/hlconfig/redis.conf      </span></span><br><span class="line">   [root@centos01 ~]<span class="comment"># redis-cli </span></span><br><span class="line">   127.0.0.1:6379&gt; ping</span><br><span class="line">   PONG</span><br><span class="line">   127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="1-5-如何触发-RDB-快照"><a href="#1-5-如何触发-RDB-快照" class="headerlink" title="1.5 如何触发 RDB 快照"></a>1.5 如何触发 RDB 快照</h4><ol>
+<li>使用配置文件中默认的快照配置，建议多用一台机器作为备份，复制一份<code>dump.rdb</code></li>
+<li>命令<code>save</code>或者是<code>bgsave</code><ul>
+<li><code>save</code>时只管保存，其他不管，全部阻塞</li>
+<li><code>bgsave</code>时 Redis 会在后台异步进行快照操作，快照同时还可以响应客户端请求。可以通过<code>lastsave</code>命令获取最后一次成功执行快照的时间。</li>
+</ul>
+</li>
+<li>执行<code>flushall</code>命令，也会产生<code>dump.rdb</code>文件，但里面是空的，没有意义 </li>
+<li>退出的时候也会产生<code>dump.rdb</code>文件！</li>
+</ol>
+<h4 id="1-6-如何恢复"><a href="#1-6-如何恢复" class="headerlink" title="1.6 如何恢复"></a>1.6 如何恢复</h4><ol>
+<li><p>将备份文件<code>dump.rdb</code>移动到 redis 安装目录并启动服务</p>
+</li>
+<li><p>CONFIG GET dir 获取目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; CONFIG GET dir</span><br><span class="line">1) <span class="string">&quot;dir&quot;</span></span><br><span class="line">2) <span class="string">&quot;/usr/local/bin&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="1-7-总结"><a href="#1-7-总结" class="headerlink" title="1.7 总结"></a>1.7 总结</h4><ul>
+<li><p>RDB 是一个非常紧凑的文件</p>
+</li>
+<li><p>RDB 在保存 RDB 文件时父进程唯一需要做的就是 fork 出一个子进程，接下来的工作全部由子进程来做，父进程不需要再做其他 IO 操作，所以 RDB 持久化方式可以最大化 redis 的性能</p>
+</li>
+<li><p>与 AOF 相比，在恢复大的数据集时候，RDB 方式会更快一些</p>
+</li>
+<li><p>但是数据丢失风险大</p>
+</li>
+<li><p>RDB 需要经常 fork 子进程来保存数据集到硬盘上，当数据集比较大的时候，fork的过程是非常耗时的，可能会导致 Redis 在一些亳秒级不能相应客户端请求</p>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li>适合大规模的数据恢复</li>
+<li>对数据完整性和一致性要求不高</li>
+</ol>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ol>
+<li>在一定间隔时间做一次备份，所以如果 redis 意外 down 掉的话，就会丢失最后一次快照后的所有修改</li>
+<li>Fork 的时候，内存中的数据被克隆了一份，大致 2 倍的膨胀性需要考虑</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-AOF-Append-Only-File"><a href="#2-AOF-Append-Only-File" class="headerlink" title="2. AOF (Append Only File)"></a>2. AOF (Append Only File)</h3><h4 id="2-1-什么是-AOF"><a href="#2-1-什么是-AOF" class="headerlink" title="2.1 什么是 AOF"></a>2.1 什么是 AOF</h4><p>以日志的形式来记录每个写操作，将 Redis 执行过的<strong>所有指令</strong>记录下来（读操作不记录），只许追加文件但不可以改写文件，Redis 启动之初会读取该文件重新构建数据，换言之，Redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作。</p>
+<p><strong>AOF 保存的是 appendonly.aof 文件</strong></p>
+<h4 id="2-2-配置"><a href="#2-2-配置" class="headerlink" title="2.2 配置"></a>2.2 配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 是否以append only模式作为持久化方式. 默认使用的是rdb方式持久化, 这种方式在许多应用中已经足够用了</span></span><br><span class="line">appendonly no</span><br><span class="line"></span><br><span class="line"><span class="comment"># appendfilename AOF文件名称</span></span><br><span class="line">appendfilename <span class="string">&quot;appendonly.aof&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># appendfsync aof持久化策略的配置</span></span><br><span class="line"><span class="comment"># 1. no表示不执行fsync, 由操作系统保证数据同步到磁盘，速度最快</span></span><br><span class="line"><span class="comment"># 2. always表示每次写入都执行fsync, 以保证数据同步到磁盘</span></span><br><span class="line"><span class="comment"># 3. everysec表示每秒执行一次fsync, 可能会导致丢失这1s数据</span></span><br><span class="line">appendfsync everysec </span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h4><ol>
+<li><p>先在配置文件中开启 AOF</p>
+</li>
+<li><p>重启一下客户端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos01 bin]<span class="comment"># redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; shutdown</span><br><span class="line">not connected&gt; <span class="built_in">exit</span></span><br><span class="line">[root@centos01 bin]<span class="comment"># redis-server hlconfig/redis.conf </span></span><br><span class="line">[root@centos01 bin]<span class="comment"># redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行一些命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k5 v5</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开<code>appendonly.aof</code>可以看到里面记录了所有的写操作</p>
+<img src="/posts/7f6bc1c2/image-20201207225036589.png" class>
+</li>
+<li><p>重启客户端，可以看到还是可以取到数据的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; shutdown</span><br><span class="line">not connected&gt; <span class="built_in">exit</span></span><br><span class="line">[root@centos01 bin]<span class="comment"># redis-server hlconfig/redis.conf </span></span><br><span class="line">[root@centos01 bin]<span class="comment"># redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="2-4-AOF-启动-修复-恢复"><a href="#2-4-AOF-启动-修复-恢复" class="headerlink" title="2.4 AOF 启动/修复/恢复"></a>2.4 AOF 启动/修复/恢复</h4><ul>
+<li>正常情况：<ul>
+<li>启动：设置 yes，修改默认的<code>appendonly no</code>，改为<code>yes</code></li>
+<li>将有数据的 AOF文件复制一份保存到对应目录（<code>CONFIG GET dir</code>）</li>
+<li>恢复：重启 Redis 然后重新加载</li>
+</ul>
+</li>
+<li>发生异常：<ul>
+<li>启动：设置 yes，修改默认的<code>appendonly no</code>，改为<code>yes</code></li>
+<li>故意破坏 appendonly.aof 文件</li>
+<li>修复： <code>redis-check-aof --fix appendonly.aof</code>进行修复</li>
+<li>恢复：重启 Redis 然后重新加载</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-5-Rewrite-重写"><a href="#2-5-Rewrite-重写" class="headerlink" title="2.5 Rewrite 重写"></a>2.5 Rewrite 重写</h4><p><strong>是什么：</strong></p>
+<p>AOF 采用文件追加方式，文件会越来越大，为避免出现此种情况，新增了重写机制，当 AOF 文件的大小超过所设定的阈值时，Redis 就会启动A OF 文件的内容压缩，只保留可以恢复数据的最小指令集，可以使用命令<code>BGREWRITEAOF</code></p>
+<p><strong>原理：</strong></p>
+<p>AOF 文件持续增长而过大时，会 fork 出一条新进程来将文件重写（也是先写临时文件最后再 rename），遍历新进程的内存中数据，每条记录有一条的 Set 语句。重写 AOF 文件的操作，并没有读取旧的 AOF文件，这点和快照有点类似。</p>
+<p><strong>触发机制：</strong></p>
+<p>Redis 会记录上次重写时的 AOF 大小，默认配置是当 AOF 文件大小是上次 rewrite 后大小的一倍（100%）且文件大于 64M 时触发。如果想要修改的话需要更改一下两条配置参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-总结"><a href="#2-6-总结" class="headerlink" title="2.6 总结"></a>2.6 总结</h4><ul>
+<li><p>AOF 文件时一个只进行追加的日志文件</p>
+</li>
+<li><p>Redis 可以在 AOF 文件体积变得过大时，自动地在后台对 AOF 进行重写</p>
+</li>
+<li><p>AOF 文件有序地保存了对数据库执行的所有写入操作，这些写入操作以 Redis 协议的格式保存，因此 AOF 文件的内容非常容易被人读懂，对文件进行分析也很轻松</p>
+</li>
+<li><p>对于相同的数据集来说，AOF 文件的体积通常要大于RDB文件的体积</p>
+</li>
+<li><p>根据所使用的 fsync 策略，AOF 的速度可能会慢于 RDB</p>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li>每修改同步：appendfsync always 同步持久化，每次发生数据变更会被立即记录到磁盘，性能较差但数据完整性比较好</li>
+<li>每秒同步： appendfsync everysec 异步操作，每秒记录 ，如果一秒内宕机，有数据丢失</li>
+<li>不同步： appendfsync no 从不同步</li>
+</ol>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ol>
+<li>相同数据集的数据而言，AOF 文件要远大于 RDB 文件，恢复速度慢于 RDB。</li>
+<li>AOF 运行效率要慢于 RDB，每秒同步策略效率较好，不同步效率和 RDB 相同。</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-两种方式的对比总结"><a href="#3-两种方式的对比总结" class="headerlink" title="3. 两种方式的对比总结"></a>3. 两种方式的对比总结</h3><ul>
+<li>RDB 持久化方式能够在指定的时间间隔内对你的数据进行快照存储</li>
+<li>AOF 持久化方式记录每次对服务器写的操作，当服务器重启的时候会重新执行这些命令来恢复原始的数据，AOF 命令以 Redis 协议追加保存每次写的操作到文件末尾，Redis还能对AOF文件进行后台重写，使得 AOF 文件的体积不至于过大。</li>
+<li>如果你只希望你的数据在服务器运行的时候存在，你也可以不使用任何持久化，只做缓存</li>
+<li>同时开启两种持久化方式<ul>
+<li>在这种情况下，当 Redis 重启的时候会优先载入 AOF 文件来恢复原始的数据，因为在通常情况下 AOF 文件保存的数据集要比 RDB 文件保存的数据集要完整。</li>
+<li>RDB 的数据不实时，同时使用两者时服务器重启也只会找 AOF 文件，那要不要只使用 AOF 呢？作者建议不要，因为 RDB 更适合用于备份数据库（AOF 在不断变化不好备份），快速重启，而且不会有 AOF 可能潜在的 Bug，留着作为一个万一的手段。</li>
+</ul>
+</li>
+<li>性能建议<ul>
+<li>因为 RDB 文件只用作后备用途，建议只在 Slave 上持久化 RDB 文件，而且只要 15 分钟备份一次就够了，只保留<code>save 900 1</code>这条规则。</li>
+<li>如果开启 AOF ，好处是在最恶劣情况下也只会丢失不超过两秒数据，启动脚本较简单只加载自己的 AOF 文件就可以了。代价一是带来了持续的 IO，二是 AOF rewrite 的最后将 rewrite 过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。只要硬盘许可，应该尽量减少 AOF rewrite 的频率，AOF 重写的基础大小默认值 64M 太小了，可以设到 5G 以上，默认超过原大小100% 大小重写可以改到适当的数值。</li>
+<li>如果不开启 AOF ，仅靠 Master-Slave Repllcation 实现高可用性也可以，能省掉一大笔 IO，也减少了 rewrite 时带来的系统波动。代价是如果 Master/Slave 同时倒掉，会丢失十几分钟的数据，<br>启动脚本也要比较两个 Master/Slave 中的 RDB文件，载入较新的那个，微博就是这种架构。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Horsen Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://horsenliu.gitee.io/posts/7f6bc1c2.html" title="09_Redis 持久化">http://horsenliu.gitee.io/posts/7f6bc1c2.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+              <a href="/tags/Redis-%E6%8C%81%E4%B9%85%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> Redis 持久化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/2ad476a8.html" rel="prev" title="07_Spring Boot 整合 Redis">
+      <i class="fa fa-chevron-left"></i> 07_Spring Boot 整合 Redis
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/55892a91.html" rel="next" title="08_Redis.conf 配置">
+      08_Redis.conf 配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RDB-Redis-DataBase"><span class="nav-text">1. RDB (Redis DataBase)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF-RDB"><span class="nav-text">1.1 什么是 RDB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Fork"><span class="nav-text">1.2 Fork</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%B5%8B%E8%AF%95"><span class="nav-text">1.3 测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91-RDB-%E5%BF%AB%E7%85%A7"><span class="nav-text">1.5 如何触发 RDB 快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-%E5%A6%82%E4%BD%95%E6%81%A2%E5%A4%8D"><span class="nav-text">1.6 如何恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-%E6%80%BB%E7%BB%93"><span class="nav-text">1.7 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-AOF-Append-Only-File"><span class="nav-text">2. AOF (Append Only File)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF-AOF"><span class="nav-text">2.1 什么是 AOF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E9%85%8D%E7%BD%AE"><span class="nav-text">2.2 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%B5%8B%E8%AF%95"><span class="nav-text">2.3 测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-AOF-%E5%90%AF%E5%8A%A8-%E4%BF%AE%E5%A4%8D-%E6%81%A2%E5%A4%8D"><span class="nav-text">2.4 AOF 启动&#x2F;修复&#x2F;恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-Rewrite-%E9%87%8D%E5%86%99"><span class="nav-text">2.5 Rewrite 重写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E6%80%BB%E7%BB%93"><span class="nav-text">2.6 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-text">3. 两种方式的对比总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Horsen Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Horsen Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">165</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Horsen Liu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">532k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"width":180,"height":360,"position":"left","hOffset":40,"vOffset":-60},"mobile":{"show":false,"scale":0.1},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
