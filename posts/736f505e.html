@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/5.13.0/css/all.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文是参考了以下文章 OWASP 中国 中的 OWASP Top 10 2013 官方文档 whoim_i 的《OWASP top10 详解》 fk0dog 的《初识OWASP TOP 10（2013）》 并结合个人理解的总结与整理  简介OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程序安全的人士开放，其最具权威的就是“10 项最严重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OWASP Top 10 2013">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/736f505e.html">
+<meta property="og:site_name" content="霍森的笔记本">
+<meta property="og:description" content="本文是参考了以下文章 OWASP 中国 中的 OWASP Top 10 2013 官方文档 whoim_i 的《OWASP top10 详解》 fk0dog 的《初识OWASP TOP 10（2013）》 并结合个人理解的总结与整理  简介OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程序安全的人士开放，其最具权威的就是“10 项最严重">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/736f505e/image-20210106172455951.png">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/736f505e/20190115094820160.png">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/736f505e/20190115094753418.png">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/736f505e/image-20210107132501198.png">
+<meta property="article:published_time" content="2021-01-06T09:23:00.000Z">
+<meta property="article:modified_time" content="2021-01-07T08:40:55.513Z">
+<meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="OWASP Top 10">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/736f505e/image-20210106172455951.png">
+
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/736f505e.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>OWASP Top 10 2013 | 霍森的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">霍森的笔记本</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一学就会 一写就废</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">114</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">167</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/horsenliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/736f505e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OWASP Top 10 2013
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-06 17:23:00" itemprop="dateCreated datePublished" datetime="2021-01-06T17:23:00+08:00">2021-01-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">网络安全学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OWASP-Top-10/" itemprop="url" rel="index"><span itemprop="name">OWASP Top 10</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本文是参考了以下文章</p>
+<p><a target="_blank" rel="noopener" href="http://www.owasp.org.cn/">OWASP 中国</a> 中的 <a target="_blank" rel="noopener" href="http://www.owasp.org.cn/owasp-project/2013top10">OWASP Top 10 2013 官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/whoim_i">whoim_i</a> 的《<a target="_blank" rel="noopener" href="https://blog.csdn.net/whoim_i/article/details/103173882">OWASP top10 详解</a>》</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/fk0dog">fk0dog</a> 的《<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29018939">初识OWASP TOP 10（2013）</a>》</p>
+<p>并结合个人理解的总结与整理</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>OWASP（开放式Web应用程序安全项目）的工具、文档、论坛和全球各地分会都是开放的，对所有致力于改进应用程序安全的人士开放，其最具权威的就是“10 项最严重的 Web 应用程序安全风险列表” ，总结了 Web 应用程序最可能、最常见、最危险的十大漏洞，是开发、测试、服务、咨询人员应知应会的知识。</p>
+<p><strong>2013 相对 2010 的变化</strong></p>
+<img src="/posts/736f505e/image-20210106172455951.png" class>
+
+<a id="more"></a>
+
+<h3 id="A1-注入"><a href="#A1-注入" class="headerlink" title="A1: 注入"></a>A1: 注入</h3><blockquote>
+<p>将不受信任的数据作为命令或查询的一部分发送到解析器时，会产生诸如 SQL 注入、NoSQL 注入、OS 注入和 LDAP 注入的注入缺陷。攻击者的恶意数据可以诱使解析器在没有适当授权的情况下执行非预期命令或访问数据。</p>
+</blockquote>
+<h4 id="1-1-描述"><a href="#1-1-描述" class="headerlink" title="1.1 描述"></a>1.1 描述</h4><p>作为 Java 程序员，对这个应该很熟悉了。例如一开始学习 JDBC 时老师说尽量使用<code>PreparedStatement</code>而不是<code>Statement</code>，使用 Mybatis 时尽量使用<code>#&#123;字段名&#125;</code>而不是<code>$&#123;字段名&#125;</code>，模糊查询时尽量在参数传递时加入<code>%</code>而不是在 SQL 语句中添加<code>%</code>等等。</p>
+<p>常见的 SQL 注入例如，访问一个某一个 id 为 1 的实体，浏览器地址可以为<code>http://www.xxx.com/model?id=1</code>，如果有注入漏洞，就可以在后面加<code>OR 1=1</code>，这样一来 SQL 语句就变成了<code>SELECT * FROM table_name WHERE id=1 OR 1=1</code>，后果就很恐怖。</p>
+<p>按照注入点类型分类，可以分为以下：</p>
+<ol>
+<li><p>数字型注入点</p>
+<p>类似上面举的例子，缘由是其注入点 id 类型为数字，在大多数的网页中，诸如查看用户个人信息，查看文章等大都会使用这种形式的结构传递 id 等信息，交给后端，查询出数据库中对应的信息，返回给前台。</p>
+</li>
+<li><p>字符型注入点</p>
+<p>类似<code>http://www.xxx.com/model?name=admin</code>这种形式，其注入点 name 类型为字符类型，这一类的 SQL 语句大概为<code>SELECT * from table_name WHERE name=&#39;admin&#39;</code>，这里相比于数字型注入类型的 SQL 语句多了引号，可以是单引号或者是双引号。可以在后面加<code>&#39; OR &#39;1&#39;=&#39;1</code>，这样一来 SQL 语句就变成了<code>SELECT * FROM table_name WHERE name=&#39;admin&#39; OR &#39;1&#39;=&#39;1&#39;</code>。</p>
+</li>
+<li><p>搜索型注入点</p>
+<p>类似<code>http://www.xxx.com/model?title=hello</code>这种形式，其注入点 name 类型为字符类型，这一类的 SQL 语句大概为<code>SELECT * from table_name WHERE title LIKE &#39;%hello%&#39;</code>。可以在后面加<code>%&#39; OR &#39;%1%&#39;=&#39;%1</code>，这样一来 SQL 语句就变成了<code>SELECT * FROM table_name WHERE title LIKE &#39;%hello%&#39; OR &#39;%1%&#39;=&#39;%1%&#39;</code>。</p>
+</li>
+</ol>
+<h4 id="1-2-防护措施"><a href="#1-2-防护措施" class="headerlink" title="1.2 防护措施"></a>1.2 防护措施</h4><ol>
+<li><strong>使用预编译语句，绑定变量。</strong>比如使用<code>PreparedStatement</code>而不是<code>Statement</code></li>
+<li><strong>使用存储过程。</strong>和使用预编译语句类似，其区别就是存储过程需要先将 SQL 语句定义在数据库中。但需要注意的是，存储过程也可能存在注入问题，因此应该尽量避免在存储过程内使用动态的 SQL 语句。</li>
+<li><strong>检查数据类型。</strong>比如用户在输入邮箱时，必须严格按照邮箱的格式；输入时间、日期时必须严格按照时间、日期的格式等等。但数据类型检查并非万能的，如果需求就是需要用户提交字符串，比如一段短文，则需要依赖其他的方法防范 SQL 注入。</li>
+<li><strong>使用安全函数。</strong>一般来说，各种 Web 语言都实现了一些编码函数，可以帮助对抗 SQL 注入。</li>
+</ol>
+<h3 id="A2-失效的身份认证和会话管理"><a href="#A2-失效的身份认证和会话管理" class="headerlink" title="A2: 失效的身份认证和会话管理"></a>A2: 失效的身份认证和会话管理</h3><blockquote>
+<p>通常，通过错误使用应用程序的身份认证和会话管理功能，攻击者能够破译密码、密钥或会话令牌，或者利用其它开发缺陷来暂时性或永久性冒充其他用户的身份。</p>
+</blockquote>
+<h4 id="2-1-描述"><a href="#2-1-描述" class="headerlink" title="2.1 描述"></a>2.1 描述</h4><p>在 Java 开发过程中，常见的情况大概就是：</p>
+<ol>
+<li>以明文方式存储用户的密码。这一点需要自我反思…在课程设计中从来就没有尝试过把用户密码先 MD5 加密过后再存储到数据库中，倒是在生成登录 token 的时候老老实实地 HMAC256 加密了。究其原因不过两点：1. 为了测试方便懒得加密；2. 小破项目连上线的水平都达不到，唯一的「用户」就是自己…</li>
+<li>Session ID 暴露在 URL 中。</li>
+<li>Session 没有做超时处理。</li>
+<li>Cookie 没有加密。</li>
+<li>密码强度不够。</li>
+</ol>
+<h4 id="2-2-防范措施"><a href="#2-2-防范措施" class="headerlink" title="2.2 防范措施"></a>2.2 防范措施</h4><ol>
+<li>尽可能多几步验证身份（例如 Apple 的「两步验证」和「双重验证」）</li>
+<li>执行弱密码检查。</li>
+<li>设置账户封禁，避免遭受进一步的攻击。</li>
+<li>存储<strong>单向加密</strong>后的用户密码。</li>
+<li>设置 Session 过期时间。</li>
+<li>加密 Cookie。</li>
+</ol>
+<h3 id="A3-跨站脚本（XSS）"><a href="#A3-跨站脚本（XSS）" class="headerlink" title="A3: 跨站脚本（XSS）"></a>A3: 跨站脚本（XSS）</h3><blockquote>
+<p>当应用程序收到含有不可信的数据，在没有进行适当的验证和转义的情况下，就将它发送给一个网页浏览器，这就会产生跨站脚本攻击（简称XSS）。XSS允许攻击者在受害者的浏览器上执行脚本，从而劫持用户会话、危害网站、或者将用户转向至恶意网站。</p>
+</blockquote>
+<h4 id="3-1-描述"><a href="#3-1-描述" class="headerlink" title="3.1 描述"></a>3.1 描述</h4><p>恶意攻击者往 Web 页面里插入恶意 Script 代码，当用户浏览该页面时，嵌入 Web 里面的 Script 代码会被执行，从而达到恶意攻击用户的目的。</p>
+<p>XSS 攻击针对的是用户层面的攻击。</p>
+<p>有三种已知的跨站漏洞类型：</p>
+<ol>
+<li><p>存储型</p>
+<p>持久化，代码是存储在服务器中的，如在个人信息或发表文章等地方，插入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。这种 XSS 比较危险，容易造成蠕虫，盗窃 Cookie。</p>
+<img src="/posts/736f505e/20190115094820160.png" class>
+
+<p><strong>举个例子</strong></p>
+<p>B 拥有一个 Web 站点，该站点允许用户发布信息/浏览已发布的信息。</p>
+<p>C 检测到 B 的站点存在存储型的 XSS 漏洞。</p>
+<p>C 在 B 的网站上发布一个带有恶意脚本的热点信息，该热点信息存储在了 B 的服务器的数据库中，然后吸引其它用户来阅读该热点信息。</p>
+<p> B 或者是任何的其他人如 A 浏览该信息之后，C 的恶意脚本就会执行。</p>
+<p>C 的恶意脚本执行后，就可以对浏览器该页面的用户发动一起 XSS 攻击。</p>
+</li>
+<li><p>反射型</p>
+<p>非持久化，需要欺骗用户自己去点击链接才能触发 XSS 代码（服务器中没有这样的页面和内容），一般容易出现在搜索页面。</p>
+<p>反射型 XSS 大多数是用来盗取用户的 Cookie 信息。</p>
+<img src="/posts/736f505e/20190115094753418.png" class>
+
+<p><strong>举个例子</strong></p>
+<p>A 经常浏览某个网站，此网站为 B 所拥有。B 的站点需要 A 使用用户名/密码进行登录，并存储了 A 敏感信息，比如银行帐户信息。</p>
+<p>C 发现 B 的站点存在反射型的 XSS 漏洞。</p>
+<p>C 利用 B 网站的反射型 XSS 漏洞编写了一个 exp，做成链接的形式，并利用各种手段诱使 A 点击。</p>
+<p>A 在登录到 B 的站点后，浏览了 C 提供的恶意链接。</p>
+<p>嵌入到恶意链接中的恶意脚本在 A 的浏览器中执行。此脚本盗窃敏感信息（Cookie、帐号信息等信息）。然后在 A 完全不知情的情况下将这些信息发送给 C。</p>
+<p>C 利用获取到的 Cookie 就可以以 A 的身份登录 B 的站点，如果脚本的功更强大的话，C 还可以对 A 的浏览器做控制并进一步利用漏洞控制。</p>
+</li>
+<li><p>基于 DOM 的 XSS</p>
+<p>不经过后端，DOM-XSS 漏洞是基于文档对象模型（Document Objeet Model, DOM）的一种漏洞，DOM-XSS 是通过 url 传入参数去控制触发的，其实也属于反射型 XSS。</p>
+</li>
+</ol>
+<h4 id="3-2-防范措施"><a href="#3-2-防范措施" class="headerlink" title="3.2 防范措施"></a>3.2 防范措施</h4><ol>
+<li>对用户的输入和 URL 参数进行过滤，对输出进行 html 编码</li>
+<li>服务端设置会话 Cookie 的 HTTP Only 属性</li>
+</ol>
+<h3 id="A4-不安全的直接对象引用"><a href="#A4-不安全的直接对象引用" class="headerlink" title="A4: 不安全的直接对象引用"></a>A4: 不安全的直接对象引用</h3><blockquote>
+<p>当开发人员暴露一个对内部实现对象的引用时，例如，一个文件、目录或者数据库密匙，就会产生一个不安全的直接对象引用。在没有访问控制检测或其他保护时，攻击者会操控这些引用去访问未授权数据。</p>
+</blockquote>
+<h4 id="4-1-描述"><a href="#4-1-描述" class="headerlink" title="4.1 描述"></a>4.1 描述</h4><p>服务器上的具体文件名、路径或数据库关键字等内部资源被暴露在 URL 或网页中，攻击者可以尝试直接访问其他资源。攻击者绕过网站的身份验证机制，并通过修改指向对象链接中的参数值来直接访问目标对象资源，这类资源可以是属于其他用户的数据库条目以及服务器系统中的隐私文件等等。</p>
+<p>比如，A 登录账号后，在执行邮箱修改操作时，攻击者抓包，将 A 用户标识 ID 改为 B 用户标识 ID，再发包。这样 B 用户的邮箱就莫名其妙被篡改了。</p>
+<p>还是以我开发的「房屋租赁管理系统」举例，每个用户在发布房源后都需要管理员对该房源信息进行审核，审核通过才能显示在所有房源列表中。表面上审核未通过或未经审核的房源不会出现在列表中，但该房源的详细信息页面却可以通过修改 URL 中的参数访问。 </p>
+<h4 id="4-2-防范措施"><a href="#4-2-防范措施" class="headerlink" title="4.2 防范措施"></a>4.2 防范措施</h4><ol>
+<li>使用基于用户或会话的间接对象访问，这样可防止攻击者直接攻击未授权资源</li>
+<li>检查访问，对任何来自不受信源所使用的所有对象进行访问控制检查</li>
+<li>避免在 URL 或网页中直接引用内部文件名或数据库关键字</li>
+<li>验证用户输入和 url 请求，拒绝包含./ …/的请求</li>
+</ol>
+<h3 id="A5-安全配置错误"><a href="#A5-安全配置错误" class="headerlink" title="A5: 安全配置错误"></a>A5: 安全配置错误</h3><blockquote>
+<p>安全配置错误是最常见的安全问题，这通常是由于不安全的默认配置、不完整的临时配置、开源云存储、错误的 HTTP 标头配置以及包含敏感信息的详细错误信息所造成的。因此，我们不仅需要对所有的操作系统、框架、库和应用程序进行安全配置，而且必须及时修补和升级它们。</p>
+</blockquote>
+<h4 id="5-1-描述"><a href="#5-1-描述" class="headerlink" title="5.1 描述"></a>5.1 描述</h4><p>服务器的配置，或安装的软件配置，或安装的程序配置等等，并没有配置正确或者用的都是默认的配置。比如 MySQL 或者 Redis 在安装后没有修改默认的密码或者没有设置密码，或者开启了不必要的端口、服务、权限。</p>
+<h4 id="5-2-防范措施"><a href="#5-2-防范措施" class="headerlink" title="5.2 防范措施"></a>5.2 防范措施</h4><ol>
+<li>配置所有的安全机制</li>
+<li>最小原则，关掉或限制不使用的服务</li>
+<li>更改默认账户信息</li>
+<li>使用日志和警报</li>
+<li>回显信息不显示任何与实际错误相关的信息</li>
+<li>检查和修复安全配置项</li>
+</ol>
+<h3 id="A6-敏感数据泄露"><a href="#A6-敏感数据泄露" class="headerlink" title="A6: 敏感数据泄露"></a>A6: 敏感数据泄露</h3><blockquote>
+<p>许多 Web 应用程序和 API 都无法正确保护敏感数据，例如：财务数据、医疗数据和 PII 数据。攻击者可以通过窃取或修改未加密的数据来实施信用卡诈骗、身份盗窃或其他犯罪行为。未加密的敏感数据容易受到破坏，因此，我们需要对敏感数据加密，这些数据包括：传输过程中的数据、存储的数据以及浏览器的交互数据。</p>
+</blockquote>
+<h4 id="6-1-描述"><a href="#6-1-描述" class="headerlink" title="6.1 描述"></a>6.1 描述</h4><p>其实就是网站没有使用任何加密措施。</p>
+<p>一个网站没有使用 SSL 认证所有页面，就是没有使用 Https。攻击者只需要监控网络流量（如一个开放的无线网络，打开 ARP 监控软件），并窃取用户的会话 Cookie。然后攻击者重放这个 Cookie 和劫持用户会话，就可以访问用户的私人数据。</p>
+<p>举一个自身开发过程中的例子。在开发「房屋租赁管理系统」的时候，所有的房源图片和用户头像都放在阿里云 OSS 中了，为了定位具体的 bucket 就需要 endpoint、keyid、keysecret、bucketname 等参数，这些参数都是在 yml 中配置的。当我把项目 Push 到 Github 和 Gitee 仓库中之后，这些敏感数据也推上去了，我自己倒是不在意（谁会盯上我呢），但阿里云隔三岔五就会给我发短信和邮件告诉我  AccessKey 发生了泄露，并把泄露地址也告诉我了。</p>
+<h4 id="6-2-防范措施"><a href="#6-2-防范措施" class="headerlink" title="6.2 防范措施"></a>6.2 防范措施</h4><ol>
+<li>对系统处理、存储或传输的数据进行分类，根据分类进行访问控制。</li>
+<li>对用户敏感信息的传输和存储进行加密。</li>
+<li>对于没必要存放的、重要的敏感数据，应当尽快清除</li>
+<li>确保传输过程中的数据被加密。</li>
+</ol>
+<h3 id="A7-功能级访问控制缺失"><a href="#A7-功能级访问控制缺失" class="headerlink" title="A7: 功能级访问控制缺失"></a>A7: 功能级访问控制缺失</h3><blockquote>
+<p>大多数 Web 应用程序在功能在 UI 显示之前，会验证功能级别的访问权限。但是，应用程序需要在每个功能被访问时在服务器端执行相同的访问控制检查。如果请求没有被验证，攻击者能够伪造请求以在未经适当授权时访问功能。</p>
+</blockquote>
+<h4 id="7-1-描述"><a href="#7-1-描述" class="headerlink" title="7.1 描述"></a>7.1 描述</h4><p>类似于未授权访问，但是主要不是针对用户，而是管理层。以用户权限可使用管理层权限。就是没有做 RBAC。</p>
+<p>很多系统的权限控制是通过页面灰化或隐藏 URL 实现的，没有在服务器端进行身份确认和权限验证，导致攻击者通过修改页面样式或获取隐藏URL，进而获取特权页面来对系统进行攻击，或者在匿名状态下对他人的页面进行攻击，从而获取用户数据或提升权限。</p>
+<p>如果是发生在后台，攻击者能够访问到正常用户才能访问到的页面，将对所有用户的安全问题造成威胁。</p>
+<h4 id="7-2-防范措施"><a href="#7-2-防范措施" class="headerlink" title="7.2 防范措施"></a>7.2 防范措施</h4><ol>
+<li>设计严格的权限控制系统，对于每个请求和 URL 都要进行校验和权限确认，防止非法请求被执行。</li>
+<li>RBAC，对于每个功能的访问，都要有明确的角色授权，采用过滤器的方式校验每个请求的合法性。</li>
+<li>实现 Web 访问的 IP 白名单列表，禁止不可信的 IP 访问 Web 系统。</li>
+</ol>
+<h3 id="A8-跨站请求伪造（CSRF）"><a href="#A8-跨站请求伪造（CSRF）" class="headerlink" title="A8: 跨站请求伪造（CSRF）"></a>A8: 跨站请求伪造（CSRF）</h3><blockquote>
+<p>一个跨站请求伪造攻击迫使登录用户的浏览器将伪造的 HTTP 请求，包括受害者的会话 Cookie 和所有其他自动填充的身份认证信息，发送到一个存在漏洞的 Web 应用程序。这种攻击允许攻击迫使受害者的浏览器生成让存在漏洞的应用程序认为是受害者的合法请求的请求。</p>
+</blockquote>
+<h4 id="8-1-描述"><a href="#8-1-描述" class="headerlink" title="8.1 描述"></a>8.1 描述</h4><p>听起来像跨站脚本（XSS），但与 XSS 非常不同。XSS 利用站点内的信任用户，而 CSRF 则通过<strong>伪装来自受信任用户的请求</strong>来利用受信任的网站。与 XSS 攻击相比，CSRF 攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比 XSS 更具危险性。</p>
+<p>说白了就是，XSS 是事先将一切都准备好，等着用户把自己的数据乖乖地交上来，而 CSRF 则是利用受信用户的 Cookie，做自己想做的事情。</p>
+<p>比如要攻击一个存在问题的博客，先去目标博客留言，留下一个网址，吸引主人点击过来，然后构造个 HTML 表单提交些数据过去，比如增加一个这个博客的管理员账户。当他打开这个页面的瞬间，代码就会自动提交数据到那个博客的数据库。</p>
+<img src="/posts/736f505e/image-20210107132501198.png" class>
+
+<h4 id="8-2-防范措施"><a href="#8-2-防范措施" class="headerlink" title="8.2 防范措施"></a>8.2 防范措施</h4><ol>
+<li>验证请求来源地址是否是合法用户地址（即最开始登录的来源地址）。但这只能进行简单的防御，因为这个地址可以人为的篡改。</li>
+<li>重要功能点使用动态验证码进行 CSRF 防护</li>
+<li>通过 token 方式进行 CSRF 防护，在服务器端对比 POST 提交参数的token 与 Session 中绑定的 token 是否一致。</li>
+</ol>
+<h3 id="A9-使用含有已知漏洞的组件"><a href="#A9-使用含有已知漏洞的组件" class="headerlink" title="A9: 使用含有已知漏洞的组件"></a>A9: 使用含有已知漏洞的组件</h3><blockquote>
+<p>组件（例如：库、框架和其他软件模块）拥有和应用程序相同的权限。如果应用程序中含有已知漏洞的组件被攻击者利用，可能会造成严重的数据丢失或服务器接管。同时，使用含有已知漏洞的组件的应用程序和API可能会破坏应用程序防御、造成各种攻击并产生严重影响。</p>
+</blockquote>
+<h4 id="9-1-描述"><a href="#9-1-描述" class="headerlink" title="9.1 描述"></a>9.1 描述</h4><p>数据库、框架，和其他软件模块几乎都拥有完全权限的运行。如果利用有漏洞的组件，这种攻击可以导致数据丢失或服务器被入侵。</p>
+<p>大多数的开发团队并不会把及时更新组件和库当成他们的工作重心，更不关心组件和库的版本，然而应用程序使用带有已知漏洞的组件会破坏应用程序防御系统，可能导致严重的数据丢失或服务器接管。</p>
+<h4 id="9-2-防范措施"><a href="#9-2-防范措施" class="headerlink" title="9.2 防范措施"></a>9.2 防范措施</h4><ol>
+<li>移除不使用的依赖、不需要的功能、组件、文件和文档。</li>
+<li>仅从官方渠道安全的获取组件，并使用签名机制来降低组件被篡改或加入恶意漏洞的风险。</li>
+<li>监控那些不再维护或者不发布安全补丁的库和组件。如果不能打补丁，可以考虑部署虚拟补丁来监控、检测或保护。</li>
+</ol>
+<h3 id="A10-未验证的重定向和转发"><a href="#A10-未验证的重定向和转发" class="headerlink" title="A10: 未验证的重定向和转发"></a>A10: 未验证的重定向和转发</h3><h4 id="10-1-描述"><a href="#10-1-描述" class="headerlink" title="10.1 描述"></a>10.1 描述</h4><p><strong>关于重定向和转发的区别</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>重定向</th>
+<th>转发</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>状态码</td>
+<td>3XX</td>
+<td></td>
+</tr>
+<tr>
+<td>地址栏</td>
+<td>变化</td>
+<td>不变化</td>
+</tr>
+<tr>
+<td>不恰当的比喻</td>
+<td>A 不知道 B 的号码，打给了 C，C 向 A 提供了 B 的号码，A 重新给 B 打了个电话。</td>
+<td>A 不知道 B 的号码，打给了 C，B 就在 C 旁边，C 把电话给了 B ，A 不需要重新给 B 打电话。</td>
+</tr>
+</tbody></table>
+<p>常见的钓鱼网站就是利用这个漏洞，如果网站没有对带有用户输入参数的目的 URL 做验证，攻击者就可以引导用户访问他们所要用户访问的站点。</p>
+<p>比如，攻击者把<a href="http://www.baidu.com/sss.php?target=http://diaoyu.com%E5%8F%91%E7%BB%99%E7%94%A8%E6%88%B7%EF%BC%8C%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%E8%BD%AF%E4%BB%B6%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%98%AF%E6%9D%A5%E8%87%AA%E7%99%BE%E5%BA%A6%E7%9A%84%E9%93%BE%E6%8E%A5%EF%BC%8C%E6%98%AF%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%8C%E4%BD%86%E7%94%A8%E6%88%B7%E7%82%B9%E5%87%BB%E4%B9%8B%E5%90%8E%E5%B0%B1%E4%BC%9A%E8%B7%B3%E8%BD%AC%E5%88%B0%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E5%87%A0%E4%B9%8E%E4%B8%80%E6%AF%9B%E4%B8%80%E6%A0%B7%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%EF%BC%8C%E5%BD%93%E4%BB%96%E4%BB%AC%E8%BE%93%E5%85%A5%E4%BA%86%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E4%B9%8B%E5%90%8E%EF%BC%8C%E9%9A%90%E7%A7%81%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%B3%84%E9%9C%B2%E7%BB%99%E6%94%BB%E5%87%BB%E8%80%85%E4%BA%86%E3%80%82">http://www.baidu.com/sss.php?target=http://diaoyu.com发给用户，安全检测软件认为这是来自百度的链接，是安全的，但用户点击之后就会跳转到前端页面几乎一毛一样钓鱼网站，当他们输入了用户名密码之后，隐私信息就泄露给攻击者了。</a></p>
+<p>第一次遇到这个套路是大学一年级的时候，在邮箱里看到一个群发文件，里面赫然写着南京工程学院，并配上了一个校徽，下面是一个二维码。扫了码之后就跳转到钓鱼网站了，我还特意检查了以下浏览器地址，前面仍然是<a target="_blank" rel="noopener" href="https://mail.qq.com/%EF%BC%8C%E8%BF%98%E5%A5%BD%E5%AE%83%E4%B8%91%E9%99%8B%E4%B8%8D%E5%A0%AA%EF%BC%8C%E6%AD%AA%E4%B8%83%E6%89%AD%E5%85%AB%E7%9A%84">https://mail.qq.com/，还好它丑陋不堪，歪七扭八的</a> CSS 暴露了自己。</p>
+<h4 id="10-2-防范措施"><a href="#10-2-防范措施" class="headerlink" title="10.2 防范措施"></a>10.2 防范措施</h4><ol>
+<li>如果使用了重定向和转发，则不要在计算目标时涉及到用户参数。</li>
+<li>抓包工具抓包，抓到 302 的 URL，修改看看能否正常跳转。</li>
+<li>点击操作网站，观察在重定向之前用户输入的参数有没有出现在某一个 URL 或者很多 URL 中。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Horsen Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://horsenliu.gitee.io/posts/736f505e.html" title="OWASP Top 10 2013">http://horsenliu.gitee.io/posts/736f505e.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 网络安全</a>
+              <a href="/tags/OWASP-Top-10/" rel="tag"><i class="fa fa-tag"></i> OWASP Top 10</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/7f6bc1c2.html" rel="prev" title="09_Redis 持久化">
+      <i class="fa fa-chevron-left"></i> 09_Redis 持久化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/74029447.html" rel="next" title="OWASP Top 10 2017">
+      OWASP Top 10 2017 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A1-%E6%B3%A8%E5%85%A5"><span class="nav-text">A1: 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">1.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E9%98%B2%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="nav-text">1.2 防护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A2-%E5%A4%B1%E6%95%88%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%92%8C%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-text">A2: 失效的身份认证和会话管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">2.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">2.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A3-%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%EF%BC%88XSS%EF%BC%89"><span class="nav-text">A3: 跨站脚本（XSS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">3.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">3.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A4-%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E7%9B%B4%E6%8E%A5%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8"><span class="nav-text">A4: 不安全的直接对象引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">4.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">4.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A5-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF"><span class="nav-text">A5: 安全配置错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">5.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">5.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A6-%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2"><span class="nav-text">A6: 敏感数据泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">6.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">6.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A7-%E5%8A%9F%E8%83%BD%E7%BA%A7%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%BC%BA%E5%A4%B1"><span class="nav-text">A7: 功能级访问控制缺失</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">7.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">7.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A8-%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88CSRF%EF%BC%89"><span class="nav-text">A8: 跨站请求伪造（CSRF）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">8.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">8.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A9-%E4%BD%BF%E7%94%A8%E5%90%AB%E6%9C%89%E5%B7%B2%E7%9F%A5%E6%BC%8F%E6%B4%9E%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-text">A9: 使用含有已知漏洞的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">9.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">9.2 防范措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A10-%E6%9C%AA%E9%AA%8C%E8%AF%81%E7%9A%84%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91"><span class="nav-text">A10: 未验证的重定向和转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">10.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">10.2 防范措施</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Horsen Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Horsen Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">167</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Horsen Liu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">541k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:12</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"width":180,"height":360,"position":"left","hOffset":40,"vOffset":-60},"mobile":{"show":false,"scale":0.1},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
