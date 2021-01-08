@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. 什么是事务事务原则：ACID 原则（原子性、一致性、隔离性、持久性）  参考博客：https:&#x2F;&#x2F;blog.csdn.net&#x2F;dengjili&#x2F;article&#x2F;details&#x2F;82468576   原子性（Atomicity）：要么都成功，要么都失败 一致性（Consistency）：事务前后的数据完整性要保持一致 隔离性（Isolation）：多个用户同时操作数据库互不干扰 持久性（Dur">
+  <meta name="description" content="了解了 OWASP Top 10 之后，再补充一些常见的 Web 攻击。  参考文章： 常见 Web 安全攻防总结 Web安全知多少 文件上传漏洞攻击与防范方法 渗透测试技术—-常见web漏洞–文件包含攻击原理及防御 任意文件读取漏洞  1. OS 注入除了之前提到的 SQL 注入之外，还有一种 OS 命令注入，和 SQL 注入差不多，只不过 SQL 注入是针对数据库的，而 OS 命令注入是针对操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="05_事务">
-<meta property="og:url" content="http://horsenliu.gitee.io/posts/f2e699d4.html">
+<meta property="og:title" content="Web 攻击补充">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/7cd84864.html">
 <meta property="og:site_name" content="霍森的笔记本">
-<meta property="og:description" content="1. 什么是事务事务原则：ACID 原则（原子性、一致性、隔离性、持久性）  参考博客：https:&#x2F;&#x2F;blog.csdn.net&#x2F;dengjili&#x2F;article&#x2F;details&#x2F;82468576   原子性（Atomicity）：要么都成功，要么都失败 一致性（Consistency）：事务前后的数据完整性要保持一致 隔离性（Isolation）：多个用户同时操作数据库互不干扰 持久性（Dur">
+<meta property="og:description" content="了解了 OWASP Top 10 之后，再补充一些常见的 Web 攻击。  参考文章： 常见 Web 安全攻防总结 Web安全知多少 文件上传漏洞攻击与防范方法 渗透测试技术—-常见web漏洞–文件包含攻击原理及防御 任意文件读取漏洞  1. OS 注入除了之前提到的 SQL 注入之外，还有一种 OS 命令注入，和 SQL 注入差不多，只不过 SQL 注入是针对数据库的，而 OS 命令注入是针对操">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-26T05:58:00.000Z">
-<meta property="article:modified_time" content="2020-09-06T13:17:02.055Z">
+<meta property="article:published_time" content="2021-01-08T06:25:00.000Z">
+<meta property="article:modified_time" content="2021-01-08T07:30:00.300Z">
 <meta property="article:author" content="Horsen Liu">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="事务">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Web 攻击">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://horsenliu.gitee.io/posts/f2e699d4.html">
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/7cd84864.html">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>05_事务 | 霍森的笔记本</title>
+  <title>Web 攻击补充 | 霍森的笔记本</title>
   
 
 
@@ -199,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/f2e699d4.html">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/7cd84864.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -212,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          05_事务
+          Web 攻击补充
         </h1>
 
         <div class="post-meta">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-26 13:58:00" itemprop="dateCreated datePublished" datetime="2020-07-26T13:58:00+08:00">2020-07-26</time>
+              <time title="创建时间：2021-01-08 14:25:00" itemprop="dateCreated datePublished" datetime="2021-01-08T14:25:00+08:00">2021-01-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,7 +230,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">MySQL 学习笔记</span></a>
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">网络安全学习笔记</span></a>
                 </span>
             </span>
 
@@ -247,14 +247,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>700</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -266,29 +266,84 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h3><p><strong>事务原则：ACID 原则（原子性、一致性、隔离性、持久性）</strong></p>
+        <p>了解了 OWASP Top 10 之后，再补充一些常见的 Web 攻击。</p>
 <blockquote>
-<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dengjili/article/details/82468576">https://blog.csdn.net/dengjili/article/details/82468576</a></p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://zoumiaojiang.com/article/common-web-security/">常见 Web 安全攻防总结</a></p>
+<p><a target="_blank" rel="noopener" href="https://wetest.qq.com/lab/view/136.html">Web安全知多少</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38103658/article/details/100162185">文件上传漏洞攻击与防范方法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wwl012345/article/details/99712598">渗透测试技术—-常见web漏洞–文件包含攻击原理及防御</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ouyangxiaoze.com/2019/12/531.html">任意文件读取漏洞</a></p>
 </blockquote>
-<ul>
-<li><strong>原子性（Atomicity）</strong>：要么都成功，要么都失败</li>
-<li><strong>一致性（Consistency）</strong>：事务前后的数据完整性要保持一致</li>
-<li><strong>隔离性（Isolation）</strong>：多个用户同时操作数据库互不干扰</li>
-<li><strong>持久性（Durability）</strong>：事务一旦提交则不可逆，被持久化到数据库中</li>
-</ul>
-<p>做不到隔离性所导致的问题：</p>
-<ul>
-<li><strong>脏读</strong>：一个事务读取了另外一个事务未提交的数据</li>
-<li><strong>不可重复读</strong>：在一个事务内读取表中的某一行数据，多次读取结果不同</li>
-<li><strong>虚读（幻读）</strong>：在一个事务内读取到了别的事务插入的数据，导致前后读取不一致</li>
-</ul>
+<h3 id="1-OS-注入"><a href="#1-OS-注入" class="headerlink" title="1. OS 注入"></a>1. OS 注入</h3><p>除了之前提到的 SQL 注入之外，还有一种 OS 命令注入，和 SQL 注入差不多，只不过 SQL 注入是针对数据库的，而 OS 命令注入是针对操作系统的。</p>
+<p>OS 命令注入攻击指通过 Web 应用，执行非法的操作系统命令达到攻击的目的。只要在能调用 Shell 函数的地方就有存在被攻击的风险。倘若调用 Shell 时存在疏漏，就可以执行插入的非法命令。</p>
+<p>命令注入攻击可以向 Shel l发送命令，让 Windows 或 Linux 操作系统的命令行启动程序。也就是说，通过命令注入攻击可执行操作系统上安装着的各种程序。</p>
 <a id="more"></a>
 
-<h3 id="2-执行事务"><a href="#2-执行事务" class="headerlink" title="2. 执行事务"></a>2. 执行事务</h3><p><em>注意：MySQL 是默认开启事务自动提交的</em></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br><span class="line"><span class="comment">-- 提交</span></span><br><span class="line"><span class="keyword">commit</span>;</span><br><span class="line"><span class="comment">-- 回滚</span></span><br><span class="line"><span class="keyword">rollback</span>;</span><br><span class="line"><span class="comment">-- 事务结束 开启自动提交</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>假如现在需要实现一个需求：用户提交一些内容到服务器，然后在服务器执行一些系统命令去产出一个结果返回给用户，接口的部分实现如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;mz/child_process&#x27;</span>).exec;</span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* 用户输入的参数 */</span>&#125;;</span><br><span class="line"></span><br><span class="line">exec(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br></pre></td></tr></table></figure>
 
-<p>模拟场景：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 转账实现（一行一行执行）</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">0</span>; <span class="comment">-- 关闭自动提交</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;  <span class="comment">-- 开始一个事务,标记事务的起始点</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash<span class="number">-500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">account</span> <span class="keyword">SET</span> cash=cash+<span class="number">500</span> <span class="keyword">WHERE</span> <span class="string">`name`</span>=<span class="string">&#x27;B&#x27;</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>; <span class="comment">-- 提交事务</span></span><br><span class="line"><span class="comment">-- ROLLBACK;</span></span><br><span class="line"><span class="keyword">SET</span> autocommit = <span class="number">1</span>; <span class="comment">-- 恢复自动提交</span></span><br></pre></td></tr></table></figure>
+<p>如果 <code>params.repo</code> 传入的是 <code>https://github.com/zoumiaojiang/zoumiaojiang.github.io.git</code> 当然没问题了。</p>
+<p>可是如果 <code>params.repo</code> 传入的是 <code>https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</code> 恰好你的服务是用 root 权限起的就惨了。</p>
+<h3 id="2-文件上传漏洞"><a href="#2-文件上传漏洞" class="headerlink" title="2. 文件上传漏洞"></a>2. 文件上传漏洞</h3><h4 id="2-1-描述"><a href="#2-1-描述" class="headerlink" title="2.1 描述"></a>2.1 描述</h4><p>上传漏洞与 SQL 注入或 XSS 相比风险更大。</p>
+<p>如果 Web 应用程序存在上传漏洞，攻击者上传的文件是 Web 脚本语言，服务器的 Web 容器解释并执行了用户上传的脚本，导致代码执行。如果上传的文件是 Flash 的策略文件 crossdomain.xml，黑客用以控制 Flash 在该域下的行为。如果上传的文件是病毒、木马文件，黑客用以诱骗用户或者管理员下载执行。如果上传的文件是钓鱼图片或为包含了脚本的图片，在某些版本的浏览器中会被作为脚本执行，被用于钓鱼和欺诈。甚至攻击者可以直接上传一个 webshell 到服务器上，完全控制系统或致使系统瘫痪。</p>
+<p>大部分的网站和应用系统都有上传功能，而程序员在开发任意文件上传功能时，并未考虑文件格式后缀的合法性校验或者是否只在前端通过 js 进行后缀检验。这时攻击者可以上传一个与网站脚本语言相对应的恶意代码动态脚本，例如（jsp、asp、php、aspx文件后缀）到服务器上，从而访问这些恶意脚本中包含的恶意代码，进行动态解析最终达到执行恶意代码的效果，进一步影响服务器安全。</p>
+<h4 id="2-2-防护措施"><a href="#2-2-防护措施" class="headerlink" title="2.2 防护措施"></a>2.2 防护措施</h4><ol>
+<li>文件上传的目录设置为不可执行。只要 Web 容器无法解析该目录下面的文件，即使攻击者上传了脚本文件，服务器本身也不会受到影响。</li>
+<li>使用随机数改写文件名和文件路径。文件上传如果要执行代码，则需要用户能够访问到这个文件。在某些环境中，用户能上传，但不能访问。如果应用了随机数改写了文件名和路径，将极大地增加攻击的成本。</li>
+<li>单独设置文件服务器的域名。</li>
+<li>判断文件类型。</li>
+<li>使用安全设备防御。</li>
+</ol>
+<h3 id="3-文件包含漏洞"><a href="#3-文件包含漏洞" class="headerlink" title="3. 文件包含漏洞"></a>3. 文件包含漏洞</h3><h4 id="3-1-描述"><a href="#3-1-描述" class="headerlink" title="3.1 描述"></a>3.1 描述</h4><p><strong>什么是文件包含</strong></p>
+<p>开发者将相同的函数写进单独的文件中，需要使用某个函数时直接调用此文件，无需再次编写。这种文件调用的过程称为文件包含。</p>
+<p><strong>文件包含漏洞原理</strong></p>
+<p>由于开发人员编写源码时可将重复使用的代码写入到单个文件中，并在需要使用的时间将它们包含在特殊的代码中，这样包含的文件中的代码就会执行。如果没有针对代码中存在文件包含的函数入口做过滤，那么就可能会导致客户端可以提交恶意的语句，并且这些语句会交由服务器端进行执行。这样就可能会泄露敏感信息或者执行恶意代码。</p>
+<ul>
+<li><p>PHP 文件包含相关函数如下</p>
+<ul>
+<li>include() 函数<br>找不到被包含的文件，只会报错，但会继续执行脚本</li>
+<li>include_once() 函数<br>与 include() 函数类似，区别在于重复调用同一文件时，程序只调用一次</li>
+<li>require() 函数<br>找不到被包含的文件，会报错，并且停止执行脚本</li>
+<li>require_once() 函数<br>与 require() 函数类似，区别在于重复调用同一文件时，程序只调用一次</li>
+<li>fopen() 函数<br>打开文件或者 URL，如果打开失败，本函数将返回 false</li>
+<li>readfile() 函数<br>该函数读入一个文件并写入到输出缓冲，若成功，则返回从文件中读入的字节数；若失败，则返回 false</li>
+</ul>
+</li>
+<li><p>JSP 文件包含相关函数如下</p>
+<ul>
+<li>java.io.File() 函数<br>打开一个文件的函数</li>
+<li>java.io.FileReader() 函数<br>读取一个文件的函数</li>
+</ul>
+</li>
+<li><p>ASP 文件包含函数如下</p>
+<ul>
+<li>include file<br>包含一个文件(包含文件的相对路径)</li>
+<li>include virtual<br>包含一个文件(包含文件的虚拟路径)</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-防护措施"><a href="#3-2-防护措施" class="headerlink" title="3.2 防护措施"></a>3.2 防护措施</h4><p>URL 栏中有以下内容则可能存在文件包含</p>
+<ul>
+<li>?page=</li>
+<li>?file=</li>
+<li>?home=</li>
+</ul>
+<ol>
+<li>严格限制包含中的参数，取消那些不可控的参数。</li>
+<li>开启 open_basedir() 函数，将其设置为指定目录，则只有该目录的文件允许被访问。</li>
+<li>如果不需要文件包含，则关闭 allow_url_include() 函数，防止远程文件包含，这是最安全的办法。</li>
+<li>如果需要使用文件包含，则通过使用白名单的方法对要包含的文件进行限制，这样可以做到既使用了文件包含，又可以防止文件包含漏洞。</li>
+</ol>
+<h3 id="4-文件读取漏洞"><a href="#4-文件读取漏洞" class="headerlink" title="4. 文件读取漏洞"></a>4. 文件读取漏洞</h3><h4 id="4-1-描述"><a href="#4-1-描述" class="headerlink" title="4.1 描述"></a>4.1 描述</h4><p>很多网站由于业务需求，往往需要提供文件（附件）下载的功能块，但是如果对下载的文件没有做限制，直接通过绝对路径对其文件进行下载，那么，恶意用户就可以利用这种方式下载服务器的敏感文件，对服务器进行进一步的威胁和攻击。</p>
+<p>常见的存在任意文件读取漏洞的URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;readfile.php?file&#x3D;&quot; </span><br><span class="line">&quot;download.php?file&#x3D;&quot; </span><br><span class="line">&quot;read.php?filename&#x3D;&quot; </span><br><span class="line">&quot;down.php?file&#x3D;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>利用方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">index.php?f&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;etc&#x2F;passwd</span><br><span class="line">index.php?f&#x3D;..&#x2F;index.php</span><br><span class="line">index.php?f&#x3D;ﬁle:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-防范措施"><a href="#4-2-防范措施" class="headerlink" title="4.2 防范措施"></a>4.2 防范措施</h4><p>该漏洞不像其他漏洞那样有通用的利用方法和相关工具，本漏洞的利用过程与具体的网站架构关系很大，需要了解常见的网站的架构，如网站的配置文件位置等信息。</p>
+
     </div>
 
     
@@ -303,7 +358,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://horsenliu.gitee.io/posts/f2e699d4.html" title="05_事务">http://horsenliu.gitee.io/posts/f2e699d4.html</a>
+    <a href="http://horsenliu.gitee.io/posts/7cd84864.html" title="Web 攻击补充">http://horsenliu.gitee.io/posts/7cd84864.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -315,8 +370,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i> MySQL</a>
-              <a href="/tags/%E4%BA%8B%E5%8A%A1/" rel="tag"><i class="fa fa-tag"></i> 事务</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 网络安全</a>
+              <a href="/tags/Web-%E6%94%BB%E5%87%BB/" rel="tag"><i class="fa fa-tag"></i> Web 攻击</a>
           </div>
 
         
@@ -325,13 +380,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/eabdc6c0.html" rel="prev" title="04_MySQL 函数">
-      <i class="fa fa-chevron-left"></i> 04_MySQL 函数
+    <a href="/posts/74029447.html" rel="prev" title="OWASP Top 10 2017">
+      <i class="fa fa-chevron-left"></i> OWASP Top 10 2017
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/305fd78c.html" rel="next" title="06_索引">
-      06_索引 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -390,7 +442,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E5%8A%A1"><span class="nav-text">1. 什么是事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%89%A7%E8%A1%8C%E4%BA%8B%E5%8A%A1"><span class="nav-text">2. 执行事务</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-OS-%E6%B3%A8%E5%85%A5"><span class="nav-text">1. OS 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="nav-text">2. 文件上传漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">2.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E9%98%B2%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="nav-text">2.2 防护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="nav-text">3. 文件包含漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">3.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E9%98%B2%E6%8A%A4%E6%8E%AA%E6%96%BD"><span class="nav-text">3.2 防护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E"><span class="nav-text">4. 文件读取漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%8F%8F%E8%BF%B0"><span class="nav-text">4.1 描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD"><span class="nav-text">4.2 防范措施</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
