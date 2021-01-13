@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/5.13.0/css/all.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 概述被动信息收集方式是指利用第三方的服务对目标进行访问了解，例如 Google 搜索。 目的是通过公开渠道，获得目标主机的信息，从而不与目标系统直接交互，避免留下痕迹。 收集内容一般是  IP 地址段 域名信息 邮件地址 文档图⽚数据 公司地址 公司组织架构 联系电话&#x2F; 传真号码 人员姓名&#x2F; 职务 目标系统使⽤的技术架构 公开的商业信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01_被动信息收集">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/7dcd5f5f.html">
+<meta property="og:site_name" content="霍森的笔记本">
+<meta property="og:description" content="1. 概述被动信息收集方式是指利用第三方的服务对目标进行访问了解，例如 Google 搜索。 目的是通过公开渠道，获得目标主机的信息，从而不与目标系统直接交互，避免留下痕迹。 收集内容一般是  IP 地址段 域名信息 邮件地址 文档图⽚数据 公司地址 公司组织架构 联系电话&#x2F; 传真号码 人员姓名&#x2F; 职务 目标系统使⽤的技术架构 公开的商业信息">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/7dcd5f5f/image-20210112164303127.png">
+<meta property="article:published_time" content="2021-01-12T07:54:00.000Z">
+<meta property="article:modified_time" content="2021-01-13T02:13:04.775Z">
+<meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Web 攻击">
+<meta property="article:tag" content="Kali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/7dcd5f5f/image-20210112164303127.png">
+
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/7dcd5f5f.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>01_被动信息收集 | 霍森的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">霍森的笔记本</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一学就会 一写就废</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">170</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/horsenliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/7dcd5f5f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          01_被动信息收集
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-12 15:54:00" itemprop="dateCreated datePublished" datetime="2021-01-12T15:54:00+08:00">2021-01-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">网络安全学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Kali-Linux-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">Kali Linux 渗透测试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>被动信息收集方式是指利用第三方的服务对目标进行访问了解，例如 Google 搜索。</p>
+<p>目的是通过公开渠道，获得目标主机的信息，从而不与目标系统直接交互，避免留下痕迹。</p>
+<p>收集内容一般是</p>
+<ul>
+<li>IP 地址段</li>
+<li>域名信息</li>
+<li>邮件地址</li>
+<li>文档图⽚数据</li>
+<li>公司地址</li>
+<li>公司组织架构</li>
+<li>联系电话/ 传真号码</li>
+<li>人员姓名/ 职务</li>
+<li>目标系统使⽤的技术架构</li>
+<li>公开的商业信息</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="2-DNS-信息收集"><a href="#2-DNS-信息收集" class="headerlink" title="2. DNS 信息收集"></a>2. DNS 信息收集</h3><h4 id="2-1-域名解析原理"><a href="#2-1-域名解析原理" class="headerlink" title="2.1 域名解析原理"></a>2.1 域名解析原理</h4><h5 id="2-2-1-DNS-服务器概述"><a href="#2-2-1-DNS-服务器概述" class="headerlink" title="2.2.1 DNS 服务器概述"></a>2.2.1 DNS 服务器概述</h5><p>运行 DNS 服务器程序的计算机储存 DNS 数据库信息。</p>
+<p>DNS 服务器分为根域 DNS 服务器、顶级域名DNS 服务器。根域 DNS 服务器有13 个，都存储了全部的顶级域名服务器的所在地址；顶级域名服务器存储了每位客户所注册的主机地址，例如 163.com. 。</p>
+<h5 id="2-2-2-域名记录"><a href="#2-2-2-域名记录" class="headerlink" title="2.2.2 域名记录"></a>2.2.2 域名记录</h5><ol>
+<li><p><strong>A 记录（Address）正向解析</strong></p>
+<p>A 记录是将一个主机名（全称域名 FQDN）和一个 IP 地址关联起来。也是大多数客户端程序默认的查询类型。例如 xuegod.cn -&gt; 8.8.8.6</p>
+</li>
+<li><p><strong>PTR 记录（Pointer）反向解析</strong></p>
+<p>PTR 记录将一个 IP 地址对应到主机名（全称域名FQDN）。这些记录保存在 in-addr.arpa 域中。</p>
+</li>
+<li><p><strong>CNAME 记录（Canonical Name）别名</strong></p>
+<p>别名记录，也称为规范名字（Canonical Name）。这种记录允许我们将多个名字映射到同一台计算机。例如 <a target="_blank" rel="noopener" href="http://www.xuegod.cn/">www.xuegod.cn</a> 对应 IP 8.8.8.6，web.xuegod.cn 也对应IP 8.8.8.6。</p>
+</li>
+<li><p><strong>MX 记录（Mail eXchange）</strong></p>
+<p>MX 记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如 mail.xuegod.cn。</p>
+<p>当有多个 MX 记录（即有多个邮件服务器）时，则需要设置数值来确定其优先级。通过设置优先级数字来指明首选服务器，数字越小表示优先级越高。</p>
+</li>
+<li><p><strong>NS 记录（Name Server）</strong></p>
+<p>NS（Name Server）记录是域名服务器记录，也称为授权服务器，用来指定该域名由哪个 DNS 服务器来进行解析。例如 dns.xuegod.cn。</p>
+</li>
+</ol>
+<h5 id="2-2-3-DNS-缓存服务器"><a href="#2-2-3-DNS-缓存服务器" class="headerlink" title="2.2.3 DNS 缓存服务器"></a>2.2.3 DNS 缓存服务器</h5><p>不负责解析域，只是缓存域名解析结果。</p>
+<h5 id="2-2-4-DNS-查询过程"><a href="#2-2-4-DNS-查询过程" class="headerlink" title="2.2.4 DNS 查询过程"></a>2.2.4 DNS 查询过程</h5><ol>
+<li><p>浏览器缓存</p>
+<p>当用户通过浏览器访问某域名时，浏览器首先会在自己的缓存中查找是否有该域名对应的 IP 地址。</p>
+</li>
+<li><p>系统缓存</p>
+<p>当浏览器缓存中无域名对应 IP 则会自动检查用户计算机系统 Hosts 文件 DNS 缓存是否有该域名对应 IP。</p>
+</li>
+<li><p>路由器缓存</p>
+<p>当浏览器及系统缓存中均无域名对应 IP 则进入路由器缓存中检查，<strong>以上三步均为客户端的 DNS 缓存</strong>。</p>
+</li>
+<li><p>ISP（互联网服务提供商）DNS 缓存</p>
+<p>一般就是本地 DNS 服务器。当在用户客户端查找不到域名对应 IP 地址，则将进入 ISP DNS 缓存中进行查询。</p>
+</li>
+<li><p>根域名服务器</p>
+<p>当以上均未完成，则进入根服务器进行查询。全球仅有13 台根域名服务器，1 个主根域名服务器，其余 12 为辅根域名服务器。根域名收到请求后会查看区域文件记录，若无则将其管辖范围内顶级域名（如.com）服务器 IP 告诉本地 DNS 服务器。</p>
+</li>
+<li><p>顶级域名服务器</p>
+<p>顶级域名服务器收到请求后查看区域文件记录，若无则将其管辖范围内主域名服务器的 IP 地址告诉本地DNS 服务器。</p>
+</li>
+<li><p>主域名服务器</p>
+<p>主域名服务器接受到请求后查询自己的缓存，如果没有则进入下一级域名服务器进行查找，并重复该步骤直至找到正确纪录。</p>
+</li>
+<li><p>保存结果至缓存</p>
+<p>本地域名服务器把返回的结果保存到缓存，以备下一次使用，同时将该结果反馈给客户端，客户端通过这个 IP 地址与 Web 服务器建立链接</p>
+</li>
+</ol>
+<h4 id="2-2-NSLOOKUP"><a href="#2-2-NSLOOKUP" class="headerlink" title="2.2 NSLOOKUP"></a>2.2 NSLOOKUP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@horsen53:~<span class="comment"># nslookup xuegod.cn</span></span><br><span class="line">Server:        10.28.131.221      <span class="comment"># DNS服务器</span></span><br><span class="line">Address:    10.28.131.221<span class="comment">#53   # DNS服务器地址</span></span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:    xuegod.cn              <span class="comment"># 解析的域名</span></span><br><span class="line">Address: 101.200.128.35        <span class="comment"># 解析到的IP</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-DIG"><a href="#2-3-DIG" class="headerlink" title="2.3 DIG"></a>2.3 DIG</h4><p>@&lt;DNS 服务器地址&gt;： 指定进行域名解析的域名服务器<br>any 显示所有类型的域名记录，默认只显示 A 记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">root@horsen53:~<span class="comment"># dig @114.114.114.114 xuegod.cn any</span></span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.5-P1-1-Debian &lt;&lt;&gt;&gt; @114.114.114.114 xuegod.cn any</span><br><span class="line">; (1 server found)</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 51569</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 512</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;xuegod.cn.            IN    ANY</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">xuegod.cn.        599    IN    MX    5 mxbiz1.qq.com.</span><br><span class="line">xuegod.cn.        599    IN    MX    10 mxbiz2.qq.com.</span><br><span class="line">xuegod.cn.        599    IN    A    101.200.128.35</span><br><span class="line">xuegod.cn.        3291    IN    NS    dns8.hichina.com.</span><br><span class="line">xuegod.cn.        3291    IN    NS    dns7.hichina.com.</span><br><span class="line"></span><br><span class="line">;; Query time: 214 msec</span><br><span class="line">;; SERVER: 114.114.114.114<span class="comment">#53(114.114.114.114)</span></span><br><span class="line">;; WHEN: 二 1月 12 16:32:57 CST 2021</span><br><span class="line">;; MSG SIZE  rcvd: 152</span><br></pre></td></tr></table></figure>
+
+<p>使用 -x 参数利用 IP 反查域名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">root@horsen53:~<span class="comment"># dig -x 114.114.114.114</span></span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.5-P1-1-Debian &lt;&lt;&gt;&gt; -x 114.114.114.114</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 9713</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4000</span><br><span class="line">; COOKIE: 4b69e3119c5c4d16 (echoed)</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;114.114.114.114.in-addr.arpa.    IN    PTR</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">114.114.114.114.in-addr.arpa. 538 IN    PTR    public1.114dns.com. <span class="comment"># 域名</span></span><br><span class="line"></span><br><span class="line">;; Query time: 91 msec</span><br><span class="line">;; SERVER: 10.28.131.221<span class="comment">#53(10.28.131.221)</span></span><br><span class="line">;; WHEN: 二 1月 12 16:34:31 CST 2021</span><br><span class="line">;; MSG SIZE  rcvd: 101</span><br></pre></td></tr></table></figure>
+
+<p>查询 DNS 服务器 bind 版本信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">root@horsen53:~<span class="comment"># dig txt chaos VERSION.BIND @ns3.dnsv4.com</span></span><br><span class="line">;; Warning: query response not <span class="built_in">set</span></span><br><span class="line">;; Warning: Message parser reports malformed message packet.</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.5-P1-1-Debian &lt;&lt;&gt;&gt; txt chaos VERSION.BIND @ns3.dnsv4.com</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 16325</span><br><span class="line">;; flags: rd ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</span><br><span class="line">;; WARNING: recursion requested but not available</span><br><span class="line"></span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;VERSION.BIND.            CH    TXT</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">VERSION.BIND.        0    CH    TXT    <span class="string">&quot;5.1.1912.06&quot;</span> <span class="comment"># 软件包版本信息</span></span><br><span class="line"></span><br><span class="line">;; Query time: 51 msec</span><br><span class="line">;; SERVER: 129.211.176.242<span class="comment">#53(129.211.176.242)</span></span><br><span class="line">;; WHEN: 二 1月 12 16:36:17 CST 2021</span><br><span class="line">;; MSG SIZE  rcvd: 54</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Maltego-收集子域名信息"><a href="#3-Maltego-收集子域名信息" class="headerlink" title="3. Maltego 收集子域名信息"></a>3. Maltego 收集子域名信息</h3><h4 id="3-1-子域名"><a href="#3-1-子域名" class="headerlink" title="3.1 子域名"></a>3.1 子域名</h4><p>顶级域名是域名的最后一个部分，即是域名最后一点之后的字母，例如在 <a target="_blank" rel="noopener" href="http://example.com/">http://example.com</a> 这个域名中，顶级域是 .com（或.COM），大小写视为相同。</p>
+<p>常见的顶级域主要分 2 类：</p>
+<ol>
+<li>通用顶级类别域名共 6 个， 包括用于科研机构的 .ac；用于工商金融企业的 .com；用于教育机构的 .edu；用于政府部门的 .gov；用于互联网络信息中心和运行中心的.net；用于非盈利组织的 .org。</li>
+<li>国家及地区顶级域，如 .cn 代表中国，.uk 代表英国等，地理顶级域名一般由各个国家或地区负责管理。</li>
+</ol>
+<p>子域名（Subdomain Name），凡顶级域名前加前缀的都是该顶级域名的子域名，而子域名根据技术的多少分为二级子域名，三级子域名以及多级子域名。</p>
+<h4 id="3-2-挖掘子域名的重要性"><a href="#3-2-挖掘子域名的重要性" class="headerlink" title="3.2 挖掘子域名的重要性"></a>3.2 挖掘子域名的重要性</h4><p>子域名是某个主域的二级域名或者多级域名，在防御措施严密情况下无法直接拿下主域，那么就可以采用<strong>迂回战术</strong>拿下子域名，然后无限靠近主域。</p>
+<p>例如：<a target="_blank" rel="noopener" href="http://www.xxxxx.com/">www.xxxxx.com</a> 主域不存在漏洞，并且防护措施严密。而二级域名 edu.xxxxx.com 存在漏洞，并且防护措施松散。</p>
+<h4 id="3-3-使用-Maltego"><a href="#3-3-使用-Maltego" class="headerlink" title="3.3 使用 Maltego"></a>3.3 使用 Maltego</h4><ol>
+<li>先去官网注册账号</li>
+<li>然后在 Kali 中启动软件</li>
+<li>左侧搜索栏输入“domain”</li>
+<li>将查询出来的“domain”拖动到右侧空白处</li>
+<li>双击文字更改域名</li>
+<li>右键图标，点击“All Transforms”</li>
+<li>选择一项进行解析</li>
+</ol>
+<img src="/posts/7dcd5f5f/image-20210112164303127.png" class>
+
+<h3 id="4-Shodan-收集信息"><a href="#4-Shodan-收集信息" class="headerlink" title="4. Shodan 收集信息"></a>4. Shodan 收集信息</h3><blockquote>
+<p>Shodan 官网 <a target="_blank" rel="noopener" href="https://www.shodan.io/">https://www.shodan.io</a></p>
+</blockquote>
+<p>虽然目前人们都认为谷歌是最强劲的搜索引擎，但 Shodan 才是互联网上最可怕的搜索引擎。与谷歌不同的是，Shodan 不是在网上搜索网址，而是直接进入互联网背后的通道。Shodan 可以说是一款“黑暗”谷歌，一刻不停的在寻找着所有和互联网关联的服务器、摄像头、打印机、路由器等等。还可以直接显示出目标的具体地理位置信息。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Horsen Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://horsenliu.gitee.io/posts/7dcd5f5f.html" title="01_被动信息收集">http://horsenliu.gitee.io/posts/7dcd5f5f.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 网络安全</a>
+              <a href="/tags/Web-%E6%94%BB%E5%87%BB/" rel="tag"><i class="fa fa-tag"></i> Web 攻击</a>
+              <a href="/tags/Kali/" rel="tag"><i class="fa fa-tag"></i> Kali</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/7cd84864.html" rel="prev" title="Web 攻击补充">
+      <i class="fa fa-chevron-left"></i> Web 攻击补充
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/5eab130c.html" rel="next" title="02_动信息收集主动信息收集">
+      02_动信息收集主动信息收集 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DNS-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-text">2. DNS 信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%8E%9F%E7%90%86"><span class="nav-text">2.1 域名解析原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-text">2.2.1 DNS 服务器概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-%E5%9F%9F%E5%90%8D%E8%AE%B0%E5%BD%95"><span class="nav-text">2.2.2 域名记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-DNS-%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">2.2.3 DNS 缓存服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-4-DNS-%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B"><span class="nav-text">2.2.4 DNS 查询过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-NSLOOKUP"><span class="nav-text">2.2 NSLOOKUP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-DIG"><span class="nav-text">2.3 DIG</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Maltego-%E6%94%B6%E9%9B%86%E5%AD%90%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="nav-text">3. Maltego 收集子域名信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="nav-text">3.1 子域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%8C%96%E6%8E%98%E5%AD%90%E5%9F%9F%E5%90%8D%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-text">3.2 挖掘子域名的重要性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E4%BD%BF%E7%94%A8-Maltego"><span class="nav-text">3.3 使用 Maltego</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Shodan-%E6%94%B6%E9%9B%86%E4%BF%A1%E6%81%AF"><span class="nav-text">4. Shodan 收集信息</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Horsen Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Horsen Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">170</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Horsen Liu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">552k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:22</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"width":180,"height":360,"position":"left","hOffset":40,"vOffset":-60},"mobile":{"show":false,"scale":0.1},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
