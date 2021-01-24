@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/5.13.0/css/all.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这个学期非常「充实」，必须要分类才能总结清楚。 自学 Java 技术借着暑假的劲头，我又学了一些新的知识，例如 Linux、Redis。虽然不多，速度也不快，但还是坚持写了不少笔记。不得不说，在家学习比在学校学习效率高得多，在宿舍学习比在图书馆学习效率高得多。当然，效率最低的当然是在课堂上。我觉得学校「强迫企业实训」和「老师讲老师的，你自己学你自己的」这种学习模式非常不适合我。可能我抗干扰能力不强">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20-21-1 学期总结">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/f8d03568.html">
+<meta property="og:site_name" content="霍森的笔记本">
+<meta property="og:description" content="这个学期非常「充实」，必须要分类才能总结清楚。 自学 Java 技术借着暑假的劲头，我又学了一些新的知识，例如 Linux、Redis。虽然不多，速度也不快，但还是坚持写了不少笔记。不得不说，在家学习比在学校学习效率高得多，在宿舍学习比在图书馆学习效率高得多。当然，效率最低的当然是在课堂上。我觉得学校「强迫企业实训」和「老师讲老师的，你自己学你自己的」这种学习模式非常不适合我。可能我抗干扰能力不强">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-24T08:04:00.000Z">
+<meta property="article:modified_time" content="2021-01-24T09:41:56.792Z">
+<meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="学期总结">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/f8d03568.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>20-21-1 学期总结 | 霍森的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">霍森的笔记本</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一学就会 一写就废</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">171</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/horsenliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/f8d03568.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          20-21-1 学期总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-24 16:04:00" itemprop="dateCreated datePublished" datetime="2021-01-24T16:04:00+08:00">2021-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学期总结</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这个学期非常「充实」，必须要分类才能总结清楚。</p>
+<h3 id="自学-Java-技术"><a href="#自学-Java-技术" class="headerlink" title="自学 Java 技术"></a>自学 Java 技术</h3><p>借着暑假的劲头，我又学了一些新的知识，例如 Linux、Redis。虽然不多，速度也不快，但还是坚持写了不少笔记。不得不说，在家学习比在学校学习效率高得多，在宿舍学习比在图书馆学习效率高得多。当然，效率最低的当然是在课堂上。我觉得学校「强迫企业实训」和「老师讲老师的，你自己学你自己的」这种学习模式非常不适合我。可能我抗干扰能力不强，每次在图书馆里学习都觉得十分不自在，虽然图书馆里十分安静，但是总感觉到十分压抑和吵闹。</p>
+<h3 id="课程设计和企业实训"><a href="#课程设计和企业实训" class="headerlink" title="课程设计和企业实训"></a>课程设计和企业实训</h3><p>这是我这学期最大的绊脚石之一，一方面我想要得到不错的成绩，另一方面我又要兼顾学习技术和找工作。作为一个普通二本大学生，我只好把学习技术的时间拿出来，花在这上面。</p>
+<p>先说课程设计，很好应付，因为我上个学习做了一个 Android APP，直接拿来优化一下，就可以完成任务。企业实训的第一个项目是 H5 项目，也很好应付，我上个学习也做了。最头大的就是第二个 SSM 的项目。</p>
+<p>虽说 SSM 我早就学过，也写过 Demo，但是由于接触了 Spring Boot 之后，脑子已经没有了对 SSM 项目中配置地狱的应付能力，其次有很多优秀的技术如何集成在 SSM 项目中也成了一个问题。不是说无法集成，而是我实在找不到官方的教程，自己也搞不定，看了教程也失败。最后无奈，我还是决定用 Spring Boot 来做。不得不说，用了 Spring Boot 就再也不想回到 SSM 了。</p>
+<p>具体的很多细节我都不想去回忆了，反正做项目从来不是轻轻松松的事情（特别是写前端，真是噩梦）。做这个项目花了我很大的时间和精力。由于在最后的时间点，我还要找房看房，差点都没能及时完成所有功能。12月份真是我这辈子最累的一个月了。</p>
+<p>此时此刻，成绩也出来了，像上个学期一样，列一下：</p>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>成绩</th>
+<th>绩点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>企业技术实习</td>
+<td>95</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>软件系统分析与设计课程设计</td>
+<td>95</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>软件工程项目训练</td>
+<td>92</td>
+<td>4.5</td>
+</tr>
+</tbody></table>
+<p>绩点终于到<code>4.0</code>了，但是可惜我的校招已经结束了，绩点没什么作用了。</p>
+<a id="more"></a>
+
+<h3 id="找工作"><a href="#找工作" class="headerlink" title="找工作"></a>找工作</h3><p>找工作可以说是十分跌宕波折的过程了。</p>
+<p>一开始我和大家一样，拿着简历去跑各种招聘会和宣讲会，一脸茫然，内心迷茫，前几次连面试机会都没有拿到。后来参加的多了，渐渐也有了面试的机会。面试的次数多了，渐渐也有了面试的经验，知道面试官喜欢问哪些问题，知道公司对应届毕业生的看法和要求。有些公司给的薪资是真的低，不知道是我们学校的学生太差了他们不愿意多给一些，还是由于疫情影响，公司也拿不出太多的薪水，反正有的 offer 实在是不堪入目……</p>
+<p>后来我就拿到了第一个我比较满意的 offer，也去公司参观了，他们人挺好的，十分真诚。过了几天我又去了一次，和他们签订了实习协议，他们知道我在学校里不能出来实习，就给我们在线上布置任务。其实嘴上说满意，我心里还是十分不甘心的，我觉得我的校招不能就这样结束，我还要继续投简历，继续面试，我想要进更大的公司。</p>
+<p>再后来我又拿到了一个更加满意的 offer，薪资待遇更好，公司规模也大得多得多，也就是我现在在实习的这家公司。至此，我的校招就算上岸了。接下来就是等待 7 月份正式入职了。</p>
+<h3 id="租房子"><a href="#租房子" class="headerlink" title="租房子"></a>租房子</h3><p>租房子的原因有三个：</p>
+<ol>
+<li>为了实习。学校 1 月中旬放假之后，我在南京就没有地方可以住了；</li>
+<li>为了上班方便。从学校到实习单位的通勤时间实在是太长了；</li>
+<li>为了离开我不喜欢的人、事、物。远离绊脚石，和另一个绊脚石。</li>
+</ol>
+<p>这是我人生第一次租房子，所以「理所当然」的第一次就被坑了，找了一个黑中介，被坑了 400 块钱。不过好在我很快就发现问题了，赶紧又找了一家正规的中介，虽然收中介费，但是图个安心。</p>
+<p>租房的战线拉的很长，因为每周一到周五都要上课，只有周末的时间可以出去看房，每次看房回来都十分疲惫。不过好在努力有了回报，最终租到了满意的房子，房东人也很好。</p>
+<p>这次总结了不少租房子的经验，下一次租房子就能更得心应手一些了吧。</p>
+<h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>在 7 月份正式入职之前，我申请到了去公司实习的机会。</p>
+<h4 id="为了实习"><a href="#为了实习" class="headerlink" title="为了实习"></a>为了实习</h4><p>真是费劲了千辛万苦。都不能说是绊脚石了，简直就是两把合金锁。</p>
+<p>第一把，学校非得要我们上企业实训的课，但是这个课程的教学质量，用「不尽人意」来形容那都是万分的尊重了，在我心里只有三个形容词，骗钱，骗钱，还是 TMD 骗钱。我和几家公司都提出过这个问题，他们给出的答复意思是「我们不能等你这么久，因为你这个岗位有很多人在竞争呢」还有的公司就直接说「不知道你们学校为什么要干这种事情，这不是妨碍学生就业吗」。一时间，我就明白了为什么一些企业对于南京工程学院的心里印象特别不好，也明白了为什么我们的就业率这么低。</p>
+<p>熬到课程结束之后，第二把合金锁又来了。如果我想出去实习，就要办校外毕设的手续。想要办这个手续，不仅需要很多领导签字，还需要三方协议。这就很巧了，我的公司非常好，offer 发下来我接受之后就和我签订了三方。但毕竟不是所有公司都这么好，有的公司需要学生先来实习，在实习期对学生进行考核，然后再决定是否和你签三方。对于这样的学生，就面临以下这个情况：</p>
+<ul>
+<li>学生：老师，我想出去实习，可以吗？</li>
+<li>老师：可以，但是你需要先拿到三方。</li>
+<li>学生：啊……那我问问公司，能不能提前和我签三方。</li>
+<li>学生：HR 您好，我想问问现在能不能签三方。</li>
+<li>HR：在我们公司要先经过实习期，通过我们的考核，然后你拿着毕业证和学位证，才能和我们签三方，正式入职。</li>
+<li>学生：我人傻了，我需要三方才能实习，但是需要实习才能拿到三方。</li>
+</ul>
+<p>我不知道现在学校对于这种情况是怎么处理的，只是我万幸能提前拿到三方。</p>
+<h4 id="实习中"><a href="#实习中" class="headerlink" title="实习中"></a>实习中</h4><p>虽然我的简历上写的是「Java 开发」，但是我的工作却和 Java 关系不大。不过实习重在熟悉公司、熟悉工作流程、学习新的知识。</p>
+<p>这是对外的说话。其实我心里想的是：</p>
+<ul>
+<li>如果我早点去公司，就会比同届学生更有竞争力；</li>
+<li>实习有钱赚；</li>
+<li>我不想闲着。12 月底所有课程结束了，这个时候回家的人无非三种：<ul>
+<li>没有找到工作，回去当咸鱼，或者啃老；</li>
+<li>找到工作了，但是没有找到实习，回家努力学习，下学期开学争取找个班儿上；</li>
+<li>找到工作了，我可太牛了，解脱咯，玩儿咯；</li>
+<li>考研结束，无论考的怎么样，回家休息等成绩。当然不包括用考研逃避就业的，这种人可以归于第一类。</li>
+</ul>
+</li>
+</ul>
+<p>我目前在公司实习半个月了，主要的工作是翻译，一共有 34441 条数据需要翻译，每一条都是语句不那么通顺的网络攻击类型描述，我现在才处理了 11%，感觉道阻且长。经理让我一个半月搞完，我觉得我压力挺大的。</p>
+<h3 id="另一个绊脚石"><a href="#另一个绊脚石" class="headerlink" title="另一个绊脚石"></a>另一个绊脚石</h3><p>两年了，我终于摆脱了。</p>
+<p>现在，我找到了工作，租到了房子，找到了实习，也买好了回家的车票。我成功地逃离了我不想看的到人，不想经历的事情，不想待的地方。一直以来我都没有任何办法，所以卑微到只能逃离，还好我仅存的尊严告诉我自己应该逃离，还好我和他们不一样，还好我做到了。</p>
+<p>也多亏这个绊脚石，让我不断感受到痛苦与折磨，才有逃离的动力。没想到居然这么讽刺，难道这就是所谓的「鞭策」吗。更讽刺的是，我居然需要这种地理上的远离，来帮助自己进行心理上的远离。</p>
+<p>处理好人与人之间的关系，可能是我这辈子永远都学不好的课程。</p>
+<p>好在新的生活已经开始了，好在我还有未来。</p>
+<p>🙂可是绊脚石和寄生虫能有什么未来呢？</p>
+<blockquote>
+<p>明天冰雪封山的时候，我会光着双脚，站在你翻山越岭的尽头，正当年少。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Horsen Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://horsenliu.gitee.io/posts/f8d03568.html" title="20-21-1 学期总结">http://horsenliu.gitee.io/posts/f8d03568.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" rel="tag"><i class="fa fa-tag"></i> 学期总结</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/5eab130c.html" rel="prev" title="02_主动信息收集">
+      <i class="fa fa-chevron-left"></i> 02_主动信息收集
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AD%A6-Java-%E6%8A%80%E6%9C%AF"><span class="nav-text">自学 Java 技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%92%8C%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%AE%AD"><span class="nav-text">课程设计和企业实训</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%B7%A5%E4%BD%9C"><span class="nav-text">找工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%9F%E6%88%BF%E5%AD%90"><span class="nav-text">租房子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%B9%A0"><span class="nav-text">实习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0"><span class="nav-text">为了实习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%B9%A0%E4%B8%AD"><span class="nav-text">实习中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%BB%8A%E8%84%9A%E7%9F%B3"><span class="nav-text">另一个绊脚石</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Horsen Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Horsen Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Horsen Liu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">555k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"width":180,"height":360,"position":"left","hOffset":40,"vOffset":-60},"mobile":{"show":false,"scale":0.1},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
