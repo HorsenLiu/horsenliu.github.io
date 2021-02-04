@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/5.13.0/css/all.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"horsenliu.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了实用的枚举类型。 1. 布尔值 boolean简单的 true&#x2F;false 值： 12let isDone: boolean &#x3D; false;isDone &#x3D; true;  2. 数字 number和 JavaScript 一样，TypeScript 里的所有数字都是浮点数。除了支持十进制和十六进制字面量，Type">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04_基本类型">
+<meta property="og:url" content="http://horsenliu.gitee.io/posts/e3e52df0.html">
+<meta property="og:site_name" content="霍森的笔记本">
+<meta property="og:description" content="TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了实用的枚举类型。 1. 布尔值 boolean简单的 true&#x2F;false 值： 12let isDone: boolean &#x3D; false;isDone &#x3D; true;  2. 数字 number和 JavaScript 一样，TypeScript 里的所有数字都是浮点数。除了支持十进制和十六进制字面量，Type">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://horsenliu.gitee.io/posts/e3e52df0/kaoyan.jpg">
+<meta property="article:published_time" content="2021-02-01T13:03:00.000Z">
+<meta property="article:modified_time" content="2021-02-04T01:28:57.317Z">
+<meta property="article:author" content="Horsen Liu">
+<meta property="article:tag" content="Webpack">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://horsenliu.gitee.io/posts/e3e52df0/kaoyan.jpg">
+
+<link rel="canonical" href="http://horsenliu.gitee.io/posts/e3e52df0.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>04_基本类型 | 霍森的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">霍森的笔记本</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一学就会 一写就废</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">118</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">29</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">177</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/horsenliu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://horsenliu.gitee.io/posts/e3e52df0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Horsen Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="霍森的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          04_基本类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-01 21:03:00" itemprop="dateCreated datePublished" datetime="2021-02-01T21:03:00+08:00">2021-02-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">前端学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScript/" itemprop="url" rel="index"><span itemprop="name">TypeScript</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了实用的<strong>枚举</strong>类型。</p>
+<h3 id="1-布尔值-boolean"><a href="#1-布尔值-boolean" class="headerlink" title="1. 布尔值 boolean"></a>1. 布尔值 boolean</h3><p>简单的 true/false 值：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isDone: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line">isDone = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-数字-number"><a href="#2-数字-number" class="headerlink" title="2. 数字 number"></a>2. 数字 number</h3><p>和 JavaScript 一样，TypeScript 里的所有数字都是浮点数。除了支持十进制和十六进制字面量，TypeScript 还支持 ECMAScript 2015 中引入的二进制和八进制字面量：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a1: <span class="built_in">number</span> = <span class="number">10</span>; <span class="comment">// 十进制</span></span><br><span class="line"><span class="keyword">let</span> a2: <span class="built_in">number</span> = <span class="number">0b1010</span>; <span class="comment">// 二进制</span></span><br><span class="line"><span class="keyword">let</span> a3: <span class="built_in">number</span> = <span class="number">0o12</span>; <span class="comment">// 八进制</span></span><br><span class="line"><span class="keyword">let</span> a4: <span class="built_in">number</span> = <span class="number">0xa</span>; <span class="comment">// 十六进制</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-字符串-string"><a href="#3-字符串-string" class="headerlink" title="3. 字符串 string"></a>3. 字符串 string</h3><p>和 JavaScript 一样，可以使用双引号（<code>&quot;</code>）或单引号（<code>&#39;</code>）表示字符串。特别注意在字符串中使用变量的方式：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name: <span class="built_in">string</span> = <span class="string">&#x27;Horsen&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> age: <span class="built_in">number</span> = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> info = <span class="string">`My name is <span class="subst">$&#123;name&#125;</span>, I am <span class="subst">$&#123;age&#125;</span> years old!`</span>;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="4-undefined-和-null"><a href="#4-undefined-和-null" class="headerlink" title="4. undefined 和 null"></a>4. undefined 和 null</h3><p>默认情况下<code>null</code>和<code>undefined</code>是所有类型的子类型。 就是可以把<code>null</code>和<code>undefined</code>赋值给<code>number</code>类型的变量：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p><em>注意：默认情况下，将 null 或 undefined 赋值给 number 类型变量时会产生编译错误，需要在 tsconfig.json 中关闭严格模式并重新运行。</em></p>
+<h3 id="5-数组"><a href="#5-数组" class="headerlink" title="5. 数组"></a>5. 数组</h3><p>有两种方式可以定义数组。 第一种，可以在元素类型后面接<code>[]</code>，表示由此类型元素组成的一个数组，第二种方式是使用数组泛型<code>Array&lt;元素类型&gt;</code>：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list1: <span class="built_in">number</span>[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> list2: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-元组-Tuple"><a href="#6-元组-Tuple" class="headerlink" title="6. 元组 Tuple"></a>6. 元组 Tuple</h3><p>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，可以定义一对值分别为<code>string</code>和<code>number</code>类型的元组：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tuple: [<span class="built_in">number</span>, <span class="built_in">string</span>];</span><br><span class="line">tuple = [<span class="number">3</span>, <span class="string">&#x27;Horsen&#x27;</span>];</span><br></pre></td></tr></table></figure>
+
+<p>乍一看很像 Java 的 Map 类型，但是元组支持两个及以上的数据类型：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> t2: [<span class="built_in">number</span>, <span class="built_in">string</span>, <span class="built_in">boolean</span>] = [<span class="number">3</span>, <span class="string">&#x27;Horsen&#x27;</span>, <span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<p>而且元组没有「键值对」的约束，它更像加强版的数组，和数组一样也是<strong>用索引来取值</strong>。</p>
+<h3 id="7-枚举-enum"><a href="#7-枚举-enum" class="headerlink" title="7. 枚举 enum"></a>7. 枚举 enum</h3><p>枚举类型是对 JavaScript 标准数据类型的一个补充，枚举里面的每个数据都可以叫元素，每个元素都有自己的编号，默认情况下从 0 开始递增地为元素编号。</p>
+<p>如果有一组数据是常用的，且个数是固定的，可以定义成枚举类型：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Color &#123;</span><br><span class="line">    Red,</span><br><span class="line">    Green,</span><br><span class="line">    Blue,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> myColor: Color = Color.Green;</span><br><span class="line"><span class="built_in">console</span>.log(myColor,Color.Red,Color.Blue);<span class="comment">// 1 0 2</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以手动指定成员数值，比如从 1 开始递增：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Color &#123;Red = <span class="number">1</span>, Green, Blue&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者手动指定每一个元素的编号：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Color &#123;Red = <span class="number">1</span>, Green = <span class="number">3</span>, Blue = <span class="number">12</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>枚举类型的优点是，可以由枚举的值得到它的名字。 例如，我知道数值为 2，但是不确定它映射到 Color 里的哪个名字，就可以查找相应的名字：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Color &#123;</span><br><span class="line">    Red = <span class="number">1</span>,</span><br><span class="line">    Green,</span><br><span class="line">    Blue,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> colorName = Color[<span class="number">2</span>];</span><br><span class="line"><span class="built_in">console</span>.log(colorName);<span class="comment">// Green</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-any"><a href="#8-any" class="headerlink" title="8. any"></a>8. any</h3><p>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 <code>any</code> 类型来标记这些变量：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> notSure: <span class="built_in">any</span> = <span class="number">3</span>;</span><br><span class="line">notSure = <span class="string">&#x27;Horsen&#x27;</span>;</span><br><span class="line">notSure = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它允许我们在编译时可选择地包含或移除类型检查。并且当我们只知道一部分数据的类型时，<code>any</code>类型也是有用的。 比如，我有一个数组，它包含了不同的类型的数据：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list: <span class="built_in">any</span>[] = [<span class="number">3</span>, <span class="string">&#x27;Horsen&#x27;</span>, <span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+
+<p>可以理解为，any 类型是一个万能受血者。</p>
+<h3 id="9-void"><a href="#9-void" class="headerlink" title="9. void"></a>9. void</h3><p>某种程度上来说，<code>void</code>类型像是与<code>any</code>类型相反，它表示没有任何类型。 当一个函数没有返回值时，通常会见到其返回值类型是 <code>void</code>，说明函数的返回值不能是<code>undifined</code>和<code>null</code>之外的值：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;haha&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以给一个变量声明称<code>void</code>类型，但是这样没什么用处，只能为其赋值<code>undifined</code>或<code>null</code>：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> useless: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-object"><a href="#10-object" class="headerlink" title="10. object"></a>10. object</h3><p><code>object</code>表示非原始类型，也就是除<code>number</code>，<code>string</code>，<code>boolean</code>之外的类型。类似于 Java 的 Object，表示所有类的父类。在参数传递的时候需要像 Java 一样，传递一个对象：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params">obj: <span class="built_in">object</span></span>): <span class="title">object</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;fn2()&#x27;</span>, obj);</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fn2(<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;abc&#x27;</span>)));</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-联合类型"><a href="#11-联合类型" class="headerlink" title="11. 联合类型"></a>11. 联合类型</h3><p>联合类型（Union Types）表示取值可以为多种类型中的一种。</p>
+<p>比如说，定义一个函数返回一个数字或字符串值的字符串形式值：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toString</span>(<span class="params">x: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x.toString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(toString(<span class="number">111</span>)); <span class="comment">// 111</span></span><br><span class="line"><span class="built_in">console</span>.log(toString(<span class="string">&#x27;222&#x27;</span>)); <span class="comment">// 222</span></span><br></pre></td></tr></table></figure>
+
+<p>又或者，定义一个函数返回一个数字或字符串值的长度：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">x: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x.toString().length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getLength(<span class="number">111111</span>)); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(getLength(<span class="string">&#x27;222&#x27;</span>)); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>但是这个方法的问题在于，如果传入的是字符串，就没有必要执行 toString() 方法了，如果传入的是数字，又必须要执行 toString() 方法，那么如何判断类型？这时就需要类型断言，告诉编译器，目前调用某函数的值一定是某种类型。</p>
+<h3 id="12-类型断言"><a href="#12-类型断言" class="headerlink" title="12. 类型断言"></a>12. 类型断言</h3><p>通过类型断言这种方式可以告诉编译器「稳住，我知道自己在干什么」。 类型断言类似Java 里的类型转换，但是不进行特殊的数据检查和解构。 它没有运行时的影响，只是在编译阶段起作用。 </p>
+<p>类型断言有两种形式，使用尖括号<code>&lt;type&gt;value</code>或<code>value as type</code>：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLengthPlus</span>(<span class="params">x: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((&lt;<span class="built_in">string</span>&gt;x).length) &#123;</span><br><span class="line">        <span class="keyword">return</span> (x <span class="keyword">as</span> <span class="built_in">string</span>).length;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> x.toString.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-类型推断"><a href="#13-类型推断" class="headerlink" title="13. 类型推断"></a>13. 类型推断</h3><p>TypeScript 会在没有明确指定类型的时候推测出一个类型，常见的是以下两种情况：</p>
+<ol>
+<li>定义变量时赋值了，推断为对应的类型；</li>
+<li>定义变量时没有赋值，推断为<code>any</code>类型。</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="built_in">number</span> = <span class="number">3</span>; <span class="comment">// number类型</span></span><br><span class="line"><span class="keyword">let</span> horsen; <span class="comment">// any类型</span></span><br><span class="line">horsen = <span class="number">3</span>;</span><br><span class="line">horsen = <span class="string">&#x27;Horsen&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>好家伙，这个老师讲课的时候开车开得猝不及防，而且骚话极多，绝了。</p>
+<p>我觉得我有必要记录一下：</p>
+<blockquote>
+<ol>
+<li>少年不知富婆好，错把少女当作宝。</li>
+<li>少年不知软方向，错把青春倒插秧。</li>
+<li>只要富婆把握住，连夜搬进大别墅。</li>
+</ol>
+</blockquote>
+<img src="/posts/e3e52df0/kaoyan.jpg" class>
+
+<p>说不定十年之后回头看看，这些话就成「大实话」了。</p>
+<p>😄不用十年，我现在就感觉这些话一定程度上暗示了什么。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Horsen Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://horsenliu.gitee.io/posts/e3e52df0.html" title="04_基本类型">http://horsenliu.gitee.io/posts/e3e52df0.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Webpack/" rel="tag"><i class="fa fa-tag"></i> Webpack</a>
+              <a href="/tags/TypeScript/" rel="tag"><i class="fa fa-tag"></i> TypeScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/76cc13d1.html" rel="prev" title="03_使用 webpack 打包 TS">
+      <i class="fa fa-chevron-left"></i> 03_使用 webpack 打包 TS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/381b6bfd.html" rel="next" title="05_接口">
+      05_接口 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%83%E5%B0%94%E5%80%BC-boolean"><span class="nav-text">1. 布尔值 boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E5%AD%97-number"><span class="nav-text">2. 数字 number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AD%97%E7%AC%A6%E4%B8%B2-string"><span class="nav-text">3. 字符串 string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-undefined-%E5%92%8C-null"><span class="nav-text">4. undefined 和 null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%95%B0%E7%BB%84"><span class="nav-text">5. 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%85%83%E7%BB%84-Tuple"><span class="nav-text">6. 元组 Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%9E%9A%E4%B8%BE-enum"><span class="nav-text">7. 枚举 enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-any"><span class="nav-text">8. any</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-void"><span class="nav-text">9. void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-object"><span class="nav-text">10. object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-text">11. 联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80"><span class="nav-text">12. 类型断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="nav-text">13. 类型推断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="nav-text">题外话</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Horsen Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Horsen Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">177</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/horsenliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horsenliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=1468224254&site=qq&menu=yes" title="QQ → https:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1468224254&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://sm.ms/image/jyArGeatQ9Plw4n" title="WeChat → https:&#x2F;&#x2F;sm.ms&#x2F;image&#x2F;jyArGeatQ9Plw4n" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:horsenliu@qq.com" title="E-Mail → mailto:horsenliu@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Horsen Liu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">570k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:38</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="252,100,35" pointColor="252,100,35" opacity="1" zIndex="-1" count="150" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"width":180,"height":360,"position":"left","hOffset":40,"vOffset":-60},"mobile":{"show":false,"scale":0.1},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
